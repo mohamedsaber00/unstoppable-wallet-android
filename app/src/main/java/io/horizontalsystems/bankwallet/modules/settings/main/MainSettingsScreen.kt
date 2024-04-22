@@ -90,19 +90,19 @@ private fun SettingSections(
     val language by viewModel.languageLiveData.observeAsState()
     val context = LocalContext.current
 
-    CellUniversalLawrenceSection(
-        listOf {
-            HsSettingCell(
-                R.string.Settings_Donate,
-                R.drawable.ic_heart_jacob_48,
-                onClick = {
-                    navController.slideFromRight(R.id.donateTokenSelectFragment)
-                }
-            )
-        }
-    )
+    // CellUniversalLawrenceSection(
+    //     listOf {
+    //         HsSettingCell(
+    //             R.string.Settings_Donate,
+    //             R.drawable.ic_heart_jacob_48,
+    //             onClick = {
+    //                 navController.slideFromRight(R.id.donateTokenSelectFragment)
+    //             }
+    //         )
+    //     }
+    // )
 
-    VSpacer(32.dp)
+    // VSpacer(32.dp)
 
     CellUniversalLawrenceSection(
         listOf({
@@ -236,27 +236,27 @@ private fun SettingSections(
 
     VSpacer(32.dp)
 
-    CellUniversalLawrenceSection(
-        listOf({
-            HsSettingCell(
-                R.string.Settings_Faq,
-                R.drawable.ic_faq_20,
-                onClick = {
-                    navController.slideFromRight(R.id.faqListFragment)
-                }
-            )
-        }, {
-            HsSettingCell(
-                R.string.Guides_Title,
-                R.drawable.ic_academy_20,
-                onClick = {
-                    navController.slideFromRight(R.id.academyFragment)
-                }
-            )
-        })
-    )
+    // CellUniversalLawrenceSection(
+    //     listOf({
+    //         HsSettingCell(
+    //             R.string.Settings_Faq,
+    //             R.drawable.ic_faq_20,
+    //             onClick = {
+    //                 navController.slideFromRight(R.id.faqListFragment)
+    //             }
+    //         )
+    //     }, {
+    //         HsSettingCell(
+    //             R.string.Guides_Title,
+    //             R.drawable.ic_academy_20,
+    //             onClick = {
+    //                 navController.slideFromRight(R.id.academyFragment)
+    //             }
+    //         )
+    //     })
+    // )
 
-    VSpacer(32.dp)
+    // VSpacer(32.dp)
 
     CellUniversalLawrenceSection(
         listOf({

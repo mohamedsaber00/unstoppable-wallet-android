@@ -1,8 +1,8 @@
-Unstoppable cüzdan, kripto para birimleri için merkezi olmayan bir yönetim aracı olarak tasarlanmıştır.
+SatoshiFX cüzdan, kripto para birimleri için merkezi olmayan bir yönetim aracı olarak tasarlanmıştır.
 
 Kripto para birimlerini egemen ve profesyonel bir şekilde yönetmek ve yatırım yapmak isteyen gizlilik bilincine sahip bireylere hizmet etmek için tasarlanmıştır.
 
-Unstoppable, aşağıdakiler göz önünde bulundurularak oluşturulmuştur:
+SatoshiFX, aşağıdakiler göz önünde bulundurularak oluşturulmuştur:
 
 - Sermaye Özgür Olmalı >> Kullanıcılara sermayeleri üzerinde gerçekten bağımsız kontrol sağlamak için inşa edilmiştir.
 
@@ -18,7 +18,7 @@ CÜZDAN ÖZELLIKLERI:
 
 - Gözetimsiz Çoklu Cüzdan >> Birden fazla portföy tarzı cüzdanda istediğiniz sayıda kripto parayı gözetimsiz bir şekilde yönetin. Bu cüzdan, tek müşterinin ve tek yetkilinin siz olduğu kendi bankanız gibidir. Telefon çalınsa ve kurcalansa bile varlıkları güvende tutmak ve geri yüklemeyi kolaylaştırmak için tasarlanmıştır.
 
-- Yatırım Odaklı Cüzdan >> Unstoppable, cihazınıza benzersiz kripto para piyasası analizleri getiriyor: gelişmiş sıralama, seçilmiş kategorizasyon, kapsamlı arama filtreleme ve olay tabanlı uyarı özellikleri.
+- Yatırım Odaklı Cüzdan >> SatoshiFX, cihazınıza benzersiz kripto para piyasası analizleri getiriyor: gelişmiş sıralama, seçilmiş kategorizasyon, kapsamlı arama filtreleme ve olay tabanlı uyarı özellikleri.
 
 - Evrensel Cüzdan >> Tüm ana akım blok zincirlerini destekler ve kullanıcıların tüm kriptolar için tek bir cüzdan uygulaması kullanmasını sağlayan standartlara uygun bir şekilde oluşturulmuştur.
 

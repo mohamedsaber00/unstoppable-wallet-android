@@ -13,12 +13,12 @@ apply plugin: 'kotlin-kapt'
 android {
 
     defaultConfig {
-        applicationId "io.horizontalsystems.bankwallet"
+        applicationId "io.satoshifx.bankwallet"
         compileSdk compile_sdk_version
         minSdkVersion min_sdk_version
         targetSdkVersion compile_sdk_version
         versionCode 104
-        versionName "0.38.1"
+        versionName "1.00"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         kapt {
@@ -32,19 +32,19 @@ android {
             checkReleaseBuilds false
         }
 
-        resValue "string", "companyWebPageLink", "https://horizontalsystems.io"
-        resValue "string", "appWebPageLink", "https://unstoppable.money"
+        resValue "string", "companyWebPageLink", "https://www.satoshifx.com"
+        resValue "string", "appWebPageLink", "https://www.satoshifx.com"
         resValue "string", "analyticsLink", "https://unstoppable.money/analytics"
         resValue "string", "appGithubLink", "https://github.com/horizontalsystems/unstoppable-wallet-android"
-        resValue "string", "appTwitterLink", "https://twitter.com/UnstoppableByHS"
-        resValue "string", "appTelegramLink", "https://t.me/unstoppable_announcements"
-        resValue "string", "appRedditLink", "https://www.reddit.com/r/UNSTOPPABLEWallet/"
-        resValue "string", "reportEmail", "support.unstoppable@protonmail.com"
+        resValue "string", "appTwitterLink", "https://twitter.com/Satoshifx6"
+        resValue "string", "appTelegramLink", "https://t.me/satoshifx"
+        resValue "string", "appRedditLink", "https://www.reddit.com/user/satoshifx6"
+        resValue "string", "reportEmail", "info@satoshifx.com"
         resValue "string", "releaseNotesUrl", "https://api.github.com/repos/horizontalsystems/unstoppable-wallet-android/releases/tags/"
         resValue "string", "walletConnectAppMetaDataName", "Unstoppable"
         resValue "string", "walletConnectAppMetaDataUrl", "unstoppable.money"
         resValue "string", "walletConnectAppMetaDataIcon", "https://raw.githubusercontent.com/horizontalsystems/HS-Design/master/PressKit/UW-AppIcon-on-light.png"
-        resValue "string", "accountsBackupFileSalt", "unstoppable"
+        resValue "string", "accountsBackupFileSalt", "satoshifx"
     }
 
     buildFeatures {
