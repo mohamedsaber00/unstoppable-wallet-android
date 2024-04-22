@@ -99,12 +99,12 @@ import java.net.UnknownHostException
 class SwapFragment : BaseComposeFragment() {
     @Composable
     override fun GetContent(navController: NavController) {
-        SwapScreen(navController, navController.getInput())
+        SwapScreen(navController, navController.getInput(), false)
     }
 }
 
 @Composable
-fun SwapScreen(navController: NavController, tokenIn: Token?) {
+fun SwapScreen(navController: NavController, tokenIn: Token?, isFromMain: Boolean) {
     val currentBackStackEntry = remember { navController.currentBackStackEntry }
     val viewModel = viewModel<SwapViewModel>(
         viewModelStoreOwner = currentBackStackEntry!!,
@@ -156,7 +156,8 @@ fun SwapScreen(navController: NavController, tokenIn: Token?) {
         onActionCompleted = {
             viewModel.onActionCompleted()
         },
-        navController = navController
+        navController = navController,
+        showNavigation = !isFromMain
     )
 }
 
@@ -177,6 +178,7 @@ private fun SwapScreenInner(
     onActionStarted: () -> Unit,
     onActionCompleted: () -> Unit,
     navController: NavController,
+    showNavigation: Boolean
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val lifecycleState by lifecycleOwner.lifecycle.currentStateFlow.collectAsState()
@@ -193,8 +195,10 @@ private fun SwapScreenInner(
         topBar = {
             AppBar(
                 title = stringResource(R.string.Swap),
-                navigationIcon = {
-                    HsBackButton(onClick = onClickClose)
+                navigationIcon = if (showNavigation) {
+                    { HsBackButton(onClick = onClickClose) }
+                } else {
+                    null
                 },
                 menuItems = buildList {
                     uiState.timeRemainingProgress?.let { timeRemainingProgress ->

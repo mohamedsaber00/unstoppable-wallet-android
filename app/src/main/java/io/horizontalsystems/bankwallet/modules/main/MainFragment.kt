@@ -45,6 +45,7 @@ import io.horizontalsystems.bankwallet.modules.balance.ui.BalanceScreen
 import io.horizontalsystems.bankwallet.modules.main.MainModule.MainNavigation
 import io.horizontalsystems.bankwallet.modules.manageaccount.dialogs.BackupRequiredDialog
 import io.horizontalsystems.bankwallet.modules.market.MarketScreen
+import io.horizontalsystems.bankwallet.modules.multiswap.SwapScreen
 import io.horizontalsystems.bankwallet.modules.rateapp.RateApp
 import io.horizontalsystems.bankwallet.modules.releasenotes.ReleaseNotesFragment
 import io.horizontalsystems.bankwallet.modules.rooteddevice.RootedDeviceModule
@@ -206,6 +207,7 @@ private fun MainScreen(
                         when (uiState.mainNavItems[page].mainNavItem) {
                             MainNavigation.Market -> MarketScreen(fragmentNavController)
                             MainNavigation.Balance -> BalanceScreen(fragmentNavController)
+                            MainNavigation.Swap -> SwapScreen(fragmentNavController, null, true)
                             MainNavigation.Transactions -> TransactionsScreen(
                                 fragmentNavController,
                                 transactionsViewModel

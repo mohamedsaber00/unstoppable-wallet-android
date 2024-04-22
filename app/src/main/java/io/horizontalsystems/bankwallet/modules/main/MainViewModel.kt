@@ -66,12 +66,14 @@ class MainViewModel(
             listOf(
                 MainNavigation.Market,
                 MainNavigation.Balance,
+                MainNavigation.Swap,
                 MainNavigation.Transactions,
                 MainNavigation.Settings,
             )
         } else {
             listOf(
                 MainNavigation.Balance,
+                MainNavigation.Swap,
                 MainNavigation.Transactions,
                 MainNavigation.Settings,
             )
@@ -225,6 +227,14 @@ class MainViewModel(
                 mainNavItem = item,
                 selected = selected,
                 enabled = transactionsEnabled,
+            )
+        }
+
+        MainNavigation.Swap -> {
+            MainModule.NavigationViewItem(
+                    mainNavItem = item,
+                    selected = selected,
+                    enabled = true,
             )
         }
 
