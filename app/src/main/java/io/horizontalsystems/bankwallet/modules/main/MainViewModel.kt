@@ -44,6 +44,7 @@ class MainViewModel(
     private val disposables = CompositeDisposable()
     private var wcPendingRequestsCount = 0
     private var marketsTabEnabled = localStorage.marketsTabEnabledFlow.value
+    private var swapEnabled = isSwapTabEnabled()
     private var transactionsEnabled = isTransactionsTabEnabled()
     private var settingsBadge: MainModule.BadgeType? = null
     private val launchPage: LaunchPage
@@ -162,7 +163,8 @@ class MainViewModel(
 
     private fun isTransactionsTabEnabled(): Boolean =
         !accountManager.isAccountsEmpty && accountManager.activeAccount?.type !is AccountType.Cex
-
+    private fun isSwapTabEnabled(): Boolean =
+            !accountManager.isAccountsEmpty && accountManager.activeAccount?.type !is AccountType.Cex
 
     override fun onCleared() {
         disposables.clear()
@@ -199,6 +201,7 @@ class MainViewModel(
 
     private fun updateTransactionsTabEnabled() {
         transactionsEnabled = isTransactionsTabEnabled()
+        swapEnabled = isSwapTabEnabled()
         syncNavigation()
     }
 
@@ -234,7 +237,7 @@ class MainViewModel(
             MainModule.NavigationViewItem(
                     mainNavItem = item,
                     selected = selected,
-                    enabled = true,
+                    enabled = swapEnabled,
             )
         }
 
