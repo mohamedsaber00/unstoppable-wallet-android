@@ -1095,7 +1095,7 @@
 
     <string name="SettingsTerms_Text">The SatoshiFX wallet is built for those looking to invest and store cryptocurrencies in a private and independent manner.
         \n\nIt\'s a non-custodial, peer-to-peer wallet where only the user has control over the funds. It doesn\'t collect any data and keeps the user independent by not locking the user\'s funds to a specific wallet app.
-        \n\nThe SatoshiFX wallet is built upon the foundation of the SatoshiFX Wallet, and we are grateful for their pioneering work in the field; we\'ve taken their innovative approach and expanded upon it to create an even more robust and user-friendly experience.
+        \n\nThe SatoshiFX wallet is built upon the foundation of the Unstoppable Wallet, and we are grateful for their pioneering work in the field; we\'ve taken their innovative approach and expanded upon it to create an even more robust and user-friendly experience.
         \n\nThe SatoshiFX wallet is fully open-source and anyone can confirm the app works exactly as it claims to.
         \n\nWe built SatoshiFX Wallet for ourselves as the other available solutions were not up to par. Both from an engineering and usability perspective, we believe this wallet to be significantly ahead of alternative products.</string>
     <string name="SettingsTerms_Backup">Securely backup recovery phrases for each wallet. It\'s the only way to regain access to funds if the app malfunctions.</string>
