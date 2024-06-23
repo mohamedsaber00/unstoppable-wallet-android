@@ -47,6 +47,7 @@ import io.horizontalsystems.bankwallet.core.stats.StatPage
 import io.horizontalsystems.bankwallet.core.stats.stat
 import io.horizontalsystems.bankwallet.core.stats.statTab
 import io.horizontalsystems.bankwallet.modules.balance.ui.BalanceScreen
+import io.horizontalsystems.bankwallet.modules.browser.BrowserScreen
 import io.horizontalsystems.bankwallet.modules.main.MainModule.MainNavigation
 import io.horizontalsystems.bankwallet.modules.manageaccount.dialogs.BackupRequiredDialog
 import io.horizontalsystems.bankwallet.modules.market.MarketScreen
@@ -229,6 +230,7 @@ private fun MainScreen(
                             )
 
                             MainNavigation.Settings -> SettingsScreen(fragmentNavController)
+                            MainNavigation.Browser -> BrowserScreen(fragmentNavController)
                         }
                     }
                 }

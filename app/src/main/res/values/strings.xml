@@ -807,6 +807,12 @@
     <string name="Deposit_Your_Address">Your Address</string>
     <string name="Deposit_Address">Address</string>
 
+
+    <!-- Dapps Webview -->
+    <string name="Browser_Title">Browse</string>
+
+
+
     <!--Transactions-->
 
     <string name="Transactions_Title">Transactions</string>
