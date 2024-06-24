@@ -808,8 +808,12 @@
     <string name="Deposit_Address">Address</string>
 
 
-    <!-- Dapps Webview -->
+    <!-- Dapps broswer -->
     <string name="Browser_Title">Browse</string>
+    <string name="new_tab">New Tab</string>
+    <string name="closeAll">Close All</string>
+    <string name="action_cancel">Cancel All</string>
+    <string name="address_bar">Search or type web address.</string>
 
 
 
