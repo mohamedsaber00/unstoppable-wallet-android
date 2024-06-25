@@ -1,29 +1,23 @@
 package io.horizontalsystems.bankwallet.modules.browser.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.BottomDrawerState
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.LocalContentColor
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Refresh
@@ -33,7 +27,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -68,12 +61,19 @@ fun TabButton(uiState: MutableState<BrowserUIState>) {
                 .size(20.dp),
             contentAlignment = Alignment.Center,
         ) {
-            Text(
-                text = tabs.size.toString(),
-                fontSize = 12.sp,
-                fontWeight = FontWeight.W600,
-                textAlign = TextAlign.Center,
-            )
+            if (tabs.size == 0) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_add_yellow),
+                    contentDescription = null
+                )
+            } else {
+                Text(
+                    text = tabs.size.toString(),
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.W600,
+                    textAlign = TextAlign.Center,
+                )
+            }
         }
     }
 }

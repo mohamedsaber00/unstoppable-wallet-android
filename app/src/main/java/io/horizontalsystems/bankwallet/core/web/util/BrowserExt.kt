@@ -5,7 +5,13 @@ import android.webkit.URLUtil
 
 fun String.toUrl(): String {
     if (isUrl()) {
-        return URLUtil.guessUrl(this.trim())
+        val url = URLUtil.guessUrl(this.trim())
+        // Check if the URL starts with "http://" and replace it with "https://"
+        return if (url.startsWith("http://")) {
+            "https://" + url.substring(7)
+        } else {
+            url
+        }
     }
     return toSearchUrl()
 }
