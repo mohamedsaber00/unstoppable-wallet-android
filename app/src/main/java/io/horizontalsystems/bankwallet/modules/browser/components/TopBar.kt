@@ -28,8 +28,6 @@ fun TopBar() {
         translationY = -viewModel.imeHeightState.value
     }) {
         val showNewPage = uiState.value == BrowserUIState.Main && tab?.isHome != false
-
-        Box {
             Row(modifier = Modifier.fillMaxWidth()) {
                 AnimatedVisibility(
                     modifier = Modifier
@@ -54,7 +52,7 @@ fun TopBar() {
 
                 AnimatedVisibility(
                     //      modifier = Modifier.weight(0.15f), // Assign a fixed weight to the button
-                    visible = showNewPage
+                    visible = uiState.value == BrowserUIState.Main
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -67,24 +65,5 @@ fun TopBar() {
                     }
                 }
             }
-            this@Column.AnimatedVisibility(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp)
-                    .background(MaterialTheme.colors.surface)
-                    .padding(start = if (uiState.value == BrowserUIState.Search) 8.dp else 0.dp),
-
-                visible = !showNewPage
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    CloseAll()
-                    NewTab(uiState)
-
-                }
-            }
         }
-    }
 }

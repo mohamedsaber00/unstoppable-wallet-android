@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -54,6 +53,8 @@ import androidx.compose.ui.unit.sp
 import io.horizontalsystems.bankwallet.core.utils.tap
 import io.horizontalsystems.bankwallet.modules.browser.BrowserUIState
 import io.horizontalsystems.bankwallet.modules.browser.LocalViewModel
+import io.horizontalsystems.bankwallet.modules.browser.components.CloseAll
+import io.horizontalsystems.bankwallet.modules.browser.components.NewTab
 import io.horizontalsystems.bankwallet.modules.browser.components.statusBarHeight
 import io.horizontalsystems.bankwallet.modules.browser.util.IconMap
 
@@ -73,51 +74,68 @@ fun TabList() {
     val resetAnim = remember { mutableStateOf(false) }
     val listState = rememberLazyGridState()
     val statusBarHeight = statusBarHeight()
+    val uiState = viewModel.uiState
 
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        modifier = Modifier
-            .background(MaterialTheme.colors.surface)
-            .fillMaxSize(),
-        state = listState,
-        contentPadding = PaddingValues(8.dp)
-    ) {
-        items(tabs.size) {
-            val tab = tabs[it]
-            Card(
-                elevation = 2.dp, modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(2f / 3f)
-                    .padding(8.dp)
-                    .onGloballyPositioned { coor ->
-                        if (tab.info.isActive && (showAnim.value || resetAnim.value)) {
-                            val width = coor.size.width - density.run { 4.dp.toPx() }
-                            val height = coor.size.height - density.run { 32.dp.toPx() }
-                            targetSize.value = IntSize(width.toInt(), height.toInt())
-                            val offset = coor.positionInRoot()
-                            val x = (offset.x + density.run { 2.dp.toPx() }).toInt()
-                            val y =
-                                (offset.y + density.run { (30.dp - statusBarHeight).toPx() }).toInt()
-                            targetOffset.value = IntOffset(x, y)
+
+
+    Column {
+
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            modifier = Modifier.fillMaxWidth()
+                .background(MaterialTheme.colors.surface)
+                .weight(0.9f),
+            state = listState,
+            contentPadding = PaddingValues(8.dp)
+        ) {
+            items(tabs.size) {
+                val tab = tabs[it]
+                Card(
+                    elevation = 2.dp, modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(2f / 3f)
+                        .padding(8.dp)
+                        .onGloballyPositioned { coor ->
+                            if (tab.info.isActive && (showAnim.value || resetAnim.value)) {
+                                val width = coor.size.width - density.run { 4.dp.toPx() }
+                                val height = coor.size.height - density.run { 32.dp.toPx() }
+                                targetSize.value = IntSize(width.toInt(), height.toInt())
+                                val offset = coor.positionInRoot()
+                                val x = (offset.x + density.run { 2.dp.toPx() }).toInt()
+                                val y =
+                                    (offset.y + density.run { (30.dp - statusBarHeight).toPx() }).toInt()
+                                targetOffset.value = IntOffset(x, y)
+                            }
                         }
-                    }
-            ) {
-                TabItem(tab = tabs[it]) {
-                    val lastActive = tab.info.isActive
-                    tab.active()
-                    if (tab.previewState.value != null) {
-                        if (lastActive) {
-                            hideAnim.value = true
-                            targetOffset.value = IntOffset.Zero
-                            targetSize.value = IntSize(screenWidth, screenHeight)
+                ) {
+                    TabItem(tab = tabs[it]) {
+                        val lastActive = tab.info.isActive
+                        tab.active()
+                        if (tab.previewState.value != null) {
+                            if (lastActive) {
+                                hideAnim.value = true
+                                targetOffset.value = IntOffset.Zero
+                                targetSize.value = IntSize(screenWidth, screenHeight)
+                            } else {
+                                resetAnim.value = true
+                            }
                         } else {
-                            resetAnim.value = true
+                            viewModel.uiState.value = BrowserUIState.Main
                         }
-                    } else {
-                        viewModel.uiState.value = BrowserUIState.Main
                     }
                 }
             }
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp)
+                .background(MaterialTheme.colors.surface)
+        ) {
+            CloseAll()
+            NewTab(uiState)
+
         }
     }
 
@@ -211,16 +229,20 @@ fun TabItem(tab: Tab, onTap: () -> Unit) {
                                 TabManager.tabs.size > index -> {
                                     TabManager.tabs[index].active()
                                 }
+
                                 TabManager.tabs.isNotEmpty() -> {
                                     TabManager.tabs
                                         .last()
                                         .active()
                                 }
+
                                 else -> {
-                                    TabManager.newTab(context).apply {
-                                        goHome()
-                                        active()
-                                    }
+                                    TabManager
+                                        .newTab(context)
+                                        .apply {
+                                            goHome()
+                                            active()
+                                        }
                                     viewModel.uiState.value = BrowserUIState.Main
                                 }
                             }
