@@ -1,6 +1,5 @@
 package io.horizontalsystems.bankwallet.modules.browser
 
-import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,21 +21,15 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScrollableTabRow
-import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,17 +39,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImagePainter.State.Empty.painter
 import coil.compose.rememberAsyncImagePainter
 import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
-import java.net.URL
 
 @Composable
 fun BrowserScreen(
@@ -213,10 +204,15 @@ fun VerticalAppListParent() {
 
 @Composable
 fun FeaturedAppCard(app: App) {
+    val viewModel = LocalViewModel.current
+    val context = LocalContext.current
     Card(
         modifier = Modifier
             .width(170.dp)
-            .height(200.dp),
+            .height(200.dp)
+            .clickable {
+                viewModel.onGo(app.url, context = context)
+            },
         elevation = 4.dp
     ) {
         Box(
@@ -269,10 +265,15 @@ fun FeaturedAppCard(app: App) {
 
 @Composable
 fun TrendingAppItem(trendingApp: TrendingApp) {
+    val viewModel = LocalViewModel.current
+    val context = LocalContext.current
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp),
+            .padding(vertical = 4.dp)
+            .clickable {
+                viewModel.onGo(trendingApp.url, context)
+            },
 
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -311,7 +312,7 @@ data class App(
     val category: String,
     val icon: String,
     val cover: String,
-    val url : String
+    val url: String
 )
 
 val featuredApps = listOf(
@@ -349,7 +350,8 @@ val featuredApps = listOf(
         "https://atlas3.io/"
     ),
 
-    App(5,
+    App(
+        5,
         "Pooper",
         "Tools",
         "https://www.pooperscooper.app/images/scooper_logo.png",
@@ -380,7 +382,8 @@ val featuredApps = listOf(
         "",
         "https://sunflower-land.com/"
     ),
-    App(9,
+    App(
+        9,
         "OpenSea",
         "DeFi",
         "https://opensea.io/static/images/logos/opensea-logo.svg",
@@ -397,7 +400,7 @@ data class TrendingApp(
     val icon: String,
     val cover: String,
     val networkType: List<NetworkType>,
-    val url : String
+    val url: String
 )
 
 var trendingApps = listOf(
