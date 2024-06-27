@@ -311,6 +311,7 @@ data class App(
     val category: String,
     val icon: String,
     val cover: String,
+    val url : String
 )
 
 val featuredApps = listOf(
@@ -320,20 +321,23 @@ val featuredApps = listOf(
         "Depin",
         "https://assets.coingecko.com/coins/images/4284/standard/Helium_HNT.png?1696504894",
         "",
+        "https://www.helium.com/"
     ),
     App(
         2,
         "Gamma",
         "Marketplace",
         "https://mma.prnewswire.com/media/1805495/GAMMA_Logo.jpg?w=200",
-        ""
+        "",
+        "https://stacks.gamma.io/"
     ),
     App(
         3,
         "Rain.fi",
         "DeFi",
         "https://rain.fi/RainLogoMobile.svg",
-        ""
+        "",
+        "https://rain.fi/"
     ),
 
     App(
@@ -341,32 +345,48 @@ val featuredApps = listOf(
         "Atlas3",
         "Community",
         "https://atlas3.io/images/logo.svg",
-        ""
+        "",
+        "https://atlas3.io/"
     ),
 
-    App(5, "Pooper", "Tools", "https://www.pooperscooper.app/images/scooper_logo.png", ""),
+    App(5,
+        "Pooper",
+        "Tools",
+        "https://www.pooperscooper.app/images/scooper_logo.png",
+        "",
+        "https://www.pooperscooper.app/"
+    ),
     App(
         6,
         "Zealy",
         "Community",
         "https://assets.bitdegree.org/images/best-crypto-quest-platforms-zealy-small.png?tr=w-200",
-        ""
+        "",
+        "https://zealy.io/"
     ),
     App(
         7,
         "Zora",
         "Art",
         "https://assets.coingecko.com/markets/images/1479/large/zora.jpeg?1709872000",
-        ""
+        "",
+        "https://zora.co/?feed=following"
     ),
     App(
         8,
         "Sunflower",
         "Gaming",
         "https://assets.coingecko.com/coins/images/25514/standard/download.png?1696524647",
-        ""
+        "",
+        "https://sunflower-land.com/"
     ),
-    App(9, "OpenSea", "DeFi", "https://opensea.io/static/images/logos/opensea-logo.svg", "")
+    App(9,
+        "OpenSea",
+        "DeFi",
+        "https://opensea.io/static/images/logos/opensea-logo.svg",
+        "",
+        "https://opensea.io/"
+    )
 )
 
 
@@ -376,7 +396,8 @@ data class TrendingApp(
     val category: String,
     val icon: String,
     val cover: String,
-    val networkType: List<NetworkType>
+    val networkType: List<NetworkType>,
+    val url : String
 )
 
 var trendingApps = listOf(
@@ -386,7 +407,8 @@ var trendingApps = listOf(
         "DeFi",
         "https://assets.coingecko.com/coins/images/34188/standard/jup.png?1704266489",
         "https://pbs.twimg.com/media/GQg59zEWgAAM6ea?format=jpg&name=large",
-        listOf(NetworkType.SOLANA)
+        listOf(NetworkType.SOLANA),
+        "https://jup.ag/"
     ),
     TrendingApp(
         2,
@@ -394,7 +416,8 @@ var trendingApps = listOf(
         "Marketplace",
         "https://assets.coingecko.com/markets/images/1609/large/magiceden.png?1716884981",
         "",
-        listOf(NetworkType.SOLANA, NetworkType.ETHEREUM, NetworkType.POLYGON)
+        listOf(NetworkType.SOLANA, NetworkType.ETHEREUM, NetworkType.POLYGON),
+        "https://magiceden.io/"
 
     ),
     TrendingApp(
@@ -403,7 +426,8 @@ var trendingApps = listOf(
         "DeFi",
         "https://s2.coinmarketcap.com/static/img/coins/64x64/8526.png",
         "",
-        listOf(NetworkType.SOLANA)
+        listOf(NetworkType.SOLANA),
+        "https://raydium.io/swap/"
 
     ),
 
@@ -413,7 +437,8 @@ var trendingApps = listOf(
         "Staking",
         "https://assets.coingecko.com/coins/images/38485/standard/IAcXR9Dr_400x400.jpg?1717679016",
         "",
-        listOf(NetworkType.SOLANA)
+        listOf(NetworkType.SOLANA),
+        "https://www.sanctum.so/"
 
     ),
 
@@ -423,12 +448,18 @@ var trendingApps = listOf(
         "DeFi",
         "https://pump.fun/_next/image?url=%2Flogo.png&w=32&q=75",
         "",
-        listOf(NetworkType.SOLANA)
+        listOf(NetworkType.SOLANA),
+        "https://pump.fun/board"
 
     ),
     TrendingApp(
-        6, "DRiP", "Collectibles", "https://drip.haus/drip_logo_white.a87ccb99.svg", "",
-        listOf(NetworkType.SOLANA)
+        6,
+        "DRiP",
+        "Collectibles",
+        "https://drip.haus/drip_logo_white.a87ccb99.svg",
+        "",
+        listOf(NetworkType.SOLANA),
+        "https://pump.fun/board"
     ),
     TrendingApp(
         7,
@@ -436,11 +467,17 @@ var trendingApps = listOf(
         "Gaming",
         "https://assets.coingecko.com/coins/images/25514/standard/download.png?1696524647",
         "",
-        listOf(NetworkType.POLYGON)
+        listOf(NetworkType.POLYGON),
+        "https://sunflower-land.com/"
     ),
     TrendingApp(
-        8, "DEX Screener", "DeFi", "https://dexscreener.com/favicon.ico", "",
-        listOf(NetworkType.SOLANA)
+        8,
+        "DEX Screener",
+        "DeFi",
+        "https://dexscreener.com/favicon.ico",
+        "",
+        listOf(NetworkType.SOLANA),
+        "https://dexscreener.com/"
     ),
     TrendingApp(
         9,
@@ -448,7 +485,8 @@ var trendingApps = listOf(
         "Gaming",
         "https://img.cryptorank.io/coins/one_planet1668760388627.png",
         "",
-        listOf(NetworkType.POLYGON)
+        listOf(NetworkType.POLYGON),
+        "https://www.oneplanetnft.io/"
 
     ),
     TrendingApp(
@@ -457,7 +495,8 @@ var trendingApps = listOf(
         "DeFi",
         "https://opensea.io/static/images/logos/opensea-logo.svg",
         "",
-        listOf(NetworkType.ETHEREUM, NetworkType.POLYGON)
+        listOf(NetworkType.ETHEREUM, NetworkType.POLYGON),
+        "https://opensea.io/"
     )
 
 )
