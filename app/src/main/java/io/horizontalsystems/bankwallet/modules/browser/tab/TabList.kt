@@ -111,6 +111,7 @@ fun TabList() {
                     TabItem(tab = tabs[it]) {
                         val lastActive = tab.info.isActive
                         tab.active()
+                        viewModel.editInAddressBar(tab.urlState.value)
                         if (tab.previewState.value != null) {
                             if (lastActive) {
                                 hideAnim.value = true
@@ -246,6 +247,7 @@ fun TabItem(tab: Tab, onTap: () -> Unit) {
                                     viewModel.uiState.value = BrowserUIState.Main
                                 }
                             }
+                            viewModel.editInAddressBar(url.value)
                         }
                     },
                 contentAlignment = Alignment.Center,

@@ -3,6 +3,7 @@ package io.horizontalsystems.bankwallet.modules.browser.components
 import android.webkit.URLUtil
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
@@ -63,7 +64,7 @@ fun AddressTextField(modifier: Modifier, uiState: MutableState<BrowserUIState>) 
     }
 
     TSTextField(
-        modifier = modifier
+        modifier = modifier.padding(start = 4.dp)
             .focusRequester(focusRequester),
         text = text,
         placeholder = placeholder ?: stringResource(id = R.string.address_bar),
@@ -82,6 +83,7 @@ fun AddressTextField(modifier: Modifier, uiState: MutableState<BrowserUIState>) 
                 {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_search),
+                        tint = ComposeAppTheme.colors.jacob,
                         contentDescription = "Search",
                     ) }
             }
@@ -95,6 +97,7 @@ fun AddressTextField(modifier: Modifier, uiState: MutableState<BrowserUIState>) 
                         )
                     } ?: Icon(
                         painter = painterResource(id = R.drawable.ic_search),
+                        tint = ComposeAppTheme.colors.jacob,
                         contentDescription = "Search",
                         modifier = Modifier.size(20.dp),
                     )

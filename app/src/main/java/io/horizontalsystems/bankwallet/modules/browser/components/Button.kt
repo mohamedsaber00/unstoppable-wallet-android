@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -40,6 +39,7 @@ import io.horizontalsystems.bankwallet.modules.browser.BrowserUIState
 import io.horizontalsystems.bankwallet.modules.browser.LocalViewModel
 import io.horizontalsystems.bankwallet.modules.browser.tab.TabManager
 import io.horizontalsystems.bankwallet.modules.browser.tab.active
+import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -55,7 +55,7 @@ fun TabButton(uiState: MutableState<BrowserUIState>) {
             modifier = Modifier
                 .border(
                     1.5.dp,
-                    LocalContentColor.current,
+                    color = ComposeAppTheme.colors.jacob,
                     RoundedCornerShape(4.dp)
                 )
                 .size(20.dp),
@@ -64,12 +64,15 @@ fun TabButton(uiState: MutableState<BrowserUIState>) {
             if (tabs.size == 0) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_add_yellow),
+                    tint = ComposeAppTheme.colors.jacob,
                     contentDescription = null
                 )
             } else {
                 Text(
+                    modifier = Modifier.padding(bottom = 1.dp),
                     text = tabs.size.toString(),
                     fontSize = 12.sp,
+                    color = ComposeAppTheme.colors.jacob,
                     fontWeight = FontWeight.W600,
                     textAlign = TextAlign.Center,
                 )
@@ -99,6 +102,7 @@ fun CloseAll() {
 @Composable
 fun NewTab(uiState: MutableState<BrowserUIState>) {
     val context = LocalContext.current
+   val viewmodel =  LocalViewModel.current
     Row(
         modifier = Modifier
             .fillMaxHeight()
@@ -109,6 +113,7 @@ fun NewTab(uiState: MutableState<BrowserUIState>) {
                     .apply {
                         goHome()
                         active()
+                        viewmodel.editInAddressBar(urlState.value)
                     }
                 uiState.value = BrowserUIState.Main
             },

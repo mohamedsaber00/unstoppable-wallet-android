@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -27,6 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
+import io.horizontalsystems.bankwallet.ui.compose.components.body_grey50
 
 @Composable
 fun TSTextField(
@@ -49,26 +51,23 @@ fun TSTextField(
                 .height(40.dp)
                 .fillMaxWidth()
                 .border(1.dp, ComposeAppTheme.colors.lightGrey, RoundedCornerShape(8.dp))
-                .background(
-                    color = ComposeAppTheme.colors.lightGrey, shape = RoundedCornerShape(8.dp),
-                ),
+            ,
         )
-        TextField(
+        OutlinedTextField(
             value = text.value,
             placeholder = {
-                Text(
+                body_grey50(
                     text = placeholder,
-                    fontSize = 13.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Visible
                 )
             },
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
-                errorIndicatorColor = Color.Transparent,
-                cursorColor = Color.Black,
+                backgroundColor = Color.Transparent,
+                cursorColor = ComposeAppTheme.colors.jacob,
+                textColor = ComposeAppTheme.colors.leah
             ),
             modifier = Modifier
                 .fillMaxWidth()

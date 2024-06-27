@@ -6,7 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import io.horizontalsystems.bankwallet.core.utils.ioScope
 import io.horizontalsystems.bankwallet.core.web.TSWebView
 import io.horizontalsystems.bankwallet.entities.TabInfo
+import io.horizontalsystems.bankwallet.entities.update
 import io.horizontalsystems.bankwallet.modules.browser.BrowserUIState
+import io.horizontalsystems.bankwallet.modules.browser.LocalViewModel
 import kotlinx.coroutines.launch
 
 object TabManager {
@@ -49,6 +51,7 @@ object TabManager {
         if (tab.info.isActive) {
             return
         }
+
         tabs.forEach {
             if (it == tab) {
                 it.info.isActive = true
@@ -58,7 +61,7 @@ object TabManager {
                 it.info.isActive = false
                 it.onPause()
             }
-      //      it.info.update()
+          //  it.info.update()
         }
     }
 
@@ -106,4 +109,5 @@ object TabManager {
 
 fun Tab.active() {
     TabManager.active(this)
+
 }

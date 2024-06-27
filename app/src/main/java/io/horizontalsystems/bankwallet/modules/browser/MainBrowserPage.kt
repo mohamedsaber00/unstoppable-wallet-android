@@ -3,13 +3,13 @@ package io.horizontalsystems.bankwallet.modules.browser
 import android.widget.FrameLayout
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -32,7 +32,10 @@ fun MainBrowserPage(
     CompositionLocalProvider(
         LocalViewModel provides browserViewModel,
         content = {
-            MainView()
+            Surface(color = ComposeAppTheme.colors.tyler) {
+
+                MainView()
+            }
         }
     )
 }
@@ -42,8 +45,10 @@ fun MainView() {
     logD("MainView start")
     val tab = TabManager.currentTab.value
 
-    Column(modifier = Modifier
-        .fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
         TopBar()
         Box(modifier = Modifier.weight(1f)) {
             TSBackHandler(

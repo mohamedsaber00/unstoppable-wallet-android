@@ -5,5 +5,5 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun SearchList() {
-    Text(text = "Search list here")
+    // Text(text = "Search list here")
 }

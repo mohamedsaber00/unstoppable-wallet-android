@@ -31,15 +31,15 @@ fun TopBar() {
             Row(modifier = Modifier.fillMaxWidth()) {
                 AnimatedVisibility(
                     modifier = Modifier
-                        .weight(if (showNewPage) 0.85f else 1f)
-                        .background(MaterialTheme.colors.surface),
+                        .weight(if (showNewPage) 0.85f else 1f),
+                     //   .background(MaterialTheme.colors.surface),
                     visible = uiState.value == BrowserUIState.Search || uiState.value == BrowserUIState.Main
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
                             .height(56.dp)
-                            .background(MaterialTheme.colors.surface),
+                     //       .background(MaterialTheme.colors.surface),
                     ) {
                         if (uiState.value != BrowserUIState.TabList) {
                             AddressTextField(
@@ -59,7 +59,7 @@ fun TopBar() {
                         modifier = Modifier
                             .height(56.dp)
                             .weight(0.15f)  // Assign a fixed weight to the button
-                            .background(MaterialTheme.colors.surface),
+                        //    .background(MaterialTheme.colors.surface),
                     ) {
                         TabButton(uiState)
                     }

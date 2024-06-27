@@ -33,6 +33,7 @@ class BrowserViewModel : ViewModel() {
                 loadUrl(urlText.toUrl())
             }
         } else TabManager.currentTab.value?.loadUrl(urlText.toUrl())
+         editInAddressBar(urlText.toUrl())
     }
 
 
