@@ -18,10 +18,10 @@ val ioScope = CoroutineScope(SupervisorJob() + Dispatchers.IO + exceptionHandler
 
 
 fun logD(vararg message: Any?) {
-    Log.d("TSBrowser", message.contentDeepToString())
+    Log.d("UnStoppable wallet", message.contentDeepToString())
 }
 
 fun logE(vararg message: Any?, throwable: Throwable = Throwable()) {
-    Log.e("TSBrowser", message.contentDeepToString(), throwable)
+    Log.e("UnStoppable wallet", message.contentDeepToString(), throwable)
 }
 

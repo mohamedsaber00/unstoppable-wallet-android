@@ -17,8 +17,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
 import io.horizontalsystems.bankwallet.core.utils.logD
 import io.horizontalsystems.bankwallet.core.utils.removeFromParent
-import io.horizontalsystems.bankwallet.modules.browser.components.TopBar
 import io.horizontalsystems.bankwallet.modules.browser.components.TSBackHandler
+import io.horizontalsystems.bankwallet.modules.browser.components.TopBar
 import io.horizontalsystems.bankwallet.modules.browser.tab.TabList
 import io.horizontalsystems.bankwallet.modules.browser.tab.TabManager
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
@@ -73,10 +73,10 @@ fun MainView() {
 
 @Composable
 fun NewTabView() {
-    val tab = TabManager.currentTab.value ?: return
+    val tab = TabManager.currentTab.value
     val viewModel = LocalViewModel.current
     val uiState = viewModel.uiState
-    if (uiState.value == BrowserUIState.Main && tab.isHome) {
+    if (uiState.value == BrowserUIState.Main && (tab?.isHome == true || tab == null)) {
         NewTabPage()
     }
 }

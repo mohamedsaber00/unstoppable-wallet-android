@@ -8,8 +8,12 @@ import android.os.Message
 import android.text.TextUtils
 import android.view.KeyEvent
 import android.webkit.*
+import com.walletconnect.web3.wallet.client.Wallet
+import com.walletconnect.web3.wallet.client.Web3Wallet
 import io.horizontalsystems.bankwallet.core.utils.logD
 import io.horizontalsystems.bankwallet.core.utils.logE
+import io.horizontalsystems.bankwallet.modules.walletconnect.list.WalletConnectListModule
+import io.horizontalsystems.bankwallet.modules.walletconnect.list.WalletConnectListViewModel.ConnectionResult
 import java.util.concurrent.TimeUnit
 
 class TSWebClient(private val controller: UIController) : WebViewClient() {
@@ -28,9 +32,18 @@ class TSWebClient(private val controller: UIController) : WebViewClient() {
         val uri = request.url
         logD(uri)
 
+        logD("shouldOverrideUrlLoading $uri")
+
         if (localSchemes.contains(uri.scheme)) {
             return false
         }
+        else if (uri.toString().startsWith("wc:")) {
+            // Handle the wallet connection request
+            handleWalletConnectionRequest(uri.toString());
+            return true;  // Indicate that we have handled the request
+        }
+
+
         return try {
             val intent = Intent.parseUri(uri.toString(), Intent.URI_INTENT_SCHEME)
             val componentName = intent.resolveActivity(view.context.packageManager)
@@ -52,6 +65,28 @@ class TSWebClient(private val controller: UIController) : WebViewClient() {
             true
         } catch (e: Exception) {
             false
+        }
+    }
+
+    private fun handleWalletConnectionRequest(uri: String) {
+        if (uri.contains("requestId")) {
+            //wc also creates deeplinks for Pending Request
+            //we should ignore these deeplinks
+            return
+        }
+        when (WalletConnectListModule.getVersionFromUri(uri)) {
+            2 -> {
+                Web3Wallet.pair(
+                    Wallet.Params.Pair(uri.trim()),
+                    onSuccess = {
+
+                    },
+                    onError = {
+
+                    }
+                )
+            }
+            else -> ConnectionResult.Error
         }
     }
 
