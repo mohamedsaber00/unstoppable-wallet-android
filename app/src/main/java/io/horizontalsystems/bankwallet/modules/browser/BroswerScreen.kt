@@ -1,10 +1,12 @@
 package io.horizontalsystems.bankwallet.modules.browser
 
+import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -20,6 +22,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
@@ -28,15 +31,12 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScrollableTabRow
+import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,23 +46,29 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImagePainter.State.Empty.painter
 import coil.compose.rememberAsyncImagePainter
+import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
+import java.net.URL
 
 @Composable
 fun BrowserScreen(
 ) {
-    Column {
-    //    TopBar()
+    Column(
+        modifier = Modifier.background(ComposeAppTheme.colors.dark)
+    )
+    {
+        //    TopBar()
         TopRow()
         HorizontalAppList()
-        VerticalAppList()
+        VerticalAppListParent()
     }
 }
 
@@ -121,8 +127,9 @@ fun TopBar() {
 fun TopRow() {
     ScrollableTabRow(
         selectedTabIndex = 0,
-        backgroundColor = ComposeAppTheme.colors.steelDark,
-        contentColor = Color.White
+        backgroundColor = ComposeAppTheme.colors.dark,
+        contentColor = Color.White,
+        edgePadding = 0.dp
     ) {
         BrowserTab(selected = true, onClick = { /*TODO*/ }) {
             Text("Apps", color = Color.White)
@@ -158,7 +165,7 @@ fun HorizontalAppList() {
 }
 
 @Composable
-fun VerticalAppList() {
+fun VerticalAppList(filteredApps: List<TrendingApp>) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -166,14 +173,40 @@ fun VerticalAppList() {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Row {
-            NetworkSample()
             Spacer(modifier = Modifier.width(8.dp))
-            TypeDropDown()
         }
-        featuredApps.forEach {
+
+        filteredApps.forEach {
             TrendingAppItem(it)
         }
         Spacer(modifier = Modifier.height(16.dp))
+    }
+}
+
+@Composable
+fun VerticalAppListParent() {
+    var selectedNetworkType by remember { mutableStateOf(NetworkType.ALL_NETWORKS) }
+
+    val filteredApps = if (selectedNetworkType == NetworkType.ALL_NETWORKS) {
+        trendingApps
+    } else {
+        trendingApps.filter { it.networkType.contains(selectedNetworkType) }
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Row(
+            modifier = Modifier.padding(start = 8.dp)
+        ) {
+            TypeDropDown()
+            Spacer(modifier = Modifier.width(8.dp))
+            NetworkSample(selectedNetworkType) { newNetworkType ->
+                selectedNetworkType = newNetworkType
+            }
+        }
+
+        VerticalAppList(filteredApps)
     }
 }
 
@@ -186,31 +219,34 @@ fun FeaturedAppCard(app: App) {
             .height(200.dp),
         elevation = 4.dp
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
+        Box(
+            modifier = Modifier.fillMaxSize()
         ) {
             Image(
                 painter = rememberAsyncImagePainter(app.cover),
                 contentDescription = app.name,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(100.dp)
+                    .fillMaxSize()
                     .clip(RoundedCornerShape(16.dp))
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            Row {
+
+            Row(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .background(ComposeAppTheme.colors.dark)
+            ) {
                 Column(Modifier.weight(1f)) {
                     Text(
                         text = app.name,
                         style = MaterialTheme.typography.h6,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = ComposeAppTheme.colors.white
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = app.category,
-                        style = MaterialTheme.typography.body2
+                        style = MaterialTheme.typography.body2,
+                        color = ComposeAppTheme.colors.lightGrey
                     )
                 }
 
@@ -224,88 +260,205 @@ fun FeaturedAppCard(app: App) {
 
 
             }
+
         }
+
+
     }
 }
 
 @Composable
-fun TrendingAppItem(app: App) {
+fun TrendingAppItem(trendingApp: TrendingApp) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
+
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "${app.position}",
+            text = "${trendingApp.position}",
             style = MaterialTheme.typography.subtitle1,
-            modifier = Modifier.width(24.dp)
+            modifier = Modifier.width(24.dp),
+            color = ComposeAppTheme.colors.lightGrey
         )
         Spacer(modifier = Modifier.width(8.dp))
         Image(
-            painter = rememberAsyncImagePainter(app.icon),
-            contentDescription = app.name,
+            painter = rememberAsyncImagePainter(trendingApp.icon),
+            contentDescription = trendingApp.name,
             modifier = Modifier.size(48.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column {
             Text(
-                text = app.name,
+                text = trendingApp.name,
                 style = MaterialTheme.typography.body1,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = ComposeAppTheme.colors.white
             )
             Text(
-                text = app.category,
-                style = MaterialTheme.typography.body2
+                text = trendingApp.category,
+                style = MaterialTheme.typography.body2,
+                color = ComposeAppTheme.colors.lightGrey
             )
         }
     }
 }
-
 
 data class App(
     val position: Int,
     val name: String,
     val category: String,
     val icon: String,
-    val cover: String
+    val cover: String,
 )
 
 val featuredApps = listOf(
     App(
         1,
-        "Zeta",
-        "Airdrop",
-        "https://assets.coingecko.com/coins/images/37374/standard/_Z-Token-32pxpx.png?1714147975",
-        "https://pbs.twimg.com/media/GQg59zEWgAAM6ea?format=jpg&name=large"
+        "Helium",
+        "Depin",
+        "https://assets.coingecko.com/coins/images/4284/standard/Helium_HNT.png?1696504894",
+        "",
     ),
     App(
         2,
-        "Raydium",
-        "DeFi",
-        "https://s2.coinmarketcap.com/static/img/coins/64x64/8526.png",
-        "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*NodmRGIxdKJYIT3Q"
+        "Gamma",
+        "Marketplace",
+        "https://mma.prnewswire.com/media/1805495/GAMMA_Logo.jpg?w=200",
+        ""
     ),
-
     App(
         3,
-        "Zeta",
-        "Airdrop",
-        "https://assets.coingecko.com/coins/images/37374/standard/_Z-Token-32pxpx.png?1714147975",
-        "https://pbs.twimg.com/media/GQg59zEWgAAM6ea?format=jpg&name=large"
+        "Rain.fi",
+        "DeFi",
+        "https://rain.fi/RainLogoMobile.svg",
+        ""
     ),
+
     App(
         4,
+        "Atlas3",
+        "Community",
+        "https://atlas3.io/images/logo.svg",
+        ""
+    ),
+
+    App(5, "Pooper", "Tools", "https://www.pooperscooper.app/images/scooper_logo.png", ""),
+    App(
+        6,
+        "Zealy",
+        "Community",
+        "https://assets.bitdegree.org/images/best-crypto-quest-platforms-zealy-small.png?tr=w-200",
+        ""
+    ),
+    App(
+        7,
+        "Zora",
+        "Art",
+        "https://assets.coingecko.com/markets/images/1479/large/zora.jpeg?1709872000",
+        ""
+    ),
+    App(
+        8,
+        "Sunflower",
+        "Gaming",
+        "https://assets.coingecko.com/coins/images/25514/standard/download.png?1696524647",
+        ""
+    ),
+    App(9, "OpenSea", "DeFi", "https://opensea.io/static/images/logos/opensea-logo.svg", "")
+)
+
+
+data class TrendingApp(
+    val position: Int,
+    val name: String,
+    val category: String,
+    val icon: String,
+    val cover: String,
+    val networkType: List<NetworkType>
+)
+
+var trendingApps = listOf(
+    TrendingApp(
+        1,
+        "Jupiter",
+        "DeFi",
+        "https://assets.coingecko.com/coins/images/34188/standard/jup.png?1704266489",
+        "https://pbs.twimg.com/media/GQg59zEWgAAM6ea?format=jpg&name=large",
+        listOf(NetworkType.SOLANA)
+    ),
+    TrendingApp(
+        2,
+        "Magic Eden",
+        "Marketplace",
+        "https://assets.coingecko.com/markets/images/1609/large/magiceden.png?1716884981",
+        "",
+        listOf(NetworkType.SOLANA, NetworkType.ETHEREUM, NetworkType.POLYGON)
+
+    ),
+    TrendingApp(
+        3,
         "Raydium",
         "DeFi",
         "https://s2.coinmarketcap.com/static/img/coins/64x64/8526.png",
-        "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*NodmRGIxdKJYIT3Q"
+        "",
+        listOf(NetworkType.SOLANA)
+
     ),
 
-    App(5, "Solana", "DeFi", "", ""),
-    App(6, "Zeta", "Airdrop", "", ""),
-    App(7, "Raydium", "DeFi", "", ""),
-    App(8, "Solana", "DeFi", "", "")
+    TrendingApp(
+        4,
+        "Sanctum",
+        "Staking",
+        "https://assets.coingecko.com/coins/images/38485/standard/IAcXR9Dr_400x400.jpg?1717679016",
+        "",
+        listOf(NetworkType.SOLANA)
+
+    ),
+
+    TrendingApp(
+        5,
+        "pump.fun",
+        "DeFi",
+        "https://pump.fun/_next/image?url=%2Flogo.png&w=32&q=75",
+        "",
+        listOf(NetworkType.SOLANA)
+
+    ),
+    TrendingApp(
+        6, "DRiP", "Collectibles", "https://drip.haus/drip_logo_white.a87ccb99.svg", "",
+        listOf(NetworkType.SOLANA)
+    ),
+    TrendingApp(
+        7,
+        "Sunflower Land",
+        "Gaming",
+        "https://assets.coingecko.com/coins/images/25514/standard/download.png?1696524647",
+        "",
+        listOf(NetworkType.POLYGON)
+    ),
+    TrendingApp(
+        8, "DEX Screener", "DeFi", "https://dexscreener.com/favicon.ico", "",
+        listOf(NetworkType.SOLANA)
+    ),
+    TrendingApp(
+        9,
+        "OnePlanet",
+        "Gaming",
+        "https://img.cryptorank.io/coins/one_planet1668760388627.png",
+        "",
+        listOf(NetworkType.POLYGON)
+
+    ),
+    TrendingApp(
+        10,
+        "OpenSea",
+        "DeFi",
+        "https://opensea.io/static/images/logos/opensea-logo.svg",
+        "",
+        listOf(NetworkType.ETHEREUM, NetworkType.POLYGON)
+    )
 
 )
 
@@ -351,52 +504,83 @@ fun BrowserTab(
 
 
 @Composable
-fun NetworkSample() {
+fun NetworkSample(
+    selectedNetworkType: NetworkType,
+    onNetworkTypeSelected: (NetworkType) -> Unit
+) {
     var expanded by remember { mutableStateOf(false) }
+
 
     Card(
         modifier = Modifier
             .wrapContentSize(),
         shape = RoundedCornerShape(16.dp)
     ) {
+
         Row(
-            modifier = Modifier.clickable {
-                expanded = !expanded
-            },
-            verticalAlignment = Alignment.CenterVertically,) {
+            modifier = Modifier
+                .clickable { expanded = !expanded }
+                .background(ComposeAppTheme.colors.steelDark),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             Text(
-                text = "All Networks",
+                text = selectedNetworkType.displayName,
                 modifier = Modifier.padding(8.dp),
-                style = MaterialTheme.typography.body2
+                style = MaterialTheme.typography.body2,
+                color = ComposeAppTheme.colors.white
             )
-            Icon(imageVector = Icons.Filled.ArrowDropDown, contentDescription = null)
+            Icon(
+                painter = painterResource(R.drawable.ic_down_arrow_20),
+                contentDescription = null,
+                tint = Color.Unspecified
+
+            )
         }
         DropdownMenu(
+            modifier = Modifier.background(ComposeAppTheme.colors.steelDark),
             expanded = expanded,
             onDismissRequest = { expanded = false }) {
             DropdownMenuItem(
-                content = { Text("All Networks") },
-                onClick = { /* Handle edit! */ },
+                content = { Text("Solana", color = ComposeAppTheme.colors.white) },
+                onClick = {
+                    expanded = false
+                    onNetworkTypeSelected(NetworkType.SOLANA)
+
+                }
             )
             DropdownMenuItem(
-                content = { Text("Solana") },
-                onClick = { /* Handle settings! */ },
+                content = { Text("Ethereum", color = ComposeAppTheme.colors.white) },
+                onClick = {
+                    expanded = false
+                    onNetworkTypeSelected(NetworkType.ETHEREUM)
+                },
             )
             DropdownMenuItem(
-                content = { Text("Ethereum") },
-                onClick = { /* Handle send feedback! */ },
+                content = { Text("Polygon", color = ComposeAppTheme.colors.white) },
+                onClick = {
+                    expanded = false
+                    onNetworkTypeSelected(NetworkType.POLYGON)
+                },
             )
             DropdownMenuItem(
-                content = { Text("Ethereum") },
-                onClick = { /* Handle send feedback! */ },
+                content = { Text("All Networks", color = ComposeAppTheme.colors.white) },
+                onClick = {
+                    expanded = false
+                    onNetworkTypeSelected(NetworkType.ALL_NETWORKS)
+                },
             )
         }
+
+
     }
 }
 
 @Composable
 fun TypeDropDown() {
     var expanded by remember { mutableStateOf(false) }
+    var selectedOption by remember {
+        mutableStateOf("Trending")
+    }
 
     Card(
         modifier = Modifier
@@ -404,38 +588,53 @@ fun TypeDropDown() {
         shape = RoundedCornerShape(16.dp)
     ) {
         Row(
-            modifier = Modifier.clickable {
-                expanded = !expanded
-            },
-            verticalAlignment = Alignment.CenterVertically,) {
-            Text(
-                text = "Type",
-                modifier = Modifier.padding(8.dp),
-                style = MaterialTheme.typography.body2
-            )
-            Icon(imageVector = Icons.Filled.ArrowDropDown, contentDescription = null)
-        }
-        DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false }) {
-            DropdownMenuItem(
-                content = { Text("Top") },
-                onClick = { /* Handle edit! */ },
-            )
-            DropdownMenuItem(
-                content = { Text("Trending") },
-                onClick = { /* Handle settings! */ },
-            )
+            modifier = Modifier
+                .clickable { expanded = !expanded }
+                .background(ComposeAppTheme.colors.steelDark),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
 
+            DropdownMenu(
+                modifier = Modifier.background(ComposeAppTheme.colors.steelDark),
+                expanded = expanded,
+                onDismissRequest = { expanded = false }) {
+                DropdownMenuItem(
+                    content = { Text("Top", color = ComposeAppTheme.colors.white) },
+                    onClick = {
+                        expanded = false
+                        selectedOption = "Top"
+                    },
+                )
+                DropdownMenuItem(
+                    content = { Text("Trending", color = ComposeAppTheme.colors.white) },
+                    onClick = {
+                        expanded = false
+                        selectedOption = "Trending"
+                    },
+                )
+
+            }
+            Text(
+                text = selectedOption,
+                modifier = Modifier.padding(8.dp),
+                style = MaterialTheme.typography.body2,
+                color = ComposeAppTheme.colors.white
+
+            )
+            Icon(
+                painter = painterResource(R.drawable.ic_down_arrow_20),
+                contentDescription = null,
+                tint = Color.Unspecified
+            )
         }
+
     }
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
-private fun Preview_HSHodlerInput() {
+private fun PreviewBrowserScreen() {
     ComposeAppTheme {
         BrowserScreen()
     }

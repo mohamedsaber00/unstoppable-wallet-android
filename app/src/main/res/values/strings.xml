@@ -813,7 +813,7 @@
     <string name="new_tab">New Tab</string>
     <string name="closeAll">Close All</string>
     <string name="action_cancel">Cancel All</string>
-    <string name="address_bar">Search or type web address.</string>
+    <string name="address_bar">Search or type a URL</string>
 
 
 
@@ -2073,6 +2073,7 @@
     <string name="CexWithdraw_Error_MinimumAmount">The minimum amount you can withdraw is %s</string>
     <string name="CexWithdraw_Error_MaximumAmount">The maximum amount you can withdraw is %s</string>
     <string name="CexWithdraw_Error_WithdrawTitle">Withdraw Failed</string>
+    <string name="add_new_tab">Add New Tab</string>
 
 
 </resources>

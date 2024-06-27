@@ -3,6 +3,7 @@ package io.horizontalsystems.bankwallet.modules.browser
 import android.widget.FrameLayout
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +21,7 @@ import io.horizontalsystems.bankwallet.modules.browser.components.TopBar
 import io.horizontalsystems.bankwallet.modules.browser.components.TSBackHandler
 import io.horizontalsystems.bankwallet.modules.browser.tab.TabList
 import io.horizontalsystems.bankwallet.modules.browser.tab.TabManager
+import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 
 
 @Composable
@@ -40,7 +42,8 @@ fun MainView() {
     logD("MainView start")
     val tab = TabManager.currentTab.value
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier
+        .fillMaxSize()) {
         TopBar()
         Box(modifier = Modifier.weight(1f)) {
             TSBackHandler(

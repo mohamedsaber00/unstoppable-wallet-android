@@ -26,6 +26,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 
 @Composable
 fun TSTextField(
@@ -47,9 +48,9 @@ fun TSTextField(
             modifier = Modifier
                 .height(40.dp)
                 .fillMaxWidth()
-                .border(1.dp, Color.LightGray, RoundedCornerShape(20.dp))
+                .border(1.dp, ComposeAppTheme.colors.lightGrey, RoundedCornerShape(8.dp))
                 .background(
-                    color = MaterialTheme.colors.background, shape = RoundedCornerShape(20.dp),
+                    color = ComposeAppTheme.colors.lightGrey, shape = RoundedCornerShape(8.dp),
                 ),
         )
         TextField(

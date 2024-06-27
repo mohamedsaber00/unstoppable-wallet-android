@@ -2,6 +2,7 @@ package io.horizontalsystems.bankwallet.modules.browser.components
 
 import android.webkit.URLUtil
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
@@ -18,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
@@ -27,6 +29,7 @@ import io.horizontalsystems.bankwallet.modules.browser.BrowserUIState
 import io.horizontalsystems.bankwallet.modules.browser.LocalViewModel
 import io.horizontalsystems.bankwallet.modules.browser.tab.TabManager
 import io.horizontalsystems.bankwallet.modules.browser.util.IconMap
+import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import kotlinx.coroutines.launch
 
 
@@ -60,7 +63,8 @@ fun AddressTextField(modifier: Modifier, uiState: MutableState<BrowserUIState>) 
     }
 
     TSTextField(
-        modifier = modifier.focusRequester(focusRequester),
+        modifier = modifier
+            .focusRequester(focusRequester),
         text = text,
         placeholder = placeholder ?: stringResource(id = R.string.address_bar),
         onEnter = { onGo() },
@@ -75,7 +79,11 @@ fun AddressTextField(modifier: Modifier, uiState: MutableState<BrowserUIState>) 
         },
         leadingIcon = when (uiState.value) {
             BrowserUIState.Search -> {
-                { Icon(imageVector = Icons.Default.Search, contentDescription = "Search") }
+                {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_search),
+                        contentDescription = "Search",
+                    ) }
             }
             else -> {
                 {
@@ -86,10 +94,9 @@ fun AddressTextField(modifier: Modifier, uiState: MutableState<BrowserUIState>) 
                             modifier = Modifier.size(20.dp),
                         )
                     } ?: Icon(
-                        imageVector = Icons.Default.Info,
-                        contentDescription = "Info",
+                        painter = painterResource(id = R.drawable.ic_search),
+                        contentDescription = "Search",
                         modifier = Modifier.size(20.dp),
-                        tint = Color.LightGray
                     )
                 }
             }

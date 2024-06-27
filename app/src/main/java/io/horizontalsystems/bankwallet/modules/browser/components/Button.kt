@@ -30,6 +30,7 @@ import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,6 +41,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.horizontalsystems.bankwallet.R
@@ -47,33 +49,51 @@ import io.horizontalsystems.bankwallet.modules.browser.BrowserUIState
 import io.horizontalsystems.bankwallet.modules.browser.LocalViewModel
 import io.horizontalsystems.bankwallet.modules.browser.tab.TabManager
 import io.horizontalsystems.bankwallet.modules.browser.tab.active
+import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
 fun TabButton(uiState: MutableState<BrowserUIState>) {
     val tabs = TabManager.tabs
-    IconButton(onClick = {
-        TabManager.currentTab.value?.view?.generatePreview()
-        uiState.value = BrowserUIState.TabList
-    }) {
+    IconButton(
+        modifier = Modifier
+            .fillMaxHeight()
+            .background(ComposeAppTheme.colors.dark),
+        onClick = {
+            TabManager.currentTab.value?.view?.generatePreview()
+            uiState.value = BrowserUIState.TabList
+        }) {
 
         Box(
             modifier = Modifier
                 .border(
                     1.5.dp,
-                    LocalContentColor.current,
-                    RoundedCornerShape(4.dp)
+                    ComposeAppTheme.colors.white,
+                    RoundedCornerShape(4.dp),
                 )
                 .size(20.dp),
             contentAlignment = Alignment.Center,
         ) {
-            Text(
-                text = tabs.size.toString(),
-                fontSize = 12.sp,
-                fontWeight = FontWeight.W600,
-                textAlign = TextAlign.Center,
-            )
+
+            if (tabs.size.toString() == "0") {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_add_yellow),
+                    contentDescription = stringResource(
+                        R.string.add_new_tab
+                    ),
+                    tint = ComposeAppTheme.colors.white
+                )
+            } else {
+                Text(
+                    text = tabs.size.toString(),
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.W600,
+                    textAlign = TextAlign.Center,
+                    color = ComposeAppTheme.colors.white
+                )
+            }
+
         }
     }
 }
