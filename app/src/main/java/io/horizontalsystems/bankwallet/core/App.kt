@@ -2,6 +2,7 @@ package io.horizontalsystems.bankwallet.core
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Build
 import android.util.Log
@@ -48,6 +49,7 @@ import io.horizontalsystems.bankwallet.core.managers.NftAdapterManager
 import io.horizontalsystems.bankwallet.core.managers.NftMetadataManager
 import io.horizontalsystems.bankwallet.core.managers.NftMetadataSyncer
 import io.horizontalsystems.bankwallet.core.managers.NumberFormatter
+import io.horizontalsystems.bankwallet.core.managers.PriceManager
 import io.horizontalsystems.bankwallet.core.managers.RateAppManager
 import io.horizontalsystems.bankwallet.core.managers.ReleaseNotesManager
 import io.horizontalsystems.bankwallet.core.managers.RestoreSettingsManager
@@ -74,6 +76,7 @@ import io.horizontalsystems.bankwallet.core.providers.CexProviderManager
 import io.horizontalsystems.bankwallet.core.providers.EvmLabelProvider
 import io.horizontalsystems.bankwallet.core.providers.FeeRateProvider
 import io.horizontalsystems.bankwallet.core.providers.FeeTokenProvider
+import io.horizontalsystems.bankwallet.core.stats.StatsManager
 import io.horizontalsystems.bankwallet.core.storage.AccountsStorage
 import io.horizontalsystems.bankwallet.core.storage.AppDatabase
 import io.horizontalsystems.bankwallet.core.storage.BlockchainSettingsStorage
@@ -85,9 +88,6 @@ import io.horizontalsystems.bankwallet.modules.backuplocal.fullbackup.BackupProv
 import io.horizontalsystems.bankwallet.modules.balance.BalanceViewTypeManager
 import io.horizontalsystems.bankwallet.modules.chart.ChartIndicatorManager
 import io.horizontalsystems.bankwallet.modules.contacts.ContactsRepository
-import io.horizontalsystems.bankwallet.modules.keystore.KeyStoreActivity
-import io.horizontalsystems.bankwallet.modules.launcher.LauncherActivity
-import io.horizontalsystems.bankwallet.modules.lockscreen.LockScreenActivity
 import io.horizontalsystems.bankwallet.modules.market.favorites.MarketFavoritesMenuService
 import io.horizontalsystems.bankwallet.modules.market.topnftcollections.TopNftCollectionsRepository
 import io.horizontalsystems.bankwallet.modules.market.topnftcollections.TopNftCollectionsViewItemFactory
@@ -102,6 +102,7 @@ import io.horizontalsystems.bankwallet.modules.theme.ThemeService
 import io.horizontalsystems.bankwallet.modules.theme.ThemeType
 import io.horizontalsystems.bankwallet.modules.walletconnect.WCManager
 import io.horizontalsystems.bankwallet.modules.walletconnect.WCSessionManager
+import io.horizontalsystems.bankwallet.modules.walletconnect.WCWalletRequestHandler
 import io.horizontalsystems.bankwallet.modules.walletconnect.storage.WCSessionStorage
 import io.horizontalsystems.bankwallet.widgets.MarketWidgetManager
 import io.horizontalsystems.bankwallet.widgets.MarketWidgetRepository
@@ -114,6 +115,10 @@ import io.horizontalsystems.core.security.KeyStoreManager
 import io.horizontalsystems.ethereumkit.core.EthereumKit
 import io.horizontalsystems.hdwalletkit.Mnemonic
 import io.reactivex.plugins.RxJavaPlugins
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.security.MessageDigest
 import java.util.logging.Level
 import java.util.logging.Logger
 import androidx.work.Configuration as WorkConfiguration
@@ -165,9 +170,11 @@ class App : CoreApp(), WorkConfiguration.Provider, ImageLoaderFactory {
         lateinit var coinManager: ICoinManager
         lateinit var wcSessionManager: WCSessionManager
         lateinit var wcManager: WCManager
+        lateinit var wcWalletRequestHandler: WCWalletRequestHandler
         lateinit var termsManager: ITermsManager
         lateinit var marketFavoritesManager: MarketFavoritesManager
         lateinit var marketKit: MarketKitWrapper
+        lateinit var priceManager: PriceManager
         lateinit var releaseNotesManager: ReleaseNotesManager
         lateinit var restoreSettingsManager: RestoreSettingsManager
         lateinit var evmSyncSourceManager: EvmSyncSourceManager
@@ -189,7 +196,10 @@ class App : CoreApp(), WorkConfiguration.Provider, ImageLoaderFactory {
         lateinit var chartIndicatorManager: ChartIndicatorManager
         lateinit var backupProvider: BackupProvider
         lateinit var spamManager: SpamManager
+        lateinit var statsManager: StatsManager
     }
+
+    private val coroutineScope = CoroutineScope(Dispatchers.Default)
 
     override fun onCreate() {
         super.onCreate()
@@ -224,9 +234,10 @@ class App : CoreApp(), WorkConfiguration.Provider, ImageLoaderFactory {
             context = this,
             hsApiBaseUrl = appConfig.marketApiBaseUrl,
             hsApiKey = appConfig.marketApiKey,
-            appConfigProvider = appConfigProvider,
             subscriptionManager = subscriptionManager
         )
+
+        priceManager = PriceManager(localStorage)
 
         feeRateProvider = FeeRateProvider(appConfigProvider)
         backgroundManager = BackgroundManager(this)
@@ -346,27 +357,24 @@ class App : CoreApp(), WorkConfiguration.Provider, ImageLoaderFactory {
 
         pinComponent = PinComponent(
             pinSettingsStorage = pinSettingsStorage,
-            excludedActivityNames = listOf(
-                KeyStoreActivity::class.java.name,
-                LockScreenActivity::class.java.name,
-                LauncherActivity::class.java.name,
-            ),
             userManager = userManager,
             pinDbStorage = PinDbStorage(appDatabase.pinDao())
         )
 
-        backgroundStateChangeListener = BackgroundStateChangeListener(systemInfoManager, keyStoreManager, pinComponent).apply {
+        statsManager = StatsManager(appDatabase.statsDao(), localStorage, marketKit, appConfigProvider)
+        backgroundStateChangeListener = BackgroundStateChangeListener(pinComponent, statsManager).apply {
             backgroundManager.registerListener(this)
         }
 
         rateAppManager = RateAppManager(walletManager, adapterManager, localStorage)
 
         wcManager = WCManager(accountManager)
+        wcWalletRequestHandler = WCWalletRequestHandler(evmBlockchainManager)
 
         termsManager = TermsManager(localStorage)
 
         marketWidgetManager = MarketWidgetManager()
-        marketFavoritesManager = MarketFavoritesManager(appDatabase, marketWidgetManager)
+        marketFavoritesManager = MarketFavoritesManager(appDatabase, localStorage, marketWidgetManager)
 
         marketWidgetRepository = MarketWidgetRepository(
             marketKit,
@@ -374,7 +382,7 @@ class App : CoreApp(), WorkConfiguration.Provider, ImageLoaderFactory {
             MarketFavoritesMenuService(localStorage, marketWidgetManager),
             TopNftCollectionsRepository(marketKit),
             TopNftCollectionsViewItemFactory(numberFormatter),
-            TopPlatformsRepository(marketKit, currencyManager, "widget"),
+            TopPlatformsRepository(marketKit),
             currencyManager
         )
 
@@ -509,8 +517,33 @@ class App : CoreApp(), WorkConfiguration.Provider, ImageLoaderFactory {
         localeAwareContext(this)
     }
 
+    override fun getApplicationSignatures() = try {
+        val signatureList = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val signingInfo = packageManager.getPackageInfo(
+                packageName,
+                PackageManager.GET_SIGNING_CERTIFICATES
+            ).signingInfo
+
+            when {
+                signingInfo.hasMultipleSigners() -> signingInfo.apkContentsSigners // Send all with apkContentsSigners
+                else -> signingInfo.signingCertificateHistory // Send one with signingCertificateHistory
+            }
+        } else {
+            packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures
+        }
+
+        signatureList.map {
+            val digest = MessageDigest.getInstance("SHA")
+            digest.update(it.toByteArray())
+            digest.digest()
+        }
+    } catch (e: Exception) {
+        // Handle error
+        emptyList()
+    }
+
     private fun startTasks() {
-        Thread {
+        coroutineScope.launch {
             EthereumKit.init()
             adapterManager.startAdapterManager()
             marketKit.sync()
@@ -530,7 +563,6 @@ class App : CoreApp(), WorkConfiguration.Provider, ImageLoaderFactory {
 
             evmLabelManager.sync()
             contactsRepository.initialize()
-
-        }.start()
+        }
     }
 }

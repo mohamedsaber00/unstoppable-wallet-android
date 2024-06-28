@@ -13,6 +13,9 @@ import io.horizontalsystems.bankwallet.core.ViewModelUiState
 import io.horizontalsystems.bankwallet.core.managers.ActiveAccountState
 import io.horizontalsystems.bankwallet.core.managers.ReleaseNotesManager
 import io.horizontalsystems.bankwallet.core.providers.Translator
+import io.horizontalsystems.bankwallet.core.stats.StatEvent
+import io.horizontalsystems.bankwallet.core.stats.StatPage
+import io.horizontalsystems.bankwallet.core.stats.stat
 import io.horizontalsystems.bankwallet.entities.Account
 import io.horizontalsystems.bankwallet.entities.AccountType
 import io.horizontalsystems.bankwallet.entities.LaunchPage
@@ -24,9 +27,9 @@ import io.horizontalsystems.bankwallet.modules.walletconnect.WCManager
 import io.horizontalsystems.bankwallet.modules.walletconnect.WCSessionManager
 import io.horizontalsystems.bankwallet.modules.walletconnect.list.WCListFragment
 import io.horizontalsystems.core.IPinComponent
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.reactive.asFlow
 
 class MainViewModel(
     private val pinComponent: IPinComponent,
@@ -38,10 +41,8 @@ class MainViewModel(
     private val localStorage: ILocalStorage,
     wcSessionManager: WCSessionManager,
     private val wcManager: WCManager,
-    deepLink: Uri?
 ) : ViewModelUiState<MainModule.UiState>() {
 
-    private val disposables = CompositeDisposable()
     private var wcPendingRequestsCount = 0
     private var marketsTabEnabled = localStorage.marketsTabEnabledFlow.value
     private var swapEnabled = isSwapTabEnabled()
@@ -69,6 +70,7 @@ class MainViewModel(
                 MainNavigation.Balance,
                 MainNavigation.Swap,
                 MainNavigation.Transactions,
+                MainNavigation.Browser,
                 MainNavigation.Settings,
             )
         } else {
@@ -76,11 +78,12 @@ class MainViewModel(
                 MainNavigation.Balance,
                 MainNavigation.Swap,
                 MainNavigation.Transactions,
+                MainNavigation.Browser,
                 MainNavigation.Settings,
             )
         }
 
-    private var selectedTabIndex = getTabIndexToOpen(deepLink)
+    private var selectedTabIndex = getTabIndexToOpen()
     private var deeplinkPage: DeeplinkPage? = null
     private var mainNavItems = navigationItems()
     private var showRateAppDialog = false
@@ -116,18 +119,22 @@ class MainViewModel(
             emitState()
         }
 
-        disposables.add(backupManager.allBackedUpFlowable.subscribe {
-            updateSettingsBadge()
-        })
-
-        disposables.add(pinComponent.pinSetFlowable.subscribe {
-            updateSettingsBadge()
-        })
-
-        disposables.add(accountManager.accountsFlowable.subscribe {
-            updateTransactionsTabEnabled()
-            updateSettingsBadge()
-        })
+        viewModelScope.launch {
+            backupManager.allBackedUpFlowable.asFlow().collect {
+                updateSettingsBadge()
+            }
+        }
+        viewModelScope.launch {
+            pinComponent.pinSetFlowable.asFlow().collect {
+                updateSettingsBadge()
+            }
+        }
+        viewModelScope.launch {
+            accountManager.accountsFlowable.asFlow().collect {
+                updateTransactionsTabEnabled()
+                updateSettingsBadge()
+            }
+        }
 
         viewModelScope.launch {
             accountManager.activeAccountStateFlow.collect {
@@ -165,10 +172,6 @@ class MainViewModel(
         !accountManager.isAccountsEmpty && accountManager.activeAccount?.type !is AccountType.Cex
     private fun isSwapTabEnabled(): Boolean =
             !accountManager.isAccountsEmpty && accountManager.activeAccount?.type !is AccountType.Cex
-
-    override fun onCleared() {
-        disposables.clear()
-    }
 
     fun whatsNewShown() {
         showWhatsNew = false
@@ -257,16 +260,15 @@ class MainViewModel(
                 enabled = true,
             )
         }
+
+        MainNavigation.Browser -> MainModule.NavigationViewItem(
+            mainNavItem = item,
+            selected = selected,
+            enabled = true,
+        )
     }
 
-    private fun getTabIndexToOpen(deepLink: Uri? = null): Int {
-        deepLink?.let {
-            val (tab, deeplinkPageData) = getNavigationDataForDeeplink(it)
-            deeplinkPage = deeplinkPageData
-            currentMainTab = tab
-            return items.indexOf(tab)
-        }
-
+    private fun getTabIndexToOpen(): Int {
         val tab = when {
             relaunchBySettingChange -> {
                 relaunchBySettingChange = false
@@ -302,7 +304,9 @@ class MainViewModel(
                 when {
                     deeplinkString.contains("coin-page") -> {
                         uid?.let {
-                            deeplinkPage = DeeplinkPage(R.id.coinFragment, CoinFragment.Input(it, "widget"))
+                            deeplinkPage = DeeplinkPage(R.id.coinFragment, CoinFragment.Input(it))
+
+                            stat(page = StatPage.Widget, event = StatEvent.OpenCoin(it))
                         }
                     }
 
@@ -310,6 +314,8 @@ class MainViewModel(
                         val blockchainTypeUid = deepLink.getQueryParameter("blockchainTypeUid")
                         if (uid != null && blockchainTypeUid != null) {
                             deeplinkPage = DeeplinkPage(R.id.nftCollectionFragment, NftCollectionFragment.Input(uid, blockchainTypeUid))
+
+                            stat(page = StatPage.Widget, event = StatEvent.Open(StatPage.TopNftCollections))
                         }
                     }
 
@@ -318,6 +324,8 @@ class MainViewModel(
                         if (title != null && uid != null) {
                             val platform = Platform(uid, title)
                             deeplinkPage = DeeplinkPage(R.id.marketPlatformFragment, platform)
+
+                            stat(page = StatPage.Widget, event = StatEvent.Open(StatPage.TopPlatform))
                         }
                     }
                 }
@@ -373,6 +381,14 @@ class MainViewModel(
     fun deeplinkPageHandled() {
         deeplinkPage = null
         emitState()
+    }
+
+    fun handleDeepLink(uri: Uri) {
+        val (tab, deeplinkPageData) = getNavigationDataForDeeplink(uri)
+        deeplinkPage = deeplinkPageData
+        currentMainTab = tab
+        selectedTabIndex = items.indexOf(tab)
+        syncNavigation()
     }
 
 }

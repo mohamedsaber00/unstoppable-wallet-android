@@ -32,6 +32,9 @@
         android:id="@+id/transactionSpeedUpCancelFragment"
         android:name="io.horizontalsystems.bankwallet.modules.transactionInfo.options.TransactionSpeedUpCancelFragment"/>
     <fragment
+        android:id="@+id/transactionSpeedUpCancelTransactionSettings"
+        android:name="io.horizontalsystems.bankwallet.modules.transactionInfo.options.TransactionSpeedUpCancelTransactionSettingsFragment"/>
+    <fragment
         android:id="@+id/resendBitcoinFragment"
         android:name="io.horizontalsystems.bankwallet.modules.transactionInfo.resendbitcoin.ResendBitcoinFragment"/>
     <fragment
@@ -196,38 +199,23 @@
         android:id="@+id/addTokenFragment"
         android:name="io.horizontalsystems.bankwallet.modules.addtoken.AddTokenFragment"/>
     <fragment
-        android:id="@+id/swapFragment"
-        android:name="io.horizontalsystems.bankwallet.modules.swap.SwapMainFragment"
-        android:label="@string/Swap" />
+        android:id="@+id/eip20ApproveFragment"
+        android:name="io.horizontalsystems.bankwallet.modules.eip20approve.Eip20ApproveFragment" />
     <fragment
-        android:id="@+id/swapApproveFragment"
-        android:name="io.horizontalsystems.bankwallet.modules.swap.approve.SwapApproveFragment" />
+        android:id="@+id/eip20RevokeTransactionSettingsFragment"
+        android:name="io.horizontalsystems.bankwallet.modules.eip20revoke.Eip20RevokeTransactionSettingsFragment" />
     <fragment
-        android:id="@+id/uniswapConfirmationFragment"
-        android:name="io.horizontalsystems.bankwallet.modules.swap.confirmation.uniswap.UniswapConfirmationFragment"/>
+        android:id="@+id/eip20RevokeConfirmFragment"
+        android:name="io.horizontalsystems.bankwallet.modules.eip20revoke.Eip20RevokeConfirmFragment" />
     <fragment
-        android:id="@+id/oneInchConfirmationFragment"
-        android:name="io.horizontalsystems.bankwallet.modules.swap.confirmation.oneinch.OneInchSwapConfirmationFragment"/>
+        android:id="@+id/eip20ApproveConfirmFragment"
+        android:name="io.horizontalsystems.bankwallet.modules.eip20approve.Eip20ApproveConfirmFragment" />
     <fragment
-        android:id="@+id/swapApproveConfirmationFragment"
-        android:name="io.horizontalsystems.bankwallet.modules.swap.approve.confirmation.SwapApproveConfirmationFragment"/>
-    <fragment
-        android:id="@+id/uniswapSettingsFragment"
-        android:name="io.horizontalsystems.bankwallet.modules.swap.settings.uniswap.UniswapSettingsFragment"
-        />
-    <fragment
-        android:id="@+id/oneinchSettingsFragment"
-        android:name="io.horizontalsystems.bankwallet.modules.swap.settings.oneinch.OneInchSettingsFragment"
-        />
+        android:id="@+id/eip20ApproveTransactionSettingsFragment"
+        android:name="io.horizontalsystems.bankwallet.modules.eip20approve.Eip20ApproveTransactionSettingsFragment" />
     <fragment
         android:id="@+id/marketSearchFragment"
         android:name="io.horizontalsystems.bankwallet.modules.market.search.MarketSearchFragment"/>
-    <fragment
-        android:id="@+id/marketTopPlatformsFragment"
-        android:name="io.horizontalsystems.bankwallet.modules.market.topplatforms.TopPlatformsFragment"/>
-    <fragment
-        android:id="@+id/topPairsFragment"
-        android:name="io.horizontalsystems.bankwallet.modules.market.toppairs.TopPairsFragment"/>
     <fragment
         android:id="@+id/marketPlatformFragment"
         android:name="io.horizontalsystems.bankwallet.modules.market.platform.MarketPlatformFragment"/>
@@ -238,9 +226,6 @@
         android:id="@+id/blockchainsSelectorFragment"
         android:name="io.horizontalsystems.bankwallet.modules.market.filters.BlockchainsSelectorFragment"/>
     <fragment
-        android:id="@+id/marketTopCoinsFragment"
-        android:name="io.horizontalsystems.bankwallet.modules.market.topcoins.MarketTopCoinsFragment"/>
-    <fragment
         android:id="@+id/marketTopNftCollectionsFragment"
         android:name="io.horizontalsystems.bankwallet.modules.market.topnftcollections.TopNftCollectionsFragment"/>
     <fragment
@@ -249,6 +234,9 @@
     <fragment
         android:id="@+id/marketAdvancedSearchResultsFragment"
         android:name="io.horizontalsystems.bankwallet.modules.market.filtersresult.MarketFiltersResultsFragment"/>
+    <fragment
+        android:id="@+id/marketSignalsFragment"
+        android:name="io.horizontalsystems.bankwallet.modules.market.favorites.MarketSignalsFragment" />
     <fragment
         android:id="@+id/createAccountFragment"
         android:name="io.horizontalsystems.bankwallet.modules.createaccount.CreateAccountFragment" />
@@ -291,6 +279,9 @@
         android:id="@+id/tvlFragment"
         android:name="io.horizontalsystems.bankwallet.modules.market.tvl.TvlFragment" />
     <fragment
+        android:id="@+id/etfFragment"
+        android:name="io.horizontalsystems.bankwallet.modules.market.etf.EtfFragment" />
+    <fragment
         android:id="@+id/nftsFragment"
         android:name="io.horizontalsystems.bankwallet.modules.nft.holdings.NftHoldingsFragment" />
     <fragment
@@ -308,9 +299,6 @@
     <fragment
         android:id="@+id/sendTokenSelectFragment"
         android:name="io.horizontalsystems.bankwallet.modules.sendtokenselect.SendTokenSelectFragment" />
-    <fragment
-        android:id="@+id/swapTokenSelectFragment"
-        android:name="io.horizontalsystems.bankwallet.modules.swaptokenselect.SwapTokenSelectFragment" />
     <fragment
         android:id="@+id/multiswap"
         android:name="io.horizontalsystems.bankwallet.modules.multiswap.SwapFragment" />
@@ -345,9 +333,6 @@
         android:id="@+id/statusInfoDialog"
         android:name="io.horizontalsystems.bankwallet.modules.info.TransactionStatusInfoFragment" />
     <fragment
-        android:id="@+id/selectSwapCoinDialog"
-        android:name="io.horizontalsystems.bankwallet.modules.swap.coinselect.SelectSwapCoinFragment" />
-    <fragment
         android:id="@+id/swapSelectCoinFragment"
         android:name="io.horizontalsystems.bankwallet.modules.multiswap.SwapSelectCoinFragment" />
     <fragment
@@ -356,6 +341,9 @@
     <fragment
         android:id="@+id/cexAssetFragment"
         android:name="io.horizontalsystems.bankwallet.modules.balance.cex.asset.CexAssetFragment" />
+    <fragment
+        android:id="@+id/кeyAccountInfoFragment"
+        android:name="io.horizontalsystems.bankwallet.modules.manageaccount.showextendedkey.KeyAccountInfoFragment" />
     <dialog
         android:id="@+id/contactOptionsDialog"
         android:name="io.horizontalsystems.bankwallet.modules.settings.about.ContactOptionsDialog" />
@@ -392,9 +380,6 @@
     <dialog
         android:id="@+id/configuredTokenInfo"
         android:name="io.horizontalsystems.bankwallet.modules.configuredtoken.ConfiguredTokenInfoDialog" />
-    <dialog
-        android:id="@+id/periodSelectDialog"
-        android:name="io.horizontalsystems.bankwallet.ui.compose.components.PeriodSelectDialog" />
 
     <!--Wallet Connect-->
     <fragment
@@ -403,6 +388,9 @@
     <fragment
         android:id="@+id/wcRequestFragment"
         android:name="io.horizontalsystems.bankwallet.modules.walletconnect.request.WCRequestFragment"/>
+    <fragment
+        android:id="@+id/wcSendEvmTransactionSettings"
+        android:name="io.horizontalsystems.bankwallet.modules.walletconnect.request.WCEvmTransactionSettingsFragment"/>
     <fragment
         android:id="@+id/wcListFragment"
         android:name="io.horizontalsystems.bankwallet.modules.walletconnect.list.WCListFragment"/>

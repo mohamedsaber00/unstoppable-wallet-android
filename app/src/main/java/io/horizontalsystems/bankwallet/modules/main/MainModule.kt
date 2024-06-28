@@ -15,7 +15,7 @@ import kotlinx.parcelize.Parcelize
 
 object MainModule {
 
-    class Factory(private val wcDeepLink: Uri?) : ViewModelProvider.Factory {
+    class Factory : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return MainViewModel(
@@ -28,7 +28,6 @@ object MainModule {
                 App.localStorage,
                 App.wcSessionManager,
                 App.wcManager,
-                wcDeepLink
             ) as T
         }
     }
@@ -37,6 +36,12 @@ object MainModule {
         val intent = Intent(context, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         intent.data = data
+        context.startActivity(intent)
+    }
+
+    fun startAsNewTask(context: Context) {
+        val intent = Intent(context, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         context.startActivity(intent)
     }
 
@@ -65,7 +70,9 @@ object MainModule {
         Balance(R.drawable.ic_wallet_24, R.string.Balance_Title),
         Swap(R.drawable.ic_swap_24, R.string.Transactions_Swaps),
         Transactions(R.drawable.ic_transactions, R.string.Transactions_Title),
+        Browser(R.drawable.ic_browser, R.string.Browser_Title ),
         Settings(R.drawable.ic_settings, R.string.Settings_Title);
+
 
         companion object {
             private val map = values().associateBy(MainNavigation::name)

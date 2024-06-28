@@ -11,7 +11,11 @@ import io.horizontalsystems.bankwallet.core.AdapterState
 import io.horizontalsystems.bankwallet.core.ILocalStorage
 import io.horizontalsystems.bankwallet.core.ViewModelUiState
 import io.horizontalsystems.bankwallet.core.factories.uriScheme
+import io.horizontalsystems.bankwallet.core.managers.PriceManager
 import io.horizontalsystems.bankwallet.core.providers.Translator
+import io.horizontalsystems.bankwallet.core.stats.StatEvent
+import io.horizontalsystems.bankwallet.core.stats.StatPage
+import io.horizontalsystems.bankwallet.core.stats.stat
 import io.horizontalsystems.bankwallet.core.supported
 import io.horizontalsystems.bankwallet.core.utils.AddressUriParser
 import io.horizontalsystems.bankwallet.core.utils.AddressUriResult
@@ -41,6 +45,7 @@ class BalanceViewModel(
     private val localStorage: ILocalStorage,
     private val wCManager: WCManager,
     private val addressHandlerFactory: AddressHandlerFactory,
+    private val priceManager: PriceManager
 ) : ViewModelUiState<BalanceUiState>(), ITotalBalance by totalBalance {
 
     private var balanceViewType = balanceViewTypeManager.balanceViewTypeFlow.value
@@ -49,10 +54,11 @@ class BalanceViewModel(
     private var isRefreshing = false
     private var openSendTokenSelect: OpenSendTokenSelect? = null
     private var errorMessage: String? = null
+    private var balanceTabButtonsEnabled = localStorage.balanceTabButtonsEnabled
 
-    val sortTypes =
+    private val sortTypes =
         listOf(BalanceSortType.Value, BalanceSortType.Name, BalanceSortType.PercentGrowth)
-    var sortType by service::sortType
+    private var sortType = service.sortType
 
     var connectionResult by mutableStateOf<WalletConnectListViewModel.ConnectionResult?>(null)
         private set
@@ -87,18 +93,34 @@ class BalanceViewModel(
             }
         }
 
+        viewModelScope.launch {
+            localStorage.balanceTabButtonsEnabledFlow.collect {
+                balanceTabButtonsEnabled = it
+                emitState()
+            }
+        }
+
+        viewModelScope.launch(Dispatchers.Default) {
+            priceManager.priceChangeIntervalFlow.collect {
+                refreshViewItems(service.balanceItemsFlow.value)
+            }
+        }
+
         service.start()
 
         totalBalance.start(viewModelScope)
     }
 
-    override fun createState()= BalanceUiState(
+    override fun createState() = BalanceUiState(
         balanceViewItems = balanceViewItems,
         viewState = viewState,
         isRefreshing = isRefreshing,
         headerNote = headerNote(),
         errorMessage = errorMessage,
-        openSend = openSendTokenSelect
+        openSend = openSendTokenSelect,
+        balanceTabButtonsEnabled = balanceTabButtonsEnabled,
+        sortType = sortType,
+        sortTypes = sortTypes,
     )
 
     private suspend fun handleUpdatedBalanceViewType(balanceViewType: BalanceViewType) {
@@ -157,6 +179,8 @@ class BalanceViewModel(
             return
         }
 
+        stat(page = StatPage.Balance, event = StatEvent.Refresh)
+
         viewModelScope.launch {
             isRefreshing = true
             emitState()
@@ -167,6 +191,15 @@ class BalanceViewModel(
 
             isRefreshing = false
             emitState()
+        }
+    }
+
+    fun setSortType(sortType: BalanceSortType) {
+        this.sortType = sortType
+        emitState()
+
+        viewModelScope.launch(Dispatchers.Default) {
+            service.sortType = sortType
         }
     }
 
@@ -185,6 +218,8 @@ class BalanceViewModel(
 
     fun disable(viewItem: BalanceViewItem2) {
         service.disable(viewItem.wallet)
+
+        stat(page = StatPage.Balance, event = StatEvent.DisableToken(viewItem.wallet.token))
     }
 
     fun getSyncErrorDetails(viewItem: BalanceViewItem2): SyncError = when {
@@ -322,6 +357,9 @@ data class BalanceUiState(
     val headerNote: HeaderNote,
     val errorMessage: String?,
     val openSend: OpenSendTokenSelect? = null,
+    val balanceTabButtonsEnabled: Boolean,
+    val sortType: BalanceSortType,
+    val sortTypes: List<BalanceSortType>,
 )
 
 data class OpenSendTokenSelect(

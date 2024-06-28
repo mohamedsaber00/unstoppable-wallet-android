@@ -100,6 +100,8 @@ object WCDelegate : Web3Wallet.WalletDelegate, CoreClient.CoreDelegate {
             App.wcSessionManager.getCurrentSessionRequests().reversed().firstOrNull()
                 ?: return
 
+        if (App.wcWalletRequestHandler.handle(sessionRequestForAccount)) return
+
         sessionRequestEvent = sessionRequestForAccount
 
         scope.launch {
@@ -241,7 +243,7 @@ object WCDelegate : Web3Wallet.WalletDelegate, CoreClient.CoreDelegate {
             jsonRpcResponse = Wallet.Model.JsonRpcResponse.JsonRpcError(
                 id = requestId,
                 code = 500,
-                message = "Unstoppable Wallet Error"
+                message = "Rejected by user"
             )
         )
 

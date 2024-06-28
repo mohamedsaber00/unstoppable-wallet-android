@@ -42,6 +42,10 @@ import androidx.navigation.NavController
 import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.core.slideFromBottom
 import io.horizontalsystems.bankwallet.core.slideFromRight
+import io.horizontalsystems.bankwallet.core.stats.StatEvent
+import io.horizontalsystems.bankwallet.core.stats.StatPage
+import io.horizontalsystems.bankwallet.core.stats.stat
+import io.horizontalsystems.bankwallet.core.stats.statTab
 import io.horizontalsystems.bankwallet.entities.ViewState
 import io.horizontalsystems.bankwallet.modules.balance.BalanceAccountsViewModel
 import io.horizontalsystems.bankwallet.modules.balance.BalanceModule
@@ -49,9 +53,9 @@ import io.horizontalsystems.bankwallet.modules.balance.BalanceScreenState
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.TranslatableString
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
-import io.horizontalsystems.bankwallet.ui.compose.components.CoinImage
 import io.horizontalsystems.bankwallet.ui.compose.components.HSCircularProgressIndicator
 import io.horizontalsystems.bankwallet.ui.compose.components.HeaderStick
+import io.horizontalsystems.bankwallet.ui.compose.components.HsImage
 import io.horizontalsystems.bankwallet.ui.compose.components.ListEmptyView
 import io.horizontalsystems.bankwallet.ui.compose.components.MenuItem
 import io.horizontalsystems.bankwallet.ui.compose.components.RowUniversal
@@ -89,6 +93,8 @@ fun TransactionsScreen(
                         showAlertDot = showFilterAlertDot,
                         onClick = {
                             navController.slideFromRight(R.id.transactionFilterFragment)
+
+                            stat(page = StatPage.Transactions, event = StatEvent.Open(StatPage.TransactionFilter))
                         },
                     )
                 )
@@ -96,7 +102,11 @@ fun TransactionsScreen(
             filterTypes?.let { filterTypes ->
                 FilterTypeTabs(
                     filterTypes = filterTypes,
-                    onTransactionTypeClick = viewModel::setFilterTransactionType
+                    onTransactionTypeClick = {
+                        viewModel.setFilterTransactionType(it)
+
+                        stat(page = StatPage.Transactions, event = StatEvent.SwitchTab(it.statTab))
+                    }
                 )
             }
 
@@ -160,6 +170,8 @@ private fun onTransactionClick(
     viewModel.tmpItemToShow = transactionItem
 
     navController.slideFromBottom(R.id.transactionInfoFragment)
+
+    stat(page = StatPage.Transactions, event = StatEvent.Open(StatPage.TransactionInfo))
 }
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -282,24 +294,25 @@ fun TransactionCell(item: TransactionViewItem, position: SectionItemPosition, on
                     }
                     is TransactionViewItem.Icon.Regular -> {
                         val shape = if (icon.rectangle) RoundedCornerShape(CornerSize(4.dp)) else CircleShape
-                        CoinImage(
-                            modifier = Modifier
-                                .size(32.dp)
+                        HsImage(
+                            modifier = Modifier.size(32.dp)
                                 .clip(shape),
-                            iconUrl = icon.url,
+                            url = icon.url,
+                            alternativeUrl = icon.alternativeUrl,
                             placeholder = icon.placeholder
                         )
                     }
                     is TransactionViewItem.Icon.Double -> {
                         val backShape = if (icon.back.rectangle) RoundedCornerShape(CornerSize(4.dp)) else CircleShape
                         val frontShape = if (icon.front.rectangle) RoundedCornerShape(CornerSize(4.dp)) else CircleShape
-                        CoinImage(
+                        HsImage(
                             modifier = Modifier
                                 .align(Alignment.TopStart)
                                 .padding(top = 4.dp, start = 6.dp)
                                 .size(24.dp)
                                 .clip(backShape),
-                            iconUrl = icon.back.url,
+                            url = icon.back.url,
+                            alternativeUrl = icon.back.alternativeUrl,
                             placeholder = icon.back.placeholder,
                         )
 
@@ -312,13 +325,14 @@ fun TransactionCell(item: TransactionViewItem, position: SectionItemPosition, on
                                 .background(ComposeAppTheme.colors.tyler)
                         )
 
-                        CoinImage(
+                        HsImage(
                             modifier = Modifier
                                 .align(Alignment.BottomEnd)
                                 .padding(bottom = 4.dp, end = 6.dp)
                                 .size(24.dp)
                                 .clip(frontShape),
-                            iconUrl = icon.front.url,
+                            url = icon.front.url,
+                            alternativeUrl = icon.front.alternativeUrl,
                             placeholder = icon.front.placeholder,
                         )
                     }

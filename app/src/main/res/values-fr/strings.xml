@@ -2,7 +2,7 @@
 <resources>
     <!--Common-->
     <string name="Error_ParameterNotSet">Le paramètre n\'est pas défini</string>
-    <string name="LargeNumberFormat">%s%s</string>
+    <string name="LargeNumberFormat">%1$s%2$s</string>
     <string name="Alert_Cancel">Annuler</string>
     <string name="Alert_Copy">Copier</string>
     <string name="Alert_Close">Fermer</string>
@@ -72,7 +72,7 @@
     <string name="AccountRecovery_MigrationRecommended">Ce portefeuille semble utiliser un caractère non-standard dans sa liste de mots secrets et/ou dans une phrase de passe. Si vous ne voyez pas de solde ou de transactions, veuillez vous reporter aux informations ci-dessous. \n\nCLIQUEZ POUR OBTENIR PLUS D\'INFOS</string>
     <string name="AccountRecovery_MigrationRequired">Ce portefeuille n\'est pas conforme aux normes.\n\nCLIQUEZ POUR OBTENIR PLUS D\'INFOS</string>
     <!--Intro-->
-    <string name="Intro_Wallet_Screen1Description">Soyez SatoshiFX</string>
+    <string name="Intro_Wallet_Screen1Description">Soyez Unstoppable</string>
     <string name="Intro_Wallet_Screen2Title">Désenchaînez les actifs</string>
     <string name="Intro_Wallet_Screen2Description">Ne vous enfermez pas et ne laissez pas les autres vous le faire.</string>
     <string name="Intro_Wallet_Screen3Title">Sans frontières</string>
@@ -110,7 +110,7 @@
     <string name="Language_Portuguese">Portugais</string>
     <!--Rate App-->
     <string name="RateApp_Title_Rate_This_App">Bonjour!</string>
-    <string name="RateApp_Description_Rate_This_App">Vous aimez SatoshiFX? Partagez vos commentaires et vos idées pour aller plus loin.</string>
+    <string name="RateApp_Description_Rate_This_App">Vous aimez Unstoppable? Partagez vos commentaires et vos idées pour aller plus loin.</string>
     <string name="RateApp_Button_RateIt">Evaluez-là</string>
     <string name="RateApp_Button_NotNow">Plus tard</string>
     <!--Restore-->
@@ -130,7 +130,7 @@
     <string name="Restore_PrivateKeyHint">Entrez clé privée EVM, BIP32 Root Key ou Account Extended Private Key</string>
     <string name="Restore_PhraseHint">Entrez 12, 15, 18, 21 ou 24 mots</string>
     <string name="Restore_NonStandardRestore">Restauration non-standard</string>
-    <string name="Restore_NonStandard_Description">Sur cette page, vous trouverez un mécanisme spécial de restauration de portefeuille pour les utilisateurs d\'SatoshiFX dont le portefeuille n\'est pas standard. En général, de tels portefeuilles ont été créés dans la version 1.00 d\'SatoshiFX en utilisant une liste de mots mnémoniques non-anglais et/ou un caractère spécial dans la phrase de passe du portefeuille (c\'est-à-dire un symbole diacritique).\n\nSi vous êtes un utilisateur concerné, le solde de votre portefeuille sera affiché à 0 après la restauration de ce portefeuille dans la version 1.00 ou supérieure. Grâce à cette page, vous pourrez restaurer l\'accès à votre portefeuille non-standard. Une fois la restauration effectuée, il est conseillé de créer un nouveau portefeuille (qui sera conforme aux normes) et d\'y transférer vos fonds.</string>
+    <string name="Restore_NonStandard_Description">Sur cette page, vous trouverez un mécanisme spécial de restauration de portefeuille pour les utilisateurs d\'Unstoppable dont le portefeuille n\'est pas standard. En général, de tels portefeuilles ont été créés dans la version 0.27 - 0.28 d\'Unstoppable en utilisant une liste de mots mnémoniques non-anglais et/ou un caractère spécial dans la phrase de passe du portefeuille (c\'est-à-dire un symbole diacritique).\n\nSi vous êtes un utilisateur concerné, le solde de votre portefeuille sera affiché à 0 après la restauration de ce portefeuille dans la version 0.29 ou supérieure. Grâce à cette page, vous pourrez restaurer l\'accès à votre portefeuille non-standard. Une fois la restauration effectuée, il est conseillé de créer un nouveau portefeuille (qui sera conforme aux normes) et d\'y transférer vos fonds.</string>
     <string name="Restore_Bip_Recommended">(recommandé)</string>
     <string name="Restore_PrivateKey_InvalidKey">Clé invalide</string>
     <string name="Select_Coins">Crypto Monnaie</string>
@@ -149,7 +149,7 @@
     <string name="ImportCexAccount_SelectCex">Essayez CEX</string>
     <string name="ImportCexAccount_SelectCexDescription">Sélectionnez l\'exchange centralisé auquel vous voulez vous connecter.</string>
     <string name="ImportCexAccountBinance_Description">Veuillez renseigner vos clés API (API Keys and Secrets) pour pouvoir vous connecter à votre exchange de cryptomonnaies.</string>
-    <string name="ImportCexAccountBinance_ApiKey">API Key</string>
+    <string name="ImportCexAccountBinance_ApiKey">Clé API</string>
     <string name="ImportCexAccountBinance_SecretKey">Code Secret</string>
     <!--Backup-->
     <string name="Backup_Confirmation_CheckTitle">Vérification…</string>
@@ -183,10 +183,31 @@
     <string name="Market_PoweredByDefiLlamaApi">Propulsé par l\'API DefiLlama</string>
     <string name="Market_Tab_Overview">Synthèse</string>
     <string name="Market_Tab_Posts">Infos</string>
+    <string name="Market_Tab_Coins">Pièces</string>
+    <string name="Market_Tab_Platform">Platformes</string>
+    <string name="Market_Tab_Pairs">Paires</string>
+    <string name="Market_Tab_Sectors">Secteurs</string>
     <string name="Market_Tab_Watchlist">Liste de suivi</string>
     <string name="Market_Tab_Watchlist_EmptyList">Votre liste de suivi est vide.</string>
     <string name="Market_Category_TopCoins">Top des coins</string>
     <string name="Market_Category_TopCoins_Description">Top des coins par cap de marché</string>
+    <string name="Market_Signals">Signaux</string>
+    <string name="Market_Volume">Volume</string>
+    <string name="Market_MarketCap">Cap. marché</string>
+    <string name="Market_TVL">TVL</string>
+    <string name="Market_Signal_Description">Les signaux ci-dessous sont basés sur les indicateurs techniques de prix Bollinger Bands et RSI sur environ les 30 derniers jours. Ces signaux sont algorithmiques et peuvent changer fréquemment.</string>
+    <string name="Market_Signal_StrongBuy_Description">Haute confiance dans l\'augmentation des prix.</string>
+    <string name="Market_Signal_Buy_Description">Probable augmentation du prix dans un futur proche.</string>
+    <string name="Market_Signal_Neutral_Descripion">Aucune tendance claire, le marché est en équilibre.</string>
+    <string name="Market_Signal_Sell_Description">Probable diminution du prix dans un futur proche.</string>
+    <string name="Market_Signal_StrongSell_Description">Probabilité élevée de diminution du prix.</string>
+    <string name="Market_Signal_Risky_Description">Niveau de risque élevé, nécessite de la prudence.</string>
+    <string name="Market_Signal_Warning">N\'oubliez pas d\'appliquer une gestion des risques, et notez que ceci n\'est pas un conseil financier.</string>
+    <string name="Market_Signal_TurnOn">Activer</string>
+    <string name="Market_Top_100">Top 100</string>
+    <string name="Market_Top_200">Top 200</string>
+    <string name="Market_Top_300">Top 300</string>
+    <string name="Market_Top_500">Top 500</string>
     <string name="TopPairs_Title">Principaux paires de marché</string>
     <string name="TopPairs_Description">Principales paires de trading par volume sur chaque bourse</string>
     <!--Market Overview-->
@@ -202,11 +223,12 @@
     <string name="MarketPlatformCoins_PlatformEcosystemDescription">Capitalisation boursière de tous les protocoles de la chaîne %s</string>
     <!--Market Global Metrics-->
     <string name="MarketGlobalMetrics_Chart">Graphique</string>
-    <string name="MarketGlobalMetrics_TotalMarketCap">Cap Totale</string>
-    <string name="MarketGlobalMetrics_BtcDominance">Dominance Bitcoin</string>
-    <string name="MarketGlobalMetrics_Volume">Volume des dernières 24h</string>
+    <string name="MarketGlobalMetrics_TotalMarketCap">Cap totale</string>
+    <string name="MarketGlobalMetrics_BtcDominance">Pourcentage de Dominance du BTC</string>
+    <string name="MarketGlobalMetrics_Volume">Vol. 24h</string>
     <string name="MarketGlobalMetrics_DefiCap">Cap DeFi</string>
     <string name="MarketGlobalMetrics_TvlInDefi">TVL en DeFi</string>
+    <string name="MarketGlobalMetrics_EtfInflow">Entrées d\'ETF</string>
     <string name="MarketGlobalMetrics_TotalMarketCapDescription">Valeur de marché totale de toutes les cryptomonnaies.</string>
     <string name="MarketGlobalMetrics_BtcDominanceDescription">Le changement historique du ratio entre la capitalisation boursière du Bitcoin et le reste des marchés de cryptomonnaies. \n\nGénéralement, lorsque la domination du Bitcoin tend à la hausse, le reste du marché des cryptomonnaies a une tendance à la baisse et vice versa.</string>
     <string name="MarketGlobalMetrics_VolumeDescription">Le volume de trading de 24h du marché des cryptomonnaies.</string>
@@ -217,6 +239,15 @@
     <string name="MarketGlobalMetrics_ChainSelectorAll">Tout</string>
     <string name="MarketGlobalMetrics_CoinNotSupported">Cette pièce n\'est pas encore prise en charge</string>
     <string name="MarketGlobalMetrics_NoCoin">Ce projet n\'a pas de pièce de monnaie</string>
+    <!-- ETF-->
+    <string name="MarketEtf_Title">Flux net total</string>
+    <string name="MarketEtf_Description">Le flux net entrant d\'un ETF est égal à ses entrées de trésorerie moins ses sorties.</string>
+    <string name="MarketEtf_HighestAssets">Actifs les plus élevés</string>
+    <string name="MarketEtf_LowestAssets">Les actifs les moins élevés</string>
+    <string name="MarketEtf_Inflow">Flux entrant</string>
+    <string name="MarketEtf_Outflow">Flux sortant</string>
+    <string name="MarketEtf_Period_All">Tout</string>
+    <string name="MarketEtf_TotalNetAssets">Total des actifs nets</string>
     <!--Market Search-->
     <string name="EmptyResults">Aucun résultat</string>
     <string name="Market_Filters">Filtres</string>
@@ -230,6 +261,8 @@
     <string name="Market_Filter_PricePeriod">Période de prix</string>
     <string name="Market_Filter_TradingSignals">Signaux de trading</string>
     <string name="Market_Filter_PriceChange">Variation de prix</string>
+    <string name="Market_PriceChange_24H">24 Heures</string>
+    <string name="Market_PriceChange_Utc">Minuit UTC</string>
     <string name="Market_Filter_Blockchains">Blockchains</string>
     <string name="Market_Filter_OutperformedBtc">A surpassé BTC</string>
     <string name="Market_Filter_OutperformedEth">A surpassé ETH</string>
@@ -248,7 +281,8 @@
     <string name="Market_Filter_Neutral">Neutre</string>
     <string name="Market_Filter_StrongSell">Vente forte</string>
     <string name="Market_Filter_Sell">Vendre</string>
-    <string name="Market_Filter_RiskToTrade">Risque de négociation</string>
+    <string name="Market_Filter_RiskToTrade">Risqué</string>
+    <string name="Market_Filter_Gainers">Gagnants</string>
     <string name="Market_Filter_Top_100">Top 100</string>
     <string name="Market_Filter_Top_250">Top 250</string>
     <string name="Market_Filter_Top_500">Top 500</string>
@@ -283,9 +317,14 @@
     <string name="Market_Filter_TimePeriod_1W">1 Semaine</string>
     <string name="Market_Filter_TimePeriod_2W">2 Semaines</string>
     <string name="Market_Filter_TimePeriod_1M">1 Mois</string>
+    <string name="Market_Filter_TimePeriod_3M">3 Mois</string>
     <string name="Market_Filter_TimePeriod_6M">6 Mois</string>
     <string name="Market_Filter_TimePeriod_1Y">1 An</string>
-    <string name="TimePeriod_24h">24 heures</string>
+    <string name="Market_Sorting_Manual">Manuel</string>
+    <string name="Market_Sorting_Gainers">Gagnants</string>
+    <string name="Market_Sorting_Losers">Perdants</string>
+    <string name="Market_Sorting_HighestCap">Cap. marché la plus forte</string>
+    <string name="Market_Sorting_LowestCap">Cap. marché la plus basse</string>
     <!--Coin Markets-->
     <string name="CoinMarket_Title">%s Marchés</string>
     <!--TVL Rank-->
@@ -304,8 +343,6 @@
     <string name="Balance_SearchingTransactions">Recherche des transactions…</string>
     <string name="Balance_FoundTx">%s TX</string>
     <string name="Balance_Syncing_WithProgress">Synchronisation... %s%%</string>
-    <string name="Balance_AddCoins">Ajouter des coins</string>
-    <string name="Balance_AddCoin">Ajouter la pièce</string>
     <string name="Balance_CoinDisabled">Pièce %s désactivée</string>
     <string name="Balance_Sort_Balance">Solde</string>
     <string name="Balance_Sort_PopupTitle">Trier par</string>
@@ -314,7 +351,6 @@
     <string name="Balance_Hidden">masqué</string>
     <string name="Balance_DownloadingBlocks">Téléchargement des blocs</string>
     <string name="Balance_ScanningBlocks">Blocs de numérisation</string>
-    <string name="Balance_Backup_Alert">Vous devez sauvegarder le portefeuille %1$s avant de recevoir %2$s.</string>
     <string name="Balance_NoWalletAlert">Vous n\'avez pas encore de portefeuilles installés.\nCréez un nouveau portefeuille ou restaurez un portefeuille existant </string>
     <string name="Balance_NoCoinsAlert">Vous n\'avez ajouté aucune pièce à ce portefeuille.</string>
     <string name="Balance_WatchAccount_NoBalance">Cette adresse de portefeuille n\'a pas de solde</string>
@@ -388,14 +424,10 @@
     <string name="Send_Error_MinimumAmount">Montant minimum %s</string>
     <string name="Send_Error_MaximumAmount">Montant maximum %s</string>
     <string name="Send_Error_MinRequiredBalance">Minimum requis %s restant</string>
-    <string name="Send_Error_TransparentAddress">SatoshiFX ne prend pas en charge les paiements à une adresse transparente</string>
+    <string name="Send_Error_TransparentAddress">Unstoppable ne prend pas en charge les paiements à une adresse transparente</string>
     <string name="Send_Error_SendToSelf">L\'envoi à soi-même n\'est pas pris en charge</string>
     <string name="Send_DialogAvailableBalance">Solde disponible</string>
     <string name="Send_DialogSpeed">Vitesse de transaction </string>
-    <string name="Send_TxSpeed_Low">Faible</string>
-    <string name="Send_TxSpeed_High">Élevée</string>
-    <string name="Send_TxSpeed_Recommended">Recommandé</string>
-    <string name="Send_TxSpeed_Custom">Personnalisé</string>
     <string name="Send_DialogFee">Frais</string>
     <string name="Send_DialogProceed">Suivant</string>
     <string name="Send_LockTime_Off">Désactivé</string>
@@ -444,7 +476,7 @@
     <string name="FeeSettings_Info_IUnderstand">J’ai Compris</string>
     <string name="FeeSettings_FeeRate">Taux de frais (SAT/BYTE)</string>
     <string name="FeeSettings_FeeRate_RecommendedInfo">Voici la valeur recommandée pour les 2 blocs suivants</string>
-    <string name="FeeSettings_FeeRate_Info">Blockchains require users to pay network fees when sending transactions. The fees are higher when a lot of transactions are taking place on the network.\n\nThe SatoshiFX wallet estimates fee based on the current blockchain activity and recommends the optimal value in order for the transaction to be processed within a reasonable amount of time.\n\nThe recommended fee rate is shown as the amount of satoshi the user needs to pay for a single byte of the transaction. Thus, the total fee depends on the total size of the transaction which is measured in bytes.\n\nUsers may use provided controls to increase or decrease the fee rate value. The change in fee rate changes the total fee for the transaction the user will pay.\n\nSetting fee rate below recommended value may result in a transaction being held as pending for hours, or being rejected. The lower the value, the longer it will take for the transaction to confirm. For transactions where priority is important, we recommend setting higher fee rate.</string>
+    <string name="FeeSettings_FeeRate_Info">Blockchains require users to pay network fees when sending transactions. The fees are higher when a lot of transactions are taking place on the network.\n\nThe Unstoppable wallet estimates fee based on the current blockchain activity and recommends the optimal value in order for the transaction to be processed within a reasonable amount of time.\n\nThe recommended fee rate is shown as the amount of satoshi the user needs to pay for a single byte of the transaction. Thus, the total fee depends on the total size of the transaction which is measured in bytes.\n\nUsers may use provided controls to increase or decrease the fee rate value. The change in fee rate changes the total fee for the transaction the user will pay.\n\nSetting fee rate below recommended value may result in a transaction being held as pending for hours, or being rejected. The lower the value, the longer it will take for the transaction to confirm. For transactions where priority is important, we recommend setting higher fee rate.</string>
     <!--Fee Info -->
     <string name="FeeInfo_Title">Vitesse de transaction</string>
     <string name="FeeInfo_Description">Les blockchains Bitcoin et Ethereum exigent que les utilisateurs paient des frais de réseau lors de l\'envoi de transactions. Les frais sont plus élevés lorsque de nombreuses transactions sont effectuées sur le réseau et inférieurs lorsque la blockchain est moins occupée.</string>
@@ -457,7 +489,7 @@
     <string name="FeeInfo_TronFee_Title">Frais</string>
     <string name="FeeInfo_TronFee_Description">Le coût estimé pour envoyer une transaction donnée sur le réseau (sans exclure les coûts d\'énergie, de bande passante et d\'activation)</string>
     <string name="FeeInfo_TronActivationFee_Title">Frais d\'activation</string>
-    <string name="FeeInfo_TronActivationFee_Description">Le transfert de jetons TRX ou TRC-10 vers une adresse de compte inactive activera ledit compte.</string>
+    <string name="FeeInfo_TronActivationFee_Description">Cette adresse n\'est pas active. Le transfert de jetons TRX ou TRC-10 vers une adresse de compte inactive activera le compte.</string>
     <string name="FeeInfo_TronResourcesConsumed_Title">Ressources consommées</string>
     <string name="FeeInfo_TronResourcesConsumed_Description">La bande passante est l\'unité qui mesure la taille des octets de transaction stockés dans la base de données blockchain. Plus la transaction est grande, plus la bande passante sera consommée.\n\nL\'énergie est l\'unité qui mesure le montant de calcul requis par la machine virtuelle TRON pour effectuer des opérations spécifiques sur le réseau TRON.\n\nÉtant donné que les transactions de contrats intelligents nécessitent des ressources informatiques pour être exécutées, chaque transaction de contrat intelligent nécessite le paiement de frais d\'énergie.</string>
     <!--Tron-->
@@ -467,6 +499,8 @@
     <string name="Tron_AddressNotActive_Info">Les comptes récemment créés sur la blockchain TRON sont inactifs et ne peuvent pas être interrogés ou explorés. Ils doivent être activés.\n\nLe transfert de jetons TRX ou TRC-10 vers une adresse de compte inactive activera le compte. Pour activer un nouveau compte sur la chaîne Tron, des frais de 1 TRX sont nécessaires</string>
     <string name="Tron_SelfSendTrxNotAllowed">Impossible de transférer des TRX à vous-même</string>
     <string name="Tron_ZeroAmountTrxNotAllowed">Impossible de transférer 0 %s</string>
+    <string name="Tron_TokenPage_AddressNotActive_Title">Compte non actif</string>
+    <string name="Tron_TokenPage_AddressNotActive_Info">Les nouveaux portefeuilles TRON nécessitent un dépôt d\'au moins 1 TRX pour devenir actifs. Les portefeuilles inactifs peuvent recevoir et détenir des jetons, mais les soldes ne seront pas corrigés tant qu\'ils ne seront pas activés.</string>
     <!--WalletConnect-->
     <string name="WalletConnect_Request">Requête</string>
     <string name="WalletConnect_SendRequest_Title">Envoyer</string>
@@ -499,6 +533,9 @@
     <string name="WalletConnect_Error_NoSuitableAccount">Aucun compte approprié</string>
     <string name="WalletConnect_Error_NoSuitableEvmKit">Aucun kit evm approprié</string>
     <string name="WalletConnect_Error_DataParsingError">Erreur d\'analyse des données</string>
+    <string name="WalletConnect_Error_UnsupportedChains">Chaînes non prises en charge : %s</string>
+    <string name="WalletConnect_Error_UnsupportedMethods">Méthodes non prises en charge : %s</string>
+    <string name="WalletConnect_Error_UnsupportedEvents">Événements non pris en charge : %s</string>
     <string name="WalletConnect_Error_RequestNotFoundError">Erreur de requête non trouvée</string>
     <string name="WalletConnect_NoConnection">Vous n\'avez aucune dapp connectée</string>
     <string name="WalletConnect_PendingRequests">Demandes en attente</string>
@@ -609,7 +646,6 @@
     <string name="SwapSettings_Apply">Appliquer</string>
     <string name="SwapSettings_DeadlineMinute">%s min</string>
     <string name="SwapSettings_RecipientPlaceholder">Adresse ou domaine</string>
-    <string name="SwapSettings_FeeSettingsAlert">Des frais de service pour l\'action de swap sur la plateforme sont typiques de 0,3% ou 0,6%</string>
     <string name="SwapSettings_Error_DeadlineZero">Délai Zéro</string>
     <string name="SwapSettings_Error_SlippageZero">Zéro Slippage</string>
     <string name="SwapSettings_Error_SlippageTooLow">Votre transaction est susceptible de ne pas aboutir.</string>
@@ -635,6 +671,11 @@
     <string name="Approve_Spender">Dépendant</string>
     <string name="Approve_YouApprove">Vous approuvez</string>
     <string name="Approve_YouRevoke">Vous révoquez</string>
+    <!--Swap Unlock Access-->
+    <string name="Swap_Unlock_PageTitle">Accès déverrouillé</string>
+    <string name="Swap_Unlock_Subtitle">Autoriser l\'accès au montant suivant</string>
+    <string name="Swap_Unlock_Info">Accorder l\'autorisation à un contrat intelligent pour effectuer des échanges de jetons en votre nom, en spécifiant le montant autorisé. Cela n\'affecte pas votre solde, mais entraîne de petits frais pour l\'approbation.\n\nPréapprouver un montant plus élevé pour les transactions futures est plus rentable que d\'approuver à la demande.</string>
+    <string name="Swap_Unlock_Unlimited">Illimité</string>
     <!--Uniswap Info -->
     <string name="SwapInfo_AllowanceTitle">Allocation</string>
     <string name="SwapInfo_AllowanceDescription">Le montant qu\'un échange peut dépenser pour le compte de l\'utilisateur lors de l\'exécution de swaps de jetons. Une provision suffisante est requise avant de pouvoir effectuer une opération d\'échange réelle.</string>
@@ -733,10 +774,10 @@
     <string name="StatusInfo_Processing">Traitement en cours</string>
     <string name="StatusInfo_Confirmed">Terminé</string>
     <string name="StatusInfo_Failed">Échec</string>
-    <string name="StatusInfo_PendingDescription">La transaction n\'a pas encore été confirmée sur la blockchain. Les transactions envoyées avec un montant de frais recommandé ou supérieur sont généralement traitées en quelques minutes. Les transactions envoyées avec des frais peu élevés risquent de rester en attente pendant quelques heures, voire quelques jours, et peuvent même être rejetées. Notez que le statut d\'une transaction individuelle dans l\'interface du portefeuille SatoshiFX Wallet est généralement mis à jour avec un léger délai.</string>
+    <string name="StatusInfo_PendingDescription">La transaction n\'a pas encore été confirmée sur la blockchain. Les transactions envoyées avec un montant de frais recommandé ou supérieur sont généralement traitées en quelques minutes. Les transactions envoyées avec des frais peu élevés risquent de rester en attente pendant quelques heures, voire quelques jours, et peuvent même être rejetées. Notez que le statut d\'une transaction individuelle dans l\'interface du portefeuille Unstoppable Wallet est généralement mis à jour avec un léger délai.</string>
     <string name="StatusInfo_ProcessingDescription">La transaction a déjà été incluse dans la blockchain mais n\'a pas été finalisée. En ce qui concerne les petits paiements, il est prudent de considérer que la transaction est terminée. Pour les paiements plus importants, il est recommandé d\'attendre que le statut de la transaction passe à terminé.</string>
     <string name="StatusInfo_ConfirmedDescription">La transaction est terminée et considérée comme permanente et irréversible.</string>
-    <string name="StatusInfo_FailedDescription">La transaction n\'a pas été traitée et aucun transfert de fonds n\'a eu lieu. En fonction de la raison de l\'échec, certaines transactions qui ont échoué peuvent entraîner des frais de transaction. Les transactions qui ont été remplacées ou annulées par une autre transaction ne génèrent pas de frais et apparaîtront également comme ayant échoué. L\'application SatoshiFX n\'est pas en mesure d\'indiquer la raison de l\'échec des transactions, mais les utilisateurs peuvent en trouver eux-mêmes la raison sur un explorateur de blocs public, comme etherscan.io par exemple.</string>
+    <string name="StatusInfo_FailedDescription">La transaction n\'a pas été traitée et aucun transfert de fonds n\'a eu lieu. En fonction de la raison de l\'échec, certaines transactions qui ont échoué peuvent entraîner des frais de transaction. Les transactions qui ont été remplacées ou annulées par une autre transaction ne génèrent pas de frais et apparaîtront également comme ayant échoué. L\'application Unstoppable n\'est pas en mesure d\'indiquer la raison de l\'échec des transactions, mais les utilisateurs peuvent en trouver eux-mêmes la raison sur un explorateur de blocs public, comme etherscan.io par exemple.</string>
     <!-- Transaction Info Options -->
     <string name="TransactionInfoOptions_SpeedUp_Title">Accélérer</string>
     <string name="TransactionInfoOptions_SpeedUp_Button">Réenvoyer</string>
@@ -765,7 +806,7 @@
     <string name="SettingsCurrency_Title">Devise de Base</string>
     <string name="SettingsCurrency_Other">AUTRE</string>
     <string name="SettingsCurrency_DisclaimerTitle">Avertissement</string>
-    <string name="SettingsCurrency_DisclaimerText">Les données relatives aux taux de change fournies par un service tiers Coingecko.com\n\nSatoshiFX wallet app ne garantit pas que ces valeurs sont toujours correctes et correspondent aux données du marché. Le risque de divergence est plus élevé si vous sélectionnez une devise de base autre que %s.</string>
+    <string name="SettingsCurrency_DisclaimerText">Les données relatives aux taux de change fournies par un service tiers Coingecko.com\n\nUnstoppable wallet app ne garantit pas que ces valeurs sont toujours correctes et correspondent aux données du marché. Le risque de divergence est plus élevé si vous sélectionnez une devise de base autre que %s.</string>
     <string name="SettingsCurrency_Understand">J’ai Compris</string>
     <!--Settings-->
     <string name="Settings_Title">Paramètres</string>
@@ -785,6 +826,8 @@
     <string name="Settings_Contact_ViaTelegram">par Telegram</string>
     <string name="Settings_Contact_ViaEmail">par e-mail</string>
     <string name="Settings_AutoLock">Verrouillage automatique</string>
+    <string name="Settings_JoinUnstoppables">Soyez Unstoppable</string>
+    <string name="Settings_JoinUnstoppables_Description">Apprenez et maîtrisez les crypto-monnaies grâce à des vidéos exclusives. Faites connaissance avec nous de manière informelle. Soyez les premiers à voir les projets sur lesquels nous travaillons.</string>
     <string name="Settings_PersonalSupport">Assistance Personnelle</string>
     <string name="Settings_PersonalSupport_EnterTelegramAccountDescription">Entrez le nom de votre compte Telegram pour commencer une conversation de soutien personnelle avec notre équipe. Nous reviendrons vers vous et commencerons à travailler sur votre problème dès que nous le verrons.</string>
     <string name="Settings_PersonalSupport_YouAlreadyRequestedSupportDescription">Vous avez déjà demandé une conversation privée, la trouver sur Telegram</string>
@@ -810,19 +853,25 @@
     <string name="SettingsSecurity_AutoLock_After1Hour">1 heure</string>
     <string name="Appearance_Theme">Thème</string>
     <string name="Appearance_Tab">PARAMÈTRES DES TAB</string>
+    <string name="Appearance_MarketsTab">TAB DES MARCHÉS</string>
+    <string name="Appearance_BalanceTab">BALANCE TAB</string>
     <string name="Appearance_LaunchScreen">ÉCRAN DE LÉCHARGEMENT</string>
     <string name="Appearance_AppIcon">ICON APPLICATION</string>
-    <string name="Appearance_BalanceConversion">CONVERSION DE BALANCE</string>
-    <string name="Appearance_BalanceValue">VALEUR DE BALANCE</string>
+    <string name="Appearance_BalanceConversion">Conversion du solde</string>
+    <string name="Appearance_BalanceValue">Valeur du solde</string>
     <string name="Appearance_Warning_CloseApplication">La modification de l\'icône fermera l\'application</string>
-    <string name="Appearance_MarketsTab">Onglet Marchés</string>
+    <string name="Appearance_HideMarketsTab">Masquer les marchés</string>
+    <string name="Appearance_HideBalanceTabButtons">Masquer les boutons</string>
+    <string name="Appearance_HideBalanceTabButtonsDescription">Cette configuration masque les boutons Envoyer, Recevoir et Permuter dans l\'onglet Balance.</string>
     <string name="Appearance_BalanceAutoHide">Masquer le Solde Automatiquement</string>
     <string name="Appearance_BalanceAutoHide_Description">Masque automatiquement le solde à chaque ouverture de l\'application, indépendamment des préférences précédentes.</string>
+    <string name="Appearance_PriceChangeInterval">Variation de prix %</string>
     <string name="BalanceViewType_CoinValue">Valeur de la pièce</string>
     <string name="BalanceViewType_FiatValue">Valeur Fiat</string>
     <string name="SettingsAboutApp_Title">À propos de l\'application</string>
     <string name="SettingsAboutApp_Site">Site Web</string>
     <string name="SettingsAboutApp_WhatsNew">Nouveautés</string>
+    <string name="SettingsAboutApp_AppVersion">Version de l\'application</string>
     <!-- Blockchain Settings  -->
     <string name="BlockchainSettings_Title">Paramètres de la Blockchain</string>
     <!-- Backup Manager -->
@@ -844,11 +893,11 @@
     <string name="BackupManager_AppSettingsTitle">Paramètres de l\'application</string>
     <string name="BackupManager_AppSettingsDescription">Langue, Devise, Apparence ...</string>
     <!-- Privacy  -->
-    <string name="Privacy_Information">SatoshiFX ne collecte aucune donnée et n\'utilise aucun outil d\'analyse susceptible d\'exposer des données sur ses utilisateurs. Le portefeuille est conçu pour assurer un haut niveau de confidentialité à ses utilisateurs.</string>
-    <string name="Privacy_BulletedText1">Les données de l\'utilisateur restent toujours sur l\'appareil de l\'utilisateur.</string>
-    <string name="Privacy_BulletedText2">Le portefeuille ne collecte aucune donnée sur les utilisateurs.</string>
-    <string name="Privacy_BulletedText3">Le portefeuille ne partage aucune donnée sur les utilisateurs.</string>
-    <string name="Privacy_BulletedText4">Aucun compte utilisateur ni aucune base de données ne conserve les données des utilisateurs à un autre endroit.</string>
+    <string name="Privacy_Information">Unstoppable ne collecte pas de données personnelles exposant vos informations privées, telles que les soldes de coins ou les adresses. Bien que nous recueillions certaines statistiques d\'utilisation de l\'interface utilisateur, cela sert uniquement à comprendre notre base d\'utilisateurs et les tendances d\'utilisation de l\'application. Cela peut être désactivé si vous le souhaitez.</string>
+    <string name="Privacy_BulletedText1">Le portefeuille ne recueille aucune donnée personnelle.</string>
+    <string name="Privacy_BulletedText2">Il n\'y a pas de comptes utilisateurs ni de bases de données stockant les données des utilisateurs.</string>
+    <string name="Privacy_BulletedText3">Si autorisé, le portefeuille partagera les habitudes d\'utilisation de l\'application avec l\'équipe d\'Unstoppable. Cela permet de comprendre quelles fonctionnalités sont utilisées (ou non) par nos utilisateurs. Étant une application axée sur la confidentialité, nous avons besoin d\'une manière d\'évaluer nos efforts, et sans cela, nous n\'avons aucune idée si les fonctionnalités que nous avons développées sont utilisées ou non.</string>
+    <string name="ShareUiData">Partager les données UI</string>
     <!-- Security Center -->
     <string name="SecurityCenter_Internet">INTERNET</string>
     <!--Evm Network-->
@@ -869,7 +918,7 @@
     <string name="BtcBlockchainSettings_TransactionSettings">Paramètres de transaction</string>
     <string name="BtcBlockchainSettings_TransactionInputsOutputs">Entrées / Sorties de transaction</string>
     <string name="BtcBlockchainSettings_TransactionInputsOutputsSettingsDescription">Rendez vos transactions BTC, LTC, BCH plus difficiles à détecter en modifiant la structure des transactions.</string>
-    <string name="BtcBlockchainSettings_TransactionInputsOutputsDescription">La plupart des transactions en Bitcoin, ainsi que les transactions en cryptomonnaies similaires comme Bitcoin Cash, Dash et Litecoin, génèrent deux sorties. Une sortie est le montant qui va au destinataire et l\'autre est la sortie de la monnaie qui est retournée à l\'expéditeur. La façon dont la plupart des portefeuilles construisent les transactions permet à une tierce partie de comprendre facilement laquelle des sorties est allée à la partie réceptrice et laquelle était le montant de la monnaie retournée à l\'expéditeur. Comme le montant retourné à l\'expéditeur est ensuite utilisé dans de futures transactions, un lien entre ces deux transactions devient apparent.\n\nLe portefeuille SatoshiFX applique des mesures pour qu\'il soit plus difficile pour quelqu\'un de comprendre quel montant va à quel endroit.\n\nLes utilisateurs d\'SatoshiFX disposent de deux options:\n\n1. Mélange : l\'ordre des sorties est aléatoire à chaque transaction. Parfois, la monnaie peut être la première à sortir, parfois, elle peut être la deuxième. Si un utilisateur fait confiance au développeur de l\'application, alors considérez ce choix comme une option recommandée.\n\n2. Déterministe : il existe une norme communément acceptée pour classer les sorties de transaction (connue sous le nom de BIP69). Dans les portefeuilles à code source ouvert, cette norme assure que les utilisateurs de portefeuilles n\'ont pas besoin de faire confiance à la façon dont les développeurs de l\'application mettent en œuvre l\'ordre des sorties. Comme cette norme est nouvelle, peu de portefeuilles l\'ont encore implémentée. Par conséquent, il est en quelque sorte possible de voir sur la blockchain si une transaction a été envoyée depuis un portefeuille qui utilise cette norme ou non.</string>
+    <string name="BtcBlockchainSettings_TransactionInputsOutputsDescription">La plupart des transactions en Bitcoin, ainsi que les transactions en cryptomonnaies similaires comme Bitcoin Cash, Dash et Litecoin, génèrent deux sorties. Une sortie est le montant qui va au destinataire et l\'autre est la sortie de la monnaie qui est retournée à l\'expéditeur. La façon dont la plupart des portefeuilles construisent les transactions permet à une tierce partie de comprendre facilement laquelle des sorties est allée à la partie réceptrice et laquelle était le montant de la monnaie retournée à l\'expéditeur. Comme le montant retourné à l\'expéditeur est ensuite utilisé dans de futures transactions, un lien entre ces deux transactions devient apparent.\n\nLe portefeuille Unstoppable applique des mesures pour qu\'il soit plus difficile pour quelqu\'un de comprendre quel montant va à quel endroit.\n\nLes utilisateurs d\'Unstoppable disposent de deux options:\n\n1. Mélange : l\'ordre des sorties est aléatoire à chaque transaction. Parfois, la monnaie peut être la première à sortir, parfois, elle peut être la deuxième. Si un utilisateur fait confiance au développeur de l\'application, alors considérez ce choix comme une option recommandée.\n\n2. Déterministe : il existe une norme communément acceptée pour classer les sorties de transaction (connue sous le nom de BIP69). Dans les portefeuilles à code source ouvert, cette norme assure que les utilisateurs de portefeuilles n\'ont pas besoin de faire confiance à la façon dont les développeurs de l\'application mettent en œuvre l\'ordre des sorties. Comme cette norme est nouvelle, peu de portefeuilles l\'ont encore implémentée. Par conséquent, il est en quelque sorte possible de voir sur la blockchain si une transaction a été envoyée depuis un portefeuille qui utilise cette norme ou non.</string>
     <!--Info screen-->
     <string name="Info_Title">Infos</string>
     <!--Setting_Security-->
@@ -884,9 +933,9 @@
     <string name="SettingsSecurity_DisableDuressPin">Désactiver le mot de passe de détresse</string>
     <string name="SettingsSecurity_DuressPinDescription">Un mode spécialisé conçu pour protéger les portefeuilles sélectionnés en cas de contrainte.</string>
     <string name="SettingsSecurity_ManageKeys">Gérer les portefeuilles</string>
-    <string name="SettingsSecurity_AppRestartWarning">Cette opération va redémarrer SatoshiFX Wallet.</string>
+    <string name="SettingsSecurity_AppRestartWarning">Cette opération va redémarrer Unstoppable Wallet.</string>
     <string name="SettingsSecurity_TorConnectionDescription">Anonymisez complètement votre connexion Internet lorsque vous utilisez cette application. Remarque : dans certains cas, la fonction WalletConnect pour les applications DeFi peut être très lente ou ne pas fonctionner du tout.</string>
-    <string name="SettingsSecurity_NotificationsDisabledWarning">Les notifications pour l\'application SatoshiFX Wallet sont désactivées. Vous devez activer les notifications et autoriser le rafraîchissement de l\'application en arrière-plan afin de pouvoir recevoir des alertes de changement de prix.</string>
+    <string name="SettingsSecurity_NotificationsDisabledWarning">Les notifications pour l\'application Unstoppable Wallet sont désactivées. Vous devez activer les notifications et autoriser le rafraîchissement de l\'application en arrière-plan afin de pouvoir recevoir des alertes de changement de prix.</string>
     <string name="SettingsSecurity_SortingShuffle">Mélanger</string>
     <string name="SettingsSecurity_SortingShuffleDescription">Indexation aléatoire</string>
     <string name="SettingsSecurity_SortingBip69Short">Déterministe</string>
@@ -915,7 +964,7 @@
     <string name="DuressPinSelectAccounts_SectionWallets_Title">WALLETS</string>
     <string name="DuressPinSelectAccounts_SectionWatchWallets_Title">REGARDER LES WALLETS</string>
     <!--Setting_Terms-->
-    <string name="SettingsTerms_Text">Le portefeuille SatoshiFX est conçu pour ceux qui cherchent à investir et à stocker des cryptomonnaies de manière privée et indépendante.\n\nC\'est un portefeuille non-dépositaire, peer-to-peer où seul l\'utilisateur a le contrôle sur les fonds. Il ne collecte aucune donnée et garde l\'utilisateur indépendant en ne verrouillant pas les fonds de l\'utilisateur sur une application spécifique de portefeuille.\n\nLe portefeuille SatoshiFX est entièrement open-source et tout le monde peut confirmer que l\'application fonctionne exactement comme il le prétend.</string>
+    <string name="SettingsTerms_Text">Le portefeuille Unstoppable est conçu pour ceux qui cherchent à investir et à stocker des cryptomonnaies de manière privée et indépendante.\n\nC\'est un portefeuille non-dépositaire, peer-to-peer où seul l\'utilisateur a le contrôle sur les fonds. Il ne collecte aucune donnée et garde l\'utilisateur indépendant en ne verrouillant pas les fonds de l\'utilisateur sur une application spécifique de portefeuille.\n\nLe portefeuille Unstoppable est entièrement open-source et tout le monde peut confirmer que l\'application fonctionne exactement comme il le prétend.</string>
     <string name="SettingsTerms_Backup">Sauvegarde sécurisée des phrases de récupération pour chaque portefeuille. C\'est le seul moyen de récupérer l\'accès aux fonds si l\'application ne fonctionne pas.</string>
     <string name="SettingsTerms_PrivateKeys">Les phrases de récupération du portefeuille sont générées aléatoirement sur l\'appareil lors de l\'installation et ne sont pas stockées ailleurs.</string>
     <string name="SettingsTerms_DisablingPin">La désactivation du code PIN (code) sur le smartphone supprime tous les portefeuilles de l\'application. Des phrases de récupération seront nécessaires pour restaurer l\'accès aux fonds.</string>
@@ -923,12 +972,12 @@
     <string name="SettingsTerms_Bugs">Il peut y avoir des problèmes de logiciels non découverts dans le code alimentant cette application, ce qui peut causer un dysfonctionnement de l\'application.</string>
     <!--Setting_Tell Friends-->
     <string name="SettingsShare_Title">Partager</string>
-    <string name="SettingsShare_Text">Soyez SatoshiFX</string>
+    <string name="SettingsShare_Text">Soyez Unstoppable</string>
     <!--Setting_Contact-->
     <string name="SettingsContact_Title">Contactez-nous</string>
     <!--Setting_Notifications-->
     <string name="SettingsNotifications_Description">Définissez des alertes de changement de prix pour les pièces que vous souhaitez surveiller.\n\nVous serez alerté lorsque le changement de prix des dernières 24 heures dépassera le seuil sélectionné.\n\nL\'alerte de tendance de prix vous avertit d\'un changement de tendance pour le court terme à 1 semaine, pour le long terme à 6 mois.</string>
-    <string name="SettingsNotifications_NotificationsDisabledWarning">Les notifications pour l\'application SatoshiFX Wallet sont désactivées. Vous devez les activer pour pouvoir recevoir des alertes de changement de prix.</string>
+    <string name="SettingsNotifications_NotificationsDisabledWarning">Les notifications pour l\'application Unstoppable Wallet sont désactivées. Vous devez les activer pour pouvoir recevoir des alertes de changement de prix.</string>
     <string name="SettingsNotifications_TurnOn">Activer dans Paramètres</string>
     <string name="SettingsNotifications_Off">Désactivé</string>
     <string name="SettingsNotifications_DeactivateAll">Tout réinitialiser</string>
@@ -987,14 +1036,14 @@
 \n- BIP-86 (nouveau)
 \n
 
-\nAlors que le portefeuille SatoshiFX prend en charge tous les 4 d\'entre eux, il recommande d\'utiliser un portefeuille %2$s fonctionnant au format BIP-84. Les portefeuilles fonctionnant dans ce format peuvent payer les frais les plus bas lors de l\'envoi de transactions %3$s.</string>
-    <string name="ManageCoins_BchTypeDescription">Les portefeuilles Bitcoin Cash peuvent utiliser deux formats d\'adresse pour recevoir les paiements entrants : \n\n- TYPE 0 (plus ancien)\n- TYPE 145 (plus récent)\n\n. Bien que le portefeuille SatoshiFX soit compatible avec les deux formats, l\'utilisation d\'un portefeuille Bitcoin Cash utilisant le format TYPE 145 est recommandée.</string>
+\nAlors que le portefeuille Unstoppable prend en charge tous les 4 d\'entre eux, il recommande d\'utiliser un portefeuille %2$s fonctionnant au format BIP-84. Les portefeuilles fonctionnant dans ce format peuvent payer les frais les plus bas lors de l\'envoi de transactions %3$s.</string>
+    <string name="ManageCoins_BchTypeDescription">Les portefeuilles Bitcoin Cash peuvent utiliser deux formats d\'adresse pour recevoir les paiements entrants : \n\n- TYPE 0 (plus ancien)\n- TYPE 145 (plus récent)\n\n. Bien que le portefeuille Unstoppable soit compatible avec les deux formats, l\'utilisation d\'un portefeuille Bitcoin Cash utilisant le format TYPE 145 est recommandée.</string>
     <string name="ManageCoins_ContractAddress">ADRESSE DE CONTRACT</string>
     <!-- Experimental Feature -->
     <string name="ExperimentalFeatures_Title">Expérimental</string>
     <string name="ExperimentalFeatures_Description">Les fonctionnalités ci-dessous sont expérimentales et doivent être utilisées avec prudence. Bien que nous ayons entièrement testé ces fonctionnalités en utilisant nos propres fonds crypto, nous ne pouvons pas garantir qu\'elles fonctionnent comme prévu dans tous les cas de figure possible.</string>
     <!-- Bitcoin Hodling -->
-    <string name="BitcoinHodling_Description">Permet d\'envoyer des Bitcoins qui ne peuvent pas être dépensées avant la date spécifiée.\n\nLe destinataire d\'une telle transaction devrait utiliser un portefeuille SatoshiFX.\n\nSeul un portefeuille SatoshiFX peut identifier correctement de telles transactions sur le réseau Bitcoin ainsi que permettre au destinataire de dépenser ces Bitcoins après l\'expiration de la période de verrouillage.\n\nSi vous êtes un HODLer, vous pouvez utiliser cette fonction pour vous obliger à garder vos Bitcoins en vous envoyant une telle transaction à vous-même.\n\nPuisqu\'il s\'agit d\'une fonctionnalité expérimentale, le montant maximum par transaction est limité à 0,5 BTC.</string>
+    <string name="BitcoinHodling_Description">Permet d\'envoyer des Bitcoins qui ne peuvent pas être dépensées avant la date spécifiée.\n\nLe destinataire d\'une telle transaction devrait utiliser un portefeuille Unstoppable.\n\nSeul un portefeuille Unstoppable peut identifier correctement de telles transactions sur le réseau Bitcoin ainsi que permettre au destinataire de dépenser ces Bitcoins après l\'expiration de la période de verrouillage.\n\nSi vous êtes un HODLer, vous pouvez utiliser cette fonction pour vous obliger à garder vos Bitcoins en vous envoyant une telle transaction à vous-même.\n\nPuisqu\'il s\'agit d\'une fonctionnalité expérimentale, le montant maximum par transaction est limité à 0,5 BTC.</string>
     <!-- Testnet Settings -->
     <string name="TestnetSettings_Description">Cette option active le réseau de test Goerli d\'Ethereum uniquement pour le jeton GoerliETH et l\'ajoute au gestionnaire de pièces.\n\nCela n\'affecte que le jeton GoerliETH alors que tous les autres jetons EVM et Ethereum fonctionnent sur le réseau principal. En d\'autres termes, seules les transactions dans GoerliETH passent par Goerli testnet, tandis que tous les autres transferts de jetons EVM, y compris ETH, passent par le réseau principal.</string>
     <!--Manage Accounts-->
@@ -1099,6 +1148,7 @@
     <string name="Bip32RootKey">BIP32 Root Key</string>
     <!-- Account Extended Keys -->
     <string name="ExtendedKey_TapToShowPrivateKey">Appuyez pour afficher la clé privée</string>
+    <string name="ExtendedKey_AccountInfo">À faire</string>
     <!-- Private Keys -->
     <string name="PrivateKeys_Title">Clés privées</string>
     <string name="PrivateKeys_EvmPrivateKey">Clé privée EVM</string>
@@ -1197,7 +1247,7 @@
     <string name="Coin_Tab_Details">Analyses</string>
     <string name="Coin_Tab_Tweets">Tweets</string>
     <string name="CoinPage_TimeDuration_Today">Aujourd\'hui</string>
-    <string name="CoinPage_TimeDuration_Day">24H</string>
+    <string name="CoinPage_TimeDuration_Day">1J</string>
     <string name="CoinPage_TimeDuration_Week">7J</string>
     <string name="CoinPage_TimeDuration_Month">1M</string>
     <string name="CoinPage_TimeDuration_TwoWeeks">2S</string>
@@ -1298,12 +1348,12 @@
     <string name="CoinPage_InsufficientData">Données insuffisantes</string>
     <string name="CoinPage_InsufficientDataError">Il n\'y a pas assez de points de données pour afficher l\'indicateur EMA 1. Veuillez ajuster la période de temps pour générer une vue de la ligne moyenne mobile. Pas assez de point pour afficher EMA 1.</string>
     <string name="CoinPage_Type">Type</string>
-    <string name="CoinPage_Period">Period</string>
+    <string name="CoinPage_Period">Période</string>
     <string name="CoinPage_RsiLength">Longueur RSI</string>
     <string name="CoinPage_FastLength">Longueur rapide</string>
     <string name="CoinPage_SlowLength">Longueur lente</string>
     <string name="CoinPage_SignalSmoothing">Lissage du signal</string>
-    <string name="CoinPage_IndicatorsAlertText">Indicateurs disponibles uniquement pour les utilisateurs Premium SatoshiFX Wallet.</string>
+    <string name="CoinPage_IndicatorsAlertText">Indicateurs disponibles uniquement pour les utilisateurs Premium Unstoppable Wallet.</string>
     <string name="CoinPage_AiGeneratedText">Ceci est une description générée par intelligence artificielle basée sur le matériel de référence fourni pour la cryptomonnaie donnée. Elle peut contenir des erreurs.</string>
     <string name="CoinPage_MarketsLabel_Verified">VÉRIFIÉ</string>
     <string name="CoinPage_MarketsVerifiedMenu_Verified">Vérifié</string>
@@ -1333,7 +1383,7 @@
     <string name="CoinAnalytics_TransactionCount_Info5">Le nombre total de jetons transférés sur la blockchain sur la période de 30 jours.</string>
     <string name="CoinAnalytics_Holders_Info1">Nombre total d\'adresses uniques détenant le jeton sur différentes blockchains.</string>
     <string name="CoinAnalytics_Holders_Info2">Top 10 des portefeuilles détenant le jeton sur chaque blockchain.</string>
-    <string name="CoinAnalytics_Holders_TrackedBlockchains">Tracked blockchains: Ethereum, Binance Smart Chain, Optimism, Arbitrum, Celo, Cronos, Avalanche, Fantom, Polygon</string>
+    <string name="CoinAnalytics_Holders_TrackedBlockchains">Blockchains suivies : Ethereum, Binance Smart Chain, Optimism, Arbitrum, Celo, Cronos, Avalanche, Fantom, Polygon</string>
     <string name="CoinAnalytics_ProjectTVL_Info1">Total-Value-Locked (ou Acsets Under Management) dans les contrats intelligents du projet.</string>
     <string name="CoinAnalytics_ProjectTVL_Info2">Graphique montrant la variation valeur totale verrouillée dans les contrats intelligents du projet sur une période de 1 an.</string>
     <string name="CoinAnalytics_ProjectTVL_Info3">Rang du token en fonction de la valeur totale verrouillée actuelle.</string>
@@ -1414,6 +1464,7 @@
     <string name="CoinAnalytics_SmartContractAnalysis">Analyse des contrats intelligents</string>
     <string name="CoinAnalytics_HighRiskItems">Éléments à haut risque</string>
     <string name="CoinAnalytics_MediumRiskItems">Éléments à risque moyen</string>
+    <string name="Coin_Analytics_Indicators_Risky">Risqué</string>
     <string name="CoinAnalytics_AttentionRequired">Attention Requise</string>
     <string name="CoinAnalytics_PoweredByDeFi">Propulsé par De.Fi</string>
     <string name="CoinAnalytics_CountItems">%d éléments</string>
@@ -1421,6 +1472,30 @@
     <string name="TechnicalAdvice_IndicatorsDisclaimer">N\'oubliez pas d\'appliquer une gestion des risques, et notez que ceci n\'est pas un conseil financier.</string>
     <string name="TechnicalAdvice_OverBought">suracheté</string>
     <string name="TechnicalAdvice_OverSold">sursoldé</string>
+    <string name="TechnicalAdvice_Down">moins</string>
+    <string name="TechnicalAdvice_Up">plus</string>
+    <string name="TechnicalAdvice_OverMain">Les actions liées à l\'actif comportent des risques.</string>
+    <string name="TechnicalAdvice_OverIndicators_SignalDate">À partir du %s</string>
+    <string name="TechnicalAdvice_OverIndicators">L\'actif est en dehors du canal de bandes de Bollinger et %s.</string>
+    <string name="TechnicalAdvice_OverRsi"> RSI = %1$s, Cela indique également que l\'actif est %2$s.</string>
+    <string name="TechnicalAdvice_OverAdvice"> Il pourrait y avoir un mouvement %s fort, il est donc préférable d\'attendre que le prix de l\'actif revienne au canal.</string>
+    <string name="TechnicalAdvice_StrongIndicators">l\'actif était %s, mais maintenant il est revenu au canal de bandes de Bollinger. Cela indique une possible inversion de tendance.</string>
+    <string name="TechnicalAdvice_StrongRsi">Pendant ce temps, le RSI est %1$s, ce qui indique toujours qu\'il est %2$s.</string>
+    <string name="TechnicalAdvice_StrongAdvice">Cela pourrait être un signal très fort pour entrer sur le marché. Gardez à l\'esprit qu\'il peut y avoir plusieurs tentatives de mouvement %s après le retour au canal, donc n\'oubliez pas la gestion des risques.</string>
+    <string name="TechnicalAdvice_StableRsi">Pendant ce temps, le RSI est %s, ce qui indique également un renversement de tendance (le RSI a franchi la limite à 70\%%).</string>
+    <string name="TechnicalAdvice_StableAdvice">Le prix revient à des niveaux neutres, cependant, il existe encore un potentiel de mouvement à la hausse. Gardez à l\'esprit que le RSI = 50 et le milieu des bandes de Bollinger sont des résistances fortes et des points possibles de renversement de tendance. N\'oubliez pas la gestion des risques.</string>
+    <string name="TechnicalAdvice_NeutralRsi">Le RSI = $s confirme également l\'absence d\'une forte tendance.</string>
+    <string name="TechnicalAdvice_NeutralIndicators">L\'actif se trouvait dans la zone de surachat/survente, mais pour le moment, le prix est revenu dans le canal de Bandes de Bollinger dans la zone neutre. Le RSI est %s, ce qui confirme également l\'absence d\'une forte tendance, donc dans l\'ensemble, le prix de l\'actif se rapproche de la moyenne et un mouvement ultérieur est possible dans n\'importe quelle direction.</string>
+    <string name="TechnicalAdvice_NeutralAdvice">En général, le prix de l\'actif se rapproche de la moyenne et un mouvement ultérieur est possible dans n\'importe quelle direction.</string>
+    <string name="TechnicalAdvice_OtherTitle">Veuillez noter:</string>
+    <string name="TechnicalAdvice_EmaAbove">au-dessus</string>
+    <string name="TechnicalAdvice_EmaBelow">en dessous</string>
+    <string name="TechnicalAdvice_EmaGrowth">croissance</string>
+    <string name="TechnicalAdvice_EmaDecrease">diminution</string>
+    <string name="TechnicalAdvice_EmaAdvice">EMA 200. Détermine le sentiment et la tendance généraux. Le prix quotidien de l\'actif est situé %1$s le EMA (%2$s). Cela signifie que globalement, l\'actif est configuré pour %3$s.</string>
+    <string name="TechnicalAdvice_MacdPositive">au-dessus</string>
+    <string name="TechnicalAdvice_MacdNegative">en dessous</string>
+    <string name="TechnicalAdvice_MacdAdvice">MACD. Évalue la force de la tendance en tenant compte de la variation moyenne des prix. La valeur quotidienne de l\'histogramme est %1$s (%2$s). Le prix de l\'actif peut globalement se déplacer %3$s.</string>
     <string name="TechnicalAdvice_InfoTitle">Indicateurs techniques</string>
     <string name="TechnicalAdvice_InfoDescription">Nous utilisons la stratégie des Bandes de Bollinger + RSI pour déterminer les signaux de trading. Toutes les calculs sont basés sur des chandeliers quotidiens et fournissent des conseils pour un terme modérément long. L\'essence de la stratégie est que le prix de l\'actif doit atteindre un niveau extrême, en sortant du canal des Bandes de Bollinger, et le RSI doit être dans la zone de surachat/survente. Après que le prix revienne dans le canal, il y a une forte probabilité que le prix revienne vers les valeurs moyennes ou tente de casser le canal de l\'autre côté. Notez que la stratégie peut donner plusieurs faux signaux lors de mouvements de marché forts avant qu\'un signal correct n\'apparaisse.\n\nVeuillez vous rappeler qu\'il est très important d\'appliquer une gestion des risques au trading et de couper les pertes si la situation du marché change!</string>
     <string name="TechnicalAdvice_ShowDetails">Afficher les détails</string>
@@ -1430,7 +1505,7 @@
     <string name="TechnicalAdvice_Indicators_Neutral">Neutre</string>
     <string name="TechnicalAdvice_Indicators_Sell">Vendre</string>
     <string name="TechnicalAdvice_Indicators_StrongSell">Vente forte</string>
-    <string name="TechnicalAdvice_Indicators_RiskyToTrade">Très risqué à négocier</string>
+    <string name="TechnicalAdvice_Indicators_RiskyToTrade">Risqué</string>
     <string name="Detectors_TokenDetectors">Détection de token</string>
     <string name="Detectors_GeneralDetectors">Détection générale</string>
     <string name="Detectors_IssuesCount">Problèmes %d</string>
@@ -1511,8 +1586,8 @@
     <string name="NftCollection_EventType_Mint">Mint</string>
     <string name="NftCollection_EventType_Unknown">Inconnu</string>
     <!--Rate list-->
-    <string name="RateList_TopGainers">Les grands gagnants</string>
-    <string name="RateList_TopLosers">Les gros perdants</string>
+    <string name="RateList_TopGainers">Gagnants</string>
+    <string name="RateList_TopLosers">Perdants</string>
     <string name="RateList_Posts">Infos</string>
     <string name="Market_DaysAgo">Il y a %dd.</string>
     <string name="Market_HoursAgo">il y a %dh.</string>
@@ -1524,10 +1599,11 @@
     <string name="BalanceSyncError_ButtonReport">Signaler</string>
     <string name="BalanceSyncError_ReportButtonExplanation">Le texte de l\'erreur sera copié dans votre presse-papiers si vous décidez de le signaler.</string>
     <!--Release notes-->
+    <string name="ReleaseNotes_JoinUnstoppables">REJOIGNEZ LES UNSTOPPABLES</string>
     <string name="ReleaseNotes_FollowUs">Suivez-nous</string>
     <string name="CoinPage_Chart_Locked">Verrouillé</string>
     <string name="ProUsersInfo_Title">Utilisateur Pro</string>
-    <string name="ProUsersInfo_UnstoppablePass">Passe SatoshiFX</string>
+    <string name="ProUsersInfo_UnstoppablePass">Passe Unstoppable</string>
     <string name="ProUsersInfo_SubTitle">Informations supplémentaires sur le jeton</string>
     <string name="ProUsersInfo_Description">Pour activer ces données, vous devriez obtenir des NFT UW au niveau de bronze « Coin Info+»\n\nVous avez également accès aux données ci-dessous:</string>
     <string name="ProUsersInfo_Features_DexVolume">Volume et rang DEX</string>
@@ -1548,8 +1624,8 @@
     <string name="Alert_KeysInvalidatedTitle">Erreur de Keystore Android</string>
     <string name="Alert_KeysInvalidatedDescription">Les données cryptées contenant votre porte-monnaie ont récemment été invalidées car votre écran de verrouillage Android a été modifié</string>
     <string name="Alert_TitleWarning">Attention</string>
-    <string name="Alert_CustomKeyboardIsUsed">Il semble que votre appareil utilise un clavier autre que celui par défaut. SatoshiFX recommande de sélectionner le clavier par défaut sur votre appareil car les claviers tiers peuvent potentiellement collecter et exposer les données de saisie des utilisateurs.\n\n\Cliquez sur le bouton \"Ignorer\" si vous souhaitez continuer à utiliser le clavier souhaité.</string>
-    <string name="Alert_DeviceIsRootedWarning">L\'équipe d\'SatoshiFX vous recommande d\'utiliser l\'application uniquement sur des téléphones non rootés (non débridés).\n\nVeuillez noter que lorsque vous utilisez un appareil rooté, l\'application ne peut plus garantir la sécurité de votre cryptomonnaie contre les logiciels malveillants.</string>
+    <string name="Alert_CustomKeyboardIsUsed">Il semble que votre appareil utilise un clavier autre que celui par défaut. Unstoppable recommande de sélectionner le clavier par défaut sur votre appareil car les claviers tiers peuvent potentiellement collecter et exposer les données de saisie des utilisateurs.\n\n\Cliquez sur le bouton \"Ignorer\" si vous souhaitez continuer à utiliser le clavier souhaité.</string>
+    <string name="Alert_DeviceIsRootedWarning">L\'équipe d\'Unstoppable vous recommande d\'utiliser l\'application uniquement sur des téléphones non rootés (non débridés).\n\nVeuillez noter que lorsque vous utilisez un appareil rooté, l\'application ne peut plus garantir la sécurité de votre cryptomonnaie contre les logiciels malveillants.</string>
     <!--OS Pin-->
     <string name="OSPin_Confirm_Title">PIN de téléphone</string>
     <string name="OSPin_Confirm_Desciption">Cette application nécessite qu\'un code secret soit activé sur le téléphone (verrouillage de l\'écran). \n\nVous pouvez activer cette fonction dans les paramètres Android. \n\nVeuillez noter que lorsque vous avez désactivé le code PIN au niveau du système d\'exploitation, les mesures de sécurité stockées sur votre téléphone ont rendu invalide les données précédemment stockées. Vous devrez Restaurer vos clés de porte-monnaie pour revenir à votre porte-monnaie.</string>

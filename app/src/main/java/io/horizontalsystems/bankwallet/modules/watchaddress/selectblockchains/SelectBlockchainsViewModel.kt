@@ -2,9 +2,14 @@ package io.horizontalsystems.bankwallet.modules.watchaddress.selectblockchains
 
 import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.core.ViewModelUiState
+import io.horizontalsystems.bankwallet.core.alternativeImageUrl
 import io.horizontalsystems.bankwallet.core.badge
 import io.horizontalsystems.bankwallet.core.description
 import io.horizontalsystems.bankwallet.core.imageUrl
+import io.horizontalsystems.bankwallet.core.stats.StatEvent
+import io.horizontalsystems.bankwallet.core.stats.StatPage
+import io.horizontalsystems.bankwallet.core.stats.stat
+import io.horizontalsystems.bankwallet.core.stats.statAccountType
 import io.horizontalsystems.bankwallet.entities.AccountType
 import io.horizontalsystems.bankwallet.modules.market.ImageSource
 import io.horizontalsystems.bankwallet.modules.restoreaccount.restoreblockchains.CoinViewItem
@@ -72,7 +77,7 @@ class SelectBlockchainsViewModel(
     private fun coinViewItemForToken(token: Token, label: String?): CoinViewItem<Token> {
         return CoinViewItem(
             item = token,
-            imageSource = ImageSource.Remote(token.fullCoin.coin.imageUrl, R.drawable.coin_placeholder),
+            imageSource = ImageSource.Remote(token.fullCoin.coin.imageUrl, R.drawable.coin_placeholder, token.fullCoin.coin.alternativeImageUrl),
             title = token.fullCoin.coin.code,
             subtitle = token.fullCoin.coin.name,
             enabled = false,
@@ -97,6 +102,8 @@ class SelectBlockchainsViewModel(
         service.watchTokens(accountType, selectedCoins.toList(), accountName)
         accountCreated = true
         emitState()
+
+        stat(page = StatPage.WatchWallet, event = StatEvent.WatchWallet(accountType.statAccountType))
     }
 
 }

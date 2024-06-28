@@ -6,6 +6,7 @@ import io.horizontalsystems.bankwallet.core.adapters.TonTransactionRecord
 import io.horizontalsystems.bankwallet.core.isCustom
 import io.horizontalsystems.bankwallet.core.managers.EvmLabelManager
 import io.horizontalsystems.bankwallet.core.providers.Translator
+import io.horizontalsystems.bankwallet.core.stats.StatSection
 import io.horizontalsystems.bankwallet.entities.CurrencyValue
 import io.horizontalsystems.bankwallet.entities.LastBlockInfo
 import io.horizontalsystems.bankwallet.entities.TransactionValue
@@ -532,7 +533,7 @@ class TransactionInfoViewItemFactory(
         if (!mint && fromAddress != null) {
             val contact = getContact(fromAddress)
             items.add(
-                Address(getString(R.string.TransactionInfo_From), fromAddress, contact == null, blockchainType)
+                Address(getString(R.string.TransactionInfo_From), fromAddress, contact == null, blockchainType, StatSection.AddressFrom)
             )
             contact?.let {
                 items.add(
@@ -578,7 +579,7 @@ class TransactionInfoViewItemFactory(
         if (!burn && toAddress != null) {
             val contact = getContact(toAddress)
             items.add(
-                Address(getString(R.string.TransactionInfo_To), toAddress, contact == null, blockchainType)
+                Address(getString(R.string.TransactionInfo_To), toAddress, contact == null, blockchainType, StatSection.AddressTo)
             )
 
             contact?.let {
@@ -752,12 +753,13 @@ class TransactionInfoViewItemFactory(
                 coinAmountColoredValue,
                 fiatAmountColoredValue,
                 value.coinIconUrl,
+                value.alternativeCoinIconUrl,
                 value.coinIconPlaceholder,
                 value.coin?.uid,
                 value.badge,
                 AmountType.Approved
             ),
-            Address(getString(R.string.TransactionInfo_Spender), spenderAddress, contact == null, blockchainType)
+            Address(getString(R.string.TransactionInfo_Spender), spenderAddress, contact == null, blockchainType, StatSection.AddressSpender)
         )
 
         contact?.let {
@@ -831,7 +833,8 @@ class TransactionInfoViewItemFactory(
                                 getString(R.string.TransactionInfo_RecipientHash),
                                 recipient,
                                 contact == null,
-                                blockchainType
+                                blockchainType,
+                                StatSection.AddressRecipient
                             )
                         )
 
@@ -959,6 +962,7 @@ class TransactionInfoViewItemFactory(
             coinValueColored,
             fiatValueColored,
             value.coinIconUrl,
+            value.alternativeCoinIconUrl,
             value.coinIconPlaceholder,
             coinUid,
             value.badge,

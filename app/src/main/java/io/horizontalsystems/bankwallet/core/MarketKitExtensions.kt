@@ -7,12 +7,14 @@ import io.horizontalsystems.bankwallet.core.providers.Translator
 import io.horizontalsystems.bankwallet.entities.AccountType
 import io.horizontalsystems.bankwallet.entities.BitcoinCashCoinType
 import io.horizontalsystems.bankwallet.entities.FeePriceScale
+import io.horizontalsystems.bankwallet.modules.settings.appearance.PriceChangeInterval
 import io.horizontalsystems.bitcoincash.MainNetBitcoinCash
 import io.horizontalsystems.hdwalletkit.ExtendedKeyCoinType
 import io.horizontalsystems.hdwalletkit.HDWallet
 import io.horizontalsystems.marketkit.models.Blockchain
 import io.horizontalsystems.marketkit.models.BlockchainType
 import io.horizontalsystems.marketkit.models.Coin
+import io.horizontalsystems.marketkit.models.CoinPrice
 import io.horizontalsystems.marketkit.models.FullCoin
 import io.horizontalsystems.marketkit.models.HsPointTimePeriod
 import io.horizontalsystems.marketkit.models.Token
@@ -20,6 +22,7 @@ import io.horizontalsystems.marketkit.models.TokenQuery
 import io.horizontalsystems.marketkit.models.TokenType
 import io.horizontalsystems.marketkit.models.TopPlatform
 import io.horizontalsystems.nftkit.models.NftType
+import java.math.BigDecimal
 
 val Token.protocolType: String?
     get() = tokenQuery.protocolType
@@ -356,8 +359,23 @@ val TokenType.order: Int
     }
 
 
+val TokenType.derivation: TokenType.Derivation?
+    get() = when (this) {
+        is TokenType.Derived -> this.derivation
+        else -> null
+    }
+
+val TokenType.bitcoinCashCoinType: TokenType.AddressType?
+    get() = when (this) {
+        is TokenType.AddressTyped -> this.type
+        else -> null
+    }
+
 val Coin.imageUrl: String
     get() = "https://cdn.blocksdecoded.com/coin-icons/32px/$uid@3x.png"
+
+val Coin.alternativeImageUrl: String?
+    get() = image
 
 val Coin.imagePlaceholder: Int
     get() = R.drawable.coin_placeholder
@@ -560,3 +578,9 @@ val BlockchainType.Companion.supported: List<BlockchainType>
         BlockchainType.Tron,
         BlockchainType.Ton,
     )
+
+val CoinPrice.diff: BigDecimal?
+    get() = when (App.priceManager.priceChangeInterval) {
+        PriceChangeInterval.LAST_24H -> diff24h
+        PriceChangeInterval.FROM_UTC_MIDNIGHT -> diff1d
+    }

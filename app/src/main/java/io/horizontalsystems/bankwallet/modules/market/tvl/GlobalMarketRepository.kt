@@ -3,9 +3,6 @@ package io.horizontalsystems.bankwallet.modules.market.tvl
 import io.horizontalsystems.bankwallet.core.managers.MarketKitWrapper
 import io.horizontalsystems.bankwallet.entities.Currency
 import io.horizontalsystems.bankwallet.entities.CurrencyValue
-import io.horizontalsystems.bankwallet.modules.market.MarketItem
-import io.horizontalsystems.bankwallet.modules.market.SortingField
-import io.horizontalsystems.bankwallet.modules.market.sort
 import io.horizontalsystems.bankwallet.modules.metricchart.MetricsType
 import io.horizontalsystems.chartview.models.ChartPoint
 import io.horizontalsystems.marketkit.models.DefiMarketInfo
@@ -14,8 +11,7 @@ import io.reactivex.Single
 import java.math.BigDecimal
 
 class GlobalMarketRepository(
-    private val marketKit: MarketKitWrapper,
-    private val apiTag: String
+    private val marketKit: MarketKitWrapper
 ) {
 
     private var cache: List<DefiMarketInfo> = listOf()
@@ -30,9 +26,8 @@ class GlobalMarketRepository(
                 list.map { point ->
                     val value = when (metricsType) {
                         MetricsType.TotalMarketCap -> point.marketCap
-                        MetricsType.BtcDominance -> point.btcDominance
                         MetricsType.Volume24h -> point.volume24h
-                        MetricsType.DefiCap -> point.defiMarketCap
+                        MetricsType.Etf -> point.defiMarketCap
                         MetricsType.TvlInDefi -> point.tvl
                     }
 
@@ -55,22 +50,6 @@ class GlobalMarketRepository(
             }
     }
 
-    fun getMarketItems(
-        currency: Currency,
-        sortDescending: Boolean,
-        metricsType: MetricsType
-    ): Single<List<MarketItem>> {
-        return marketKit.marketInfosSingle(250, currency.code, defi = metricsType == MetricsType.DefiCap, apiTag)
-            .map { coinMarkets ->
-                val marketItems = coinMarkets.map { MarketItem.createFromCoinMarket(it, currency) }
-                val sortingField = when (metricsType) {
-                    MetricsType.Volume24h -> if (sortDescending) SortingField.HighestVolume else SortingField.LowestVolume
-                    else -> if (sortDescending) SortingField.HighestCap else SortingField.LowestCap
-                }
-                marketItems.sort(sortingField)
-            }
-    }
-
     fun getMarketTvlItems(
         currency: Currency,
         chain: TvlModule.Chain,
@@ -90,7 +69,7 @@ class GlobalMarketRepository(
 
     private fun defiMarketInfos(currencyCode: String, forceRefresh: Boolean): List<DefiMarketInfo> =
         if (forceRefresh || cache.isEmpty()) {
-            val defiMarketInfo = marketKit.defiMarketInfosSingle(currencyCode, apiTag).blockingGet()
+            val defiMarketInfo = marketKit.defiMarketInfosSingle(currencyCode).blockingGet()
 
             cache = defiMarketInfo
 

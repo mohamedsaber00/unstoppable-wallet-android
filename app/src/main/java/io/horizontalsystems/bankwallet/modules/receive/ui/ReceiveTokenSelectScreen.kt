@@ -18,14 +18,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import io.horizontalsystems.bankwallet.R
-import io.horizontalsystems.bankwallet.core.imagePlaceholder
+import io.horizontalsystems.bankwallet.core.alternativeImageUrl
+import io.horizontalsystems.bankwallet.core.iconPlaceholder
 import io.horizontalsystems.bankwallet.core.imageUrl
 import io.horizontalsystems.bankwallet.entities.Account
 import io.horizontalsystems.bankwallet.entities.Wallet
 import io.horizontalsystems.bankwallet.modules.receive.viewmodels.CoinForReceiveType
 import io.horizontalsystems.bankwallet.modules.receive.viewmodels.ReceiveTokenSelectViewModel
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
-import io.horizontalsystems.bankwallet.ui.compose.components.CoinImage
+import io.horizontalsystems.bankwallet.ui.compose.components.HsImage
 import io.horizontalsystems.bankwallet.ui.compose.components.RowUniversal
 import io.horizontalsystems.bankwallet.ui.compose.components.SearchBar
 import io.horizontalsystems.bankwallet.ui.compose.components.SectionUniversalItem
@@ -76,7 +77,8 @@ fun ReceiveTokenSelectScreen(
                         coinName = coin.name,
                         coinCode = coin.code,
                         coinIconUrl = coin.imageUrl,
-                        coinIconPlaceholder = coin.imagePlaceholder,
+                        alternativeCoinIconUrl = coin.alternativeImageUrl,
+                        coinIconPlaceholder = fullCoin.iconPlaceholder,
                         onClick = {
                             coroutineScope.launch {
                                 when (val coinActiveWalletsType = viewModel.getCoinForReceiveType(fullCoin)) {
@@ -115,6 +117,7 @@ fun ReceiveCoin(
     coinName: String,
     coinCode: String,
     coinIconUrl: String,
+    alternativeCoinIconUrl: String?,
     coinIconPlaceholder: Int,
     onClick: (() -> Unit)? = null
 ) {
@@ -122,8 +125,9 @@ fun ReceiveCoin(
         modifier = Modifier.padding(horizontal = 16.dp),
         onClick = onClick
     ) {
-        CoinImage(
-            iconUrl = coinIconUrl,
+        HsImage(
+            url = coinIconUrl,
+            alternativeUrl = alternativeCoinIconUrl,
             placeholder = coinIconPlaceholder,
             modifier = Modifier
                 .padding(end = 16.dp)

@@ -1,6 +1,5 @@
 package io.horizontalsystems.bankwallet.modules.main
 
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.BackHandler
@@ -15,14 +14,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Badge
 import androidx.compose.material.BadgedBox
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,15 +30,26 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.navGraphViewModels
 import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.core.BaseComposeFragment
+import io.horizontalsystems.bankwallet.core.findActivity
 import io.horizontalsystems.bankwallet.core.managers.RateAppManager
 import io.horizontalsystems.bankwallet.core.slideFromBottom
 import io.horizontalsystems.bankwallet.core.slideFromRight
+import io.horizontalsystems.bankwallet.core.stats.StatEntity
+import io.horizontalsystems.bankwallet.core.stats.StatEvent
+import io.horizontalsystems.bankwallet.core.stats.StatPage
+import io.horizontalsystems.bankwallet.core.stats.stat
+import io.horizontalsystems.bankwallet.core.stats.statTab
 import io.horizontalsystems.bankwallet.modules.balance.ui.BalanceScreen
+import io.horizontalsystems.bankwallet.modules.browser.BrowserViewModel
+import io.horizontalsystems.bankwallet.modules.browser.MainBrowserPage
 import io.horizontalsystems.bankwallet.modules.main.MainModule.MainNavigation
 import io.horizontalsystems.bankwallet.modules.manageaccount.dialogs.BackupRequiredDialog
 import io.horizontalsystems.bankwallet.modules.market.MarketScreen
@@ -59,7 +67,7 @@ import io.horizontalsystems.bankwallet.modules.transactions.TransactionsViewMode
 import io.horizontalsystems.bankwallet.modules.walletconnect.WCAccountTypeNotSupportedDialog
 import io.horizontalsystems.bankwallet.modules.walletconnect.WCManager.SupportState
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
-import io.horizontalsystems.bankwallet.ui.compose.DisposableLifecycleCallbacks
+import io.horizontalsystems.bankwallet.ui.compose.components.BadgeText
 import io.horizontalsystems.bankwallet.ui.compose.components.HsBottomNavigation
 import io.horizontalsystems.bankwallet.ui.compose.components.HsBottomNavigationItem
 import io.horizontalsystems.bankwallet.ui.extensions.WalletSwitchBottomSheet
@@ -69,21 +77,22 @@ import kotlinx.coroutines.launch
 class MainFragment : BaseComposeFragment() {
 
     private val transactionsViewModel by navGraphViewModels<TransactionsViewModel>(R.id.mainFragment) { TransactionsModule.Factory() }
-    private var intentUri: Uri? = null
+
+    private val browserViewModel by viewModels<BrowserViewModel>()
+
+
 
     @Composable
     override fun GetContent(navController: NavController) {
         MainScreenWithRootedDeviceCheck(
             transactionsViewModel = transactionsViewModel,
-            deepLink = intentUri,
+            browserViewModel = browserViewModel,
             navController = navController,
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        intentUri = activity?.intent?.data
-        activity?.intent?.data = null //clear intent data
 
         requireActivity().onBackPressedDispatcher.addCallback(
             this,
@@ -99,14 +108,14 @@ class MainFragment : BaseComposeFragment() {
 @Composable
 private fun MainScreenWithRootedDeviceCheck(
     transactionsViewModel: TransactionsViewModel,
-    deepLink: Uri?,
+    browserViewModel: BrowserViewModel,
     navController: NavController,
     rootedDeviceViewModel: RootedDeviceViewModel = viewModel(factory = RootedDeviceModule.Factory())
 ) {
     if (rootedDeviceViewModel.showRootedDeviceWarning) {
         RootedDeviceScreen { rootedDeviceViewModel.ignoreRootedDeviceWarning() }
     } else {
-        MainScreen(transactionsViewModel, deepLink, navController)
+        MainScreen(transactionsViewModel, browserViewModel , navController)
     }
 }
 
@@ -114,17 +123,27 @@ private fun MainScreenWithRootedDeviceCheck(
 @Composable
 private fun MainScreen(
     transactionsViewModel: TransactionsViewModel,
-    deepLink: Uri?,
+    browserViewModel: BrowserViewModel,
     fragmentNavController: NavController,
-    viewModel: MainViewModel = viewModel(factory = MainModule.Factory(deepLink))
+    viewModel: MainViewModel = viewModel(factory = MainModule.Factory())
 ) {
-
     val uiState = viewModel.uiState
+    val context = LocalContext.current
     val selectedPage = uiState.selectedTabIndex
     val pagerState = rememberPagerState(initialPage = selectedPage) { uiState.mainNavItems.size }
 
     val coroutineScope = rememberCoroutineScope()
     val modalBottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
+
+    LaunchedEffect(Unit) {
+        context.findActivity()?.let { activity ->
+            activity.intent?.data?.let { uri ->
+                viewModel.handleDeepLink(uri)
+                activity.intent?.data = null //clear intent data
+            }
+        }
+    }
+
 
     ModalBottomSheetLayout(
         sheetState = modalBottomSheetState,
@@ -138,6 +157,8 @@ private fun MainScreen(
                     coroutineScope.launch {
                         modalBottomSheetState.hide()
                         viewModel.onSelect(it)
+
+                        stat(page = StatPage.SwitchWallet, event = StatEvent.Select(StatEntity.Wallet))
                     }
                 },
                 onCancelClick = {
@@ -174,11 +195,17 @@ private fun MainScreen(
                                     enabled = item.enabled,
                                     selectedContentColor = ComposeAppTheme.colors.jacob,
                                     unselectedContentColor = if (item.enabled) ComposeAppTheme.colors.grey else ComposeAppTheme.colors.grey50,
-                                    onClick = { viewModel.onSelect(item.mainNavItem) },
+                                    onClick = {
+                                        viewModel.onSelect(item.mainNavItem)
+
+                                        stat(page = StatPage.Main, event = StatEvent.SwitchTab(item.mainNavItem.statTab))
+                                    },
                                     onLongClick = {
                                         if (item.mainNavItem == MainNavigation.Balance) {
                                             coroutineScope.launch {
                                                 modalBottomSheetState.show()
+
+                                                stat(page = StatPage.Main, event = StatEvent.Open(StatPage.SwitchWallet))
                                             }
                                         }
                                     }
@@ -214,6 +241,7 @@ private fun MainScreen(
                             )
 
                             MainNavigation.Settings -> SettingsScreen(fragmentNavController)
+                            MainNavigation.Browser ->  MainBrowserPage(fragmentNavController,browserViewModel)
                         }
                     }
                 }
@@ -255,6 +283,8 @@ private fun MainScreen(
                     R.id.backupRequiredDialog,
                     BackupRequiredDialog.Input(wcSupportState.account, text)
                 )
+
+                stat(page = StatPage.Main, event = StatEvent.Open(StatPage.BackupRequired))
             }
 
             is SupportState.NotSupported -> {
@@ -280,9 +310,9 @@ private fun MainScreen(
         }
     }
 
-    DisposableLifecycleCallbacks(
-        onResume = viewModel::onResume,
-    )
+    LifecycleEventEffect(event = Lifecycle.Event.ON_RESUME) {
+        viewModel.onResume()
+    }
 }
 
 @Composable
@@ -304,15 +334,9 @@ private fun BadgedIcon(
         is MainModule.BadgeType.BadgeNumber ->
             BadgedBox(
                 badge = {
-                    Badge(
-                        backgroundColor = ComposeAppTheme.colors.lucian
-                    ) {
-                        Text(
-                            text = badge.number.toString(),
-                            style = ComposeAppTheme.typography.micro,
-                            color = ComposeAppTheme.colors.white,
-                        )
-                    }
+                    BadgeText(
+                        text = badge.number.toString(),
+                    )
                 },
                 content = icon
             )
