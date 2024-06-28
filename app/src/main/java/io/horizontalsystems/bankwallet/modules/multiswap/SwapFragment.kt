@@ -68,7 +68,7 @@ import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.Keyboard
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonSecondaryCircle
 import io.horizontalsystems.bankwallet.ui.compose.components.CardsSwapInfo
 import io.horizontalsystems.bankwallet.ui.compose.components.CoinImage
@@ -257,7 +257,7 @@ private fun SwapScreenInner(
                             InputType.Amount -> stringResource(R.string.Swap_EnterAmount)
                         }
 
-                        ButtonPrimaryYellow(
+                        ButtonPrimaryBlue(
                             modifier = Modifier
                                 .padding(horizontal = 16.dp)
                                 .fillMaxWidth(),
@@ -268,7 +268,7 @@ private fun SwapScreenInner(
                     }
 
                     SwapStep.Quoting -> {
-                        ButtonPrimaryYellow(
+                        ButtonPrimaryBlue(
                             modifier = Modifier
                                 .padding(horizontal = 16.dp)
                                 .fillMaxWidth(),
@@ -292,7 +292,7 @@ private fun SwapScreenInner(
                             else -> error.message ?: error.javaClass.simpleName
                         }
 
-                        ButtonPrimaryYellow(
+                        ButtonPrimaryBlue(
                             modifier = Modifier
                                 .padding(horizontal = 16.dp)
                                 .fillMaxWidth(),
@@ -324,7 +324,7 @@ private fun SwapScreenInner(
                     }
 
                     SwapStep.Proceed -> {
-                        ButtonPrimaryYellow(
+                        ButtonPrimaryBlue(
                             modifier = Modifier
                                 .padding(horizontal = 16.dp)
                                 .fillMaxWidth(),

@@ -39,7 +39,7 @@ import io.horizontalsystems.bankwallet.ui.compose.TranslatableString
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryRed
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.CellUniversalLawrenceSection
 import io.horizontalsystems.bankwallet.ui.compose.components.HeaderText
 import io.horizontalsystems.bankwallet.ui.compose.components.MenuItem
@@ -196,7 +196,7 @@ private fun ActionButtons(
 ) {
     Column(Modifier.padding(horizontal = 24.dp)) {
         if (buttonsStates.connect.visible) {
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = Modifier.fillMaxWidth(),
                 title = stringResource(R.string.Button_Connect),
                 enabled = buttonsStates.connect.enabled,

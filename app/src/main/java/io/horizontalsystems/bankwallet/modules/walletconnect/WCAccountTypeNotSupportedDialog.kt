@@ -23,7 +23,7 @@ import io.horizontalsystems.bankwallet.core.getInput
 import io.horizontalsystems.bankwallet.core.slideFromRight
 import io.horizontalsystems.bankwallet.modules.manageaccounts.ManageAccountsModule
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.TextImportantWarning
 import io.horizontalsystems.bankwallet.ui.extensions.BaseComposableBottomSheetFragment
 import io.horizontalsystems.bankwallet.ui.extensions.BottomSheetHeader
@@ -82,7 +82,7 @@ fun WCAccountTypeNotSupportedScreen(
             modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp),
             text = stringResource(id = R.string.WalletConnect_NotSupportedDescription, accountTypeDescription)
         )
-        ButtonPrimaryYellow(
+        ButtonPrimaryBlue(
             modifier = Modifier
                 .padding(vertical = 20.dp, horizontal = 24.dp)
                 .fillMaxWidth(),

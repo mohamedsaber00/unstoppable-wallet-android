@@ -20,7 +20,7 @@ import androidx.fragment.app.FragmentManager
 import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryTransparent
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.TextImportantWarning
 
 class ConfirmationDialog(
@@ -84,7 +84,7 @@ class ConfirmationDialog(
                 Spacer(Modifier.height(8.dp))
             }
             actionButtonTitle?.let {
-                ButtonPrimaryYellow(
+                ButtonPrimaryBlue(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 24.dp, top = 12.dp, end = 24.dp),

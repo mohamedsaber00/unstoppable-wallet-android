@@ -42,7 +42,7 @@ import io.horizontalsystems.bankwallet.modules.transactionInfo.TransactionInfoVi
 import io.horizontalsystems.bankwallet.modules.transactionInfo.options.SpeedUpCancelType
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.CellUniversalLawrenceSection
 import io.horizontalsystems.bankwallet.ui.compose.components.HsBackButton
 import io.horizontalsystems.bankwallet.ui.compose.components.SectionTitleCell
@@ -275,7 +275,7 @@ class ResendBitcoinFragment : BaseComposeFragment() {
     ) {
         when (sendResult) {
             SendResult.Sending -> {
-                ButtonPrimaryYellow(
+                ButtonPrimaryBlue(
                     modifier = modifier,
                     title = stringResource(R.string.Send_Sending),
                     onClick = { },
@@ -284,7 +284,7 @@ class ResendBitcoinFragment : BaseComposeFragment() {
             }
 
             SendResult.Sent -> {
-                ButtonPrimaryYellow(
+                ButtonPrimaryBlue(
                     modifier = modifier,
                     title = stringResource(R.string.Send_Success),
                     onClick = { },
@@ -293,7 +293,7 @@ class ResendBitcoinFragment : BaseComposeFragment() {
             }
 
             else -> {
-                ButtonPrimaryYellow(
+                ButtonPrimaryBlue(
                     modifier = modifier,
                     title = stringResource(titleResId),
                     onClick = onClickSend,

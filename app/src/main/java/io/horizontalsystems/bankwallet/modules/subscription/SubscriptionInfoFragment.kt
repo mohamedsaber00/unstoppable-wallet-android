@@ -24,7 +24,7 @@ import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.TranslatableString
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryTransparent
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.InfoH3
 import io.horizontalsystems.bankwallet.ui.compose.components.MenuItem
 import io.horizontalsystems.bankwallet.ui.compose.components.body_bran
@@ -98,7 +98,7 @@ private fun SubscriptionInfoScreen(
 
             ButtonsGroupWithShade {
                 Column(Modifier.padding(horizontal = 24.dp)) {
-                    ButtonPrimaryYellow(
+                    ButtonPrimaryBlue(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(R.string.SubscriptionInfo_GetPremium),
                         onClick = onClickGetPremium

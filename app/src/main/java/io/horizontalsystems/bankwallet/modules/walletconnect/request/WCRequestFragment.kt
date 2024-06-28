@@ -29,7 +29,7 @@ import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.TranslatableString
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.MenuItem
 import io.horizontalsystems.bankwallet.ui.compose.components.MessageToSign
 import io.horizontalsystems.bankwallet.ui.compose.components.ScreenMessageWithAction
@@ -122,7 +122,7 @@ class WCRequestFragment : BaseComposeFragment() {
                     text = stringResource(R.string.Error),
                     icon = R.drawable.ic_error_48
                 ) {
-                    ButtonPrimaryYellow(
+                    ButtonPrimaryBlue(
                         modifier = Modifier
                             .padding(horizontal = 48.dp)
                             .fillMaxWidth(),
@@ -197,7 +197,7 @@ private fun ActionButtons(
 ) {
     ButtonsGroupWithShade {
         Column(Modifier.padding(horizontal = 24.dp)) {
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = Modifier.fillMaxWidth(),
                 title = stringResource(R.string.WalletConnect_SignMessageRequest_ButtonSign),
                 onClick = onAllow,

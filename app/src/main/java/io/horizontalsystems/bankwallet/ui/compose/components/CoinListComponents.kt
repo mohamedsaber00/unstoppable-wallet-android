@@ -182,7 +182,7 @@ fun ListErrorView(
         text = errorText,
         icon = icon,
     ) {
-        ButtonPrimaryYellow(
+        ButtonPrimaryBlue(
             modifier = Modifier
                 .padding(horizontal = 48.dp)
                 .fillMaxWidth(),

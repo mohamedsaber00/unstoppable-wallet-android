@@ -31,7 +31,7 @@ import io.horizontalsystems.bankwallet.core.App
 import io.horizontalsystems.bankwallet.core.BaseActivity
 import io.horizontalsystems.bankwallet.modules.main.MainModule
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.body_grey
 import io.horizontalsystems.bankwallet.ui.compose.components.title3_leah
 import kotlinx.coroutines.launch
@@ -138,7 +138,7 @@ private fun StaticContent(
             }
         }
         Spacer(Modifier.weight(2f))
-        ButtonPrimaryYellow(
+        ButtonPrimaryBlue(
             modifier = Modifier
                 .padding(horizontal = 24.dp)
                 .fillMaxWidth(),

@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.TextImportantWarning
 import io.horizontalsystems.bankwallet.ui.extensions.BaseComposableBottomSheetFragment
 import io.horizontalsystems.bankwallet.ui.extensions.BottomSheetHeader
@@ -58,7 +58,7 @@ fun WalletConnectErrorNoAccount(onCloseClick: () -> Unit) {
             modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp),
             text = stringResource(id = R.string.WalletConnect_Error_NoWallet)
         )
-        ButtonPrimaryYellow(
+        ButtonPrimaryBlue(
             modifier = Modifier
                 .padding(vertical = 20.dp, horizontal = 24.dp)
                 .fillMaxWidth(),

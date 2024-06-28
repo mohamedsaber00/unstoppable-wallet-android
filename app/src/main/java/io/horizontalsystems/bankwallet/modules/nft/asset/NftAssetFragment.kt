@@ -270,7 +270,7 @@ private fun AssetContent(
                     ) { showSend ->
                         if (showSend) {
                             Row {
-                                ButtonPrimaryYellow(
+                                ButtonPrimaryBlue(
                                     modifier = Modifier.weight(1f),
                                     title = stringResource(R.string.Button_Send),
                                     onClick = {

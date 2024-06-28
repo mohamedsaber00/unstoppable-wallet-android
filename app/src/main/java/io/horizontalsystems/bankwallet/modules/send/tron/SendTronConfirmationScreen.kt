@@ -45,7 +45,7 @@ import io.horizontalsystems.bankwallet.modules.send.MemoCell
 import io.horizontalsystems.bankwallet.modules.send.SendResult
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.CellUniversalLawrenceSection
 import io.horizontalsystems.bankwallet.ui.compose.components.HSpacer
 import io.horizontalsystems.bankwallet.ui.compose.components.HsBackButton
@@ -312,7 +312,7 @@ private fun InactiveAddressWarningItem(navController: NavController) {
 private fun SendButton(modifier: Modifier, sendResult: SendResult?, onClickSend: () -> Unit, enabled: Boolean) {
     when (sendResult) {
         SendResult.Sending -> {
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = modifier,
                 title = stringResource(R.string.Send_Sending),
                 onClick = { },
@@ -321,7 +321,7 @@ private fun SendButton(modifier: Modifier, sendResult: SendResult?, onClickSend:
         }
 
         SendResult.Sent -> {
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = modifier,
                 title = stringResource(R.string.Send_Success),
                 onClick = { },
@@ -330,7 +330,7 @@ private fun SendButton(modifier: Modifier, sendResult: SendResult?, onClickSend:
         }
 
         else -> {
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = modifier,
                 title = stringResource(R.string.Send_Confirmation_Send_Button),
                 onClick = onClickSend,

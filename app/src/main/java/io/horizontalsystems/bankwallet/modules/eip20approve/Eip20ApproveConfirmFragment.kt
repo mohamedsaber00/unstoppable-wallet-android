@@ -27,7 +27,7 @@ import io.horizontalsystems.bankwallet.modules.multiswap.TokenRowUnlimited
 import io.horizontalsystems.bankwallet.modules.multiswap.ui.DataFieldFee
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.TransactionInfoAddressCell
 import io.horizontalsystems.bankwallet.ui.compose.components.TransactionInfoContactCell
 import io.horizontalsystems.bankwallet.ui.compose.components.VSpacer
@@ -73,7 +73,7 @@ fun Eip20ApproveConfirmScreen(navController: NavController) {
             var buttonEnabled by remember { mutableStateOf(true) }
             val view = LocalView.current
 
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = Modifier.fillMaxWidth(),
                 title = stringResource(R.string.Swap_Approve),
                 onClick = {

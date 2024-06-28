@@ -59,7 +59,7 @@ import io.horizontalsystems.bankwallet.ui.compose.SteelLight
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimary
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefaults
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryTransparent
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.body_leah
 import io.horizontalsystems.bankwallet.ui.compose.components.subhead2_grey
 import io.horizontalsystems.bankwallet.ui.compose.components.title3_leah
@@ -166,7 +166,7 @@ private fun QRScannerScreen(
             ) {
                 Spacer(Modifier.height(24.dp))
                 if (showPasteButton) {
-                    ButtonPrimaryYellow(
+                    ButtonPrimaryBlue(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(R.string.Send_Button_Paste),
                         onClick = { onScan(TextHelper.getCopiedText()) }
@@ -302,7 +302,7 @@ private fun PermissionNeededDialog(
                         title = stringResource(R.string.Button_Cancel)
                     )
                     Spacer(Modifier.width(8.dp))
-                    ButtonPrimaryYellow(
+                    ButtonPrimaryBlue(
                         onClick = onOkClick,
                         title = stringResource(R.string.Button_Ok)
                     )

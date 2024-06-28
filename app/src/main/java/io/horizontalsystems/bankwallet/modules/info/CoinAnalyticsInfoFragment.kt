@@ -23,7 +23,7 @@ import io.horizontalsystems.bankwallet.modules.info.ui.InfoBody
 import io.horizontalsystems.bankwallet.modules.info.ui.InfoHeader
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.HsBackButton
 import io.horizontalsystems.bankwallet.ui.compose.components.ScreenMessageWithAction
 
@@ -66,7 +66,7 @@ private fun CoinAnalyticsInfoScreen(
                         text = stringResource(R.string.Error),
                         icon = R.drawable.ic_error_48
                     ) {
-                        ButtonPrimaryYellow(
+                        ButtonPrimaryBlue(
                             modifier = Modifier
                                 .padding(horizontal = 48.dp)
                                 .fillMaxWidth(),

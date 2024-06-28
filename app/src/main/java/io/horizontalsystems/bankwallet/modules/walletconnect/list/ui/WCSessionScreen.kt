@@ -40,7 +40,7 @@ import io.horizontalsystems.bankwallet.modules.walletconnect.list.WalletConnectL
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.TranslatableString
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.HsBackButton
 import io.horizontalsystems.bankwallet.ui.compose.components.ListEmptyView
 import io.horizontalsystems.bankwallet.ui.compose.components.MenuItem
@@ -151,7 +151,7 @@ fun WCSessionsScreen(
                     }
                 }
                 ButtonsGroupWithShade {
-                    ButtonPrimaryYellow(
+                    ButtonPrimaryBlue(
                         modifier = Modifier
                             .padding(start = 16.dp, end = 16.dp)
                             .fillMaxWidth(),

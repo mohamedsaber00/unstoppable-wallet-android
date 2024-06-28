@@ -25,7 +25,7 @@ import io.horizontalsystems.bankwallet.modules.multiswap.TokenRow
 import io.horizontalsystems.bankwallet.modules.multiswap.ui.DataFieldFee
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.TransactionInfoAddressCell
 import io.horizontalsystems.bankwallet.ui.compose.components.TransactionInfoContactCell
 import io.horizontalsystems.bankwallet.ui.compose.components.VSpacer
@@ -79,7 +79,7 @@ fun Eip20RevokeScreen(navController: NavController, input: Eip20RevokeConfirmFra
             var buttonEnabled by remember { mutableStateOf(true) }
             val view = LocalView.current
 
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = Modifier.fillMaxWidth(),
                 title = stringResource(R.string.Swap_Revoke),
                 onClick = {

@@ -39,7 +39,7 @@ import io.horizontalsystems.bankwallet.modules.contacts.model.Contact
 import io.horizontalsystems.bankwallet.modules.contacts.viewmodel.ContactsViewModel
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.TranslatableString
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.CellUniversalLawrenceSection
 import io.horizontalsystems.bankwallet.ui.compose.components.ListEmptyView
 import io.horizontalsystems.bankwallet.ui.compose.components.MenuItem
@@ -233,7 +233,7 @@ fun ContactsScreen(
                         text = stringResource(R.string.Contacts_NoContacts),
                         icon = R.drawable.icon_user_plus
                     ) {
-                        ButtonPrimaryYellow(
+                        ButtonPrimaryBlue(
                             modifier = Modifier
                                 .padding(horizontal = 48.dp)
                                 .fillMaxWidth(),

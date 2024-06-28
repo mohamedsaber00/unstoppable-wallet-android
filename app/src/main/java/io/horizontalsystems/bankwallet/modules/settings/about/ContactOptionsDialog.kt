@@ -25,7 +25,7 @@ import io.horizontalsystems.bankwallet.core.App
 import io.horizontalsystems.bankwallet.core.slideFromRight
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.VSpacer
 import io.horizontalsystems.bankwallet.ui.extensions.BaseComposableBottomSheetFragment
 import io.horizontalsystems.bankwallet.ui.extensions.BottomSheetHeader
@@ -68,7 +68,7 @@ private fun ContactOptionsScreen(
             onCloseClick = onCloseClick
         ) {
             VSpacer(24.dp)
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp),

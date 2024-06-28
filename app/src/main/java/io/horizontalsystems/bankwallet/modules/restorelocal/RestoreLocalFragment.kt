@@ -56,7 +56,7 @@ import io.horizontalsystems.bankwallet.modules.zcashconfigure.ZcashConfigureScre
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.TranslatableString
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellowWithSpinner
 import io.horizontalsystems.bankwallet.ui.compose.components.CellUniversalLawrenceSection
 import io.horizontalsystems.bankwallet.ui.compose.components.FormsInputPassword
@@ -342,7 +342,7 @@ private fun BackupFileItems(
             },
             bottomBar = {
                 ButtonsGroupWithShade {
-                    ButtonPrimaryYellow(
+                    ButtonPrimaryBlue(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(start = 16.dp, end = 16.dp),

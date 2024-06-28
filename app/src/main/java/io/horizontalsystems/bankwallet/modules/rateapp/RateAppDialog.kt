@@ -13,7 +13,7 @@ import androidx.compose.ui.window.Dialog
 import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryTransparent
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.body_leah
 import io.horizontalsystems.bankwallet.ui.compose.components.title3_leah
 
@@ -46,7 +46,7 @@ fun RateApp(
 
                 Spacer(Modifier.width(8.dp))
 
-                ButtonPrimaryYellow(
+                ButtonPrimaryBlue(
                     onClick = onRateClick,
                     title = stringResource(R.string.RateApp_Button_RateIt)
                 )

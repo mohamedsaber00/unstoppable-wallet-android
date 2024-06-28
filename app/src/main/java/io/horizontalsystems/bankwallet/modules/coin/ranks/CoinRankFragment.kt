@@ -50,7 +50,7 @@ import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.Select
 import io.horizontalsystems.bankwallet.ui.compose.TranslatableString
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonSecondaryCircle
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonSecondaryToggle
 import io.horizontalsystems.bankwallet.ui.compose.components.DescriptionCard
@@ -81,7 +81,7 @@ class CoinRankFragment : BaseComposeFragment() {
                 text = stringResource(R.string.Error),
                 icon = R.drawable.ic_error_48
             ) {
-                ButtonPrimaryYellow(
+                ButtonPrimaryBlue(
                     modifier = Modifier
                         .padding(horizontal = 48.dp)
                         .fillMaxWidth(),

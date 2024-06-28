@@ -41,7 +41,7 @@ import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryCircle
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.HSpacer
 import io.horizontalsystems.bankwallet.ui.compose.components.HsBackButton
 import io.horizontalsystems.bankwallet.ui.compose.components.RowUniversal
@@ -194,7 +194,7 @@ private fun ButtonsRow(viewItem: BalanceCexViewItem, navController: NavControlle
     Row(
         modifier = Modifier.padding(start = 24.dp, end = 24.dp, top = 4.dp, bottom = 16.dp)
     ) {
-        ButtonPrimaryYellow(
+        ButtonPrimaryBlue(
             modifier = Modifier.weight(1f),
             title = stringResource(R.string.Balance_Withdraw),
             enabled = viewItem.withdrawEnabled,

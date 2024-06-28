@@ -138,7 +138,7 @@ private fun WarningBottomSheet(
             text = text
         )
 
-        ButtonPrimaryYellow(
+        ButtonPrimaryBlue(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 24.dp, end = 24.dp, top = 20.dp),

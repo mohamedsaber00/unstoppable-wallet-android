@@ -51,7 +51,7 @@ import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.HSSwipeRefresh
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.CellMultilineClear
 import io.horizontalsystems.bankwallet.ui.compose.components.CoinImage
 import io.horizontalsystems.bankwallet.ui.compose.components.HSpacer
@@ -119,7 +119,7 @@ fun BalanceForAccountCex(navController: NavController, accountViewItem: AccountV
                                     .fillMaxWidth()
                                     .padding(start = 24.dp, top = 4.dp, end = 24.dp, bottom = 16.dp)
                             ) {
-                                ButtonPrimaryYellow(
+                                ButtonPrimaryBlue(
                                     modifier = Modifier.weight(1f),
                                     title = stringResource(R.string.Balance_Withdraw),
                                     enabled = uiState.withdrawEnabled,

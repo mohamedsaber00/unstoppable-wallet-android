@@ -37,7 +37,7 @@ import io.horizontalsystems.bankwallet.modules.fee.HSFeeRaw
 import io.horizontalsystems.bankwallet.modules.hodler.HSHodler
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.CellUniversalLawrenceSection
 import io.horizontalsystems.bankwallet.ui.compose.components.CoinImage
 import io.horizontalsystems.bankwallet.ui.compose.components.HsBackButton
@@ -243,7 +243,7 @@ fun SendConfirmationScreen(
 fun SendButton(modifier: Modifier, sendResult: SendResult?, onClickSend: () -> Unit) {
     when (sendResult) {
         SendResult.Sending -> {
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = modifier,
                 title = stringResource(R.string.Send_Sending),
                 onClick = { },
@@ -252,7 +252,7 @@ fun SendButton(modifier: Modifier, sendResult: SendResult?, onClickSend: () -> U
         }
 
         SendResult.Sent -> {
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = modifier,
                 title = stringResource(R.string.Send_Success),
                 onClick = { },
@@ -261,7 +261,7 @@ fun SendButton(modifier: Modifier, sendResult: SendResult?, onClickSend: () -> U
         }
 
         else -> {
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = modifier,
                 title = stringResource(R.string.Send_Confirmation_Send_Button),
                 onClick = onClickSend,

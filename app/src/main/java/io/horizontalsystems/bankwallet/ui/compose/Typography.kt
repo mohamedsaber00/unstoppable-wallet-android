@@ -7,8 +7,24 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.googlefonts.Font
+import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import io.horizontalsystems.bankwallet.R
+
+
+
+val fontName = GoogleFont("Lexend Deca")
+
+val provider = GoogleFont.Provider(
+    providerAuthority = "com.google.android.gms.fonts",
+    providerPackage = "com.google.android.gms",
+    certificates = R.array.com_google_android_gms_fonts_certs
+)
+val fontFamily = FontFamily(
+    Font(googleFont = fontName, fontProvider = provider)
+)
 
 @Immutable
 class Typography internal constructor(
@@ -30,8 +46,12 @@ class Typography internal constructor(
     val microSB: TextStyle,
 ) {
 
+
+    init {
+    }
+
     constructor(
-        defaultFontFamily: FontFamily = FontFamily.Default,
+        defaultFontFamily: FontFamily = fontFamily,
         title1: TextStyle = TextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = 38.sp,
@@ -136,7 +156,11 @@ class Typography internal constructor(
 
 }
 
-fun ColoredTextStyle(textStyle: TextStyle, color: Color, textAlign: TextAlign = TextAlign.Unspecified): TextStyle {
+fun ColoredTextStyle(
+    textStyle: TextStyle,
+    color: Color,
+    textAlign: TextAlign = TextAlign.Unspecified
+): TextStyle {
     return TextStyle(
         color = color,
         fontWeight = textStyle.fontWeight,

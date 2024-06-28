@@ -30,7 +30,7 @@ import io.horizontalsystems.bankwallet.core.stats.stat
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryTransparent
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 
 @Composable
 fun BalanceNoAccount(navController: NavController) {
@@ -58,7 +58,7 @@ fun BalanceNoAccount(navController: NavController) {
             )
         }
         Spacer(Modifier.height(32.dp))
-        ButtonPrimaryYellow(
+        ButtonPrimaryBlue(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 48.dp),

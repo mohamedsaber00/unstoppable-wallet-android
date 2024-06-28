@@ -33,7 +33,7 @@ import io.horizontalsystems.bankwallet.modules.evmfee.Cautions
 import io.horizontalsystems.bankwallet.modules.multiswap.ui.DataFieldFee
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.CoinImage
 import io.horizontalsystems.bankwallet.ui.compose.components.HFillSpacer
 import io.horizontalsystems.bankwallet.ui.compose.components.HSpacer
@@ -91,7 +91,7 @@ fun SwapConfirmScreen(navController: NavController) {
         onClickClose = null,
         buttonsSlot = {
             if (uiState.loading) {
-                ButtonPrimaryYellow(
+                ButtonPrimaryBlue(
                     modifier = Modifier.fillMaxWidth(),
                     title = stringResource(R.string.Alert_Loading),
                     enabled = false,
@@ -121,7 +121,7 @@ fun SwapConfirmScreen(navController: NavController) {
                 subhead1_leah(text = stringResource(id = R.string.SwapConfirm_QuoteExpired))
             } else {
                 var buttonEnabled by remember { mutableStateOf(true) }
-                ButtonPrimaryYellow(
+                ButtonPrimaryBlue(
                     modifier = Modifier.fillMaxWidth(),
                     title = stringResource(R.string.Swap),
                     enabled = buttonEnabled,

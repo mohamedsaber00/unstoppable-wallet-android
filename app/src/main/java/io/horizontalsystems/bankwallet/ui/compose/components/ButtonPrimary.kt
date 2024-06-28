@@ -149,7 +149,7 @@ fun ButtonPrimaryTransparent(
 }
 
 @Composable
-fun ButtonPrimaryYellow(
+fun ButtonPrimaryBlue(
     modifier: Modifier = Modifier,
     title: String,
     onClick: () -> Unit,
@@ -160,7 +160,7 @@ fun ButtonPrimaryYellow(
         modifier = modifier,
         onClick = onClick,
         buttonColors = ButtonPrimaryDefaults.textButtonColors(
-            backgroundColor = ComposeAppTheme.colors.yellowD,
+            backgroundColor = ComposeAppTheme.colors.jacob,
             contentColor = ComposeAppTheme.colors.dark,
             disabledBackgroundColor = ComposeAppTheme.colors.steel20,
             disabledContentColor = ComposeAppTheme.colors.grey50,

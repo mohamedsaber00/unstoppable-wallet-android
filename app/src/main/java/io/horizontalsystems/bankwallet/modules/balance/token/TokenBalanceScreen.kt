@@ -58,7 +58,7 @@ import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryCircle
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlue
 import io.horizontalsystems.bankwallet.ui.compose.components.CoinImage
 import io.horizontalsystems.bankwallet.ui.compose.components.HSpacer
 import io.horizontalsystems.bankwallet.ui.compose.components.HsBackButton
@@ -377,7 +377,7 @@ private fun ButtonsRow(viewItem: BalanceViewItem, navController: NavController, 
                 onClick = onClickReceive,
             )
         } else {
-            ButtonPrimaryYellow(
+            ButtonPrimaryBlue(
                 modifier = Modifier.weight(1f),
                 title = stringResource(R.string.Balance_Send),
                 onClick = {

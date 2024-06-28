@@ -32,7 +32,7 @@ fun BottomSheetsElementsButtons(
             color = ComposeAppTheme.colors.steel10,
         )
         Spacer(modifier = Modifier.height(15.dp))
-        ButtonPrimaryYellow(
+        ButtonPrimaryBlue(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth(),
