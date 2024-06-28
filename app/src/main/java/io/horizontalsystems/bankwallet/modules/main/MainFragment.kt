@@ -30,6 +30,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -47,6 +48,8 @@ import io.horizontalsystems.bankwallet.core.stats.StatPage
 import io.horizontalsystems.bankwallet.core.stats.stat
 import io.horizontalsystems.bankwallet.core.stats.statTab
 import io.horizontalsystems.bankwallet.modules.balance.ui.BalanceScreen
+import io.horizontalsystems.bankwallet.modules.browser.BrowserViewModel
+import io.horizontalsystems.bankwallet.modules.browser.MainBrowserPage
 import io.horizontalsystems.bankwallet.modules.main.MainModule.MainNavigation
 import io.horizontalsystems.bankwallet.modules.manageaccount.dialogs.BackupRequiredDialog
 import io.horizontalsystems.bankwallet.modules.market.MarketScreen
@@ -74,10 +77,15 @@ class MainFragment : BaseComposeFragment() {
 
     private val transactionsViewModel by navGraphViewModels<TransactionsViewModel>(R.id.mainFragment) { TransactionsModule.Factory() }
 
+    private val browserViewModel by viewModels<BrowserViewModel>()
+
+
+
     @Composable
     override fun GetContent(navController: NavController) {
         MainScreenWithRootedDeviceCheck(
             transactionsViewModel = transactionsViewModel,
+            browserViewModel = browserViewModel,
             navController = navController,
         )
     }
@@ -99,13 +107,14 @@ class MainFragment : BaseComposeFragment() {
 @Composable
 private fun MainScreenWithRootedDeviceCheck(
     transactionsViewModel: TransactionsViewModel,
+    browserViewModel: BrowserViewModel,
     navController: NavController,
     rootedDeviceViewModel: RootedDeviceViewModel = viewModel(factory = RootedDeviceModule.Factory())
 ) {
     if (rootedDeviceViewModel.showRootedDeviceWarning) {
         RootedDeviceScreen { rootedDeviceViewModel.ignoreRootedDeviceWarning() }
     } else {
-        MainScreen(transactionsViewModel, navController)
+        MainScreen(transactionsViewModel, browserViewModel , navController)
     }
 }
 
@@ -113,6 +122,7 @@ private fun MainScreenWithRootedDeviceCheck(
 @Composable
 private fun MainScreen(
     transactionsViewModel: TransactionsViewModel,
+    browserViewModel: BrowserViewModel,
     fragmentNavController: NavController,
     viewModel: MainViewModel = viewModel(factory = MainModule.Factory())
 ) {
@@ -229,6 +239,7 @@ private fun MainScreen(
                             )
 
                             MainNavigation.Settings -> SettingsScreen(fragmentNavController)
+                            MainNavigation.Browser ->  MainBrowserPage(fragmentNavController,browserViewModel)
                         }
                     }
                 }

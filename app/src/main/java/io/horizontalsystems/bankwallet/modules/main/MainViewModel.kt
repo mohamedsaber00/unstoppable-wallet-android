@@ -68,12 +68,14 @@ class MainViewModel(
                 MainNavigation.Market,
                 MainNavigation.Balance,
                 MainNavigation.Transactions,
+                MainNavigation.Browser,
                 MainNavigation.Settings,
             )
         } else {
             listOf(
                 MainNavigation.Balance,
                 MainNavigation.Transactions,
+                MainNavigation.Browser,
                 MainNavigation.Settings,
             )
         }
@@ -245,6 +247,12 @@ class MainViewModel(
                 enabled = true,
             )
         }
+
+        MainNavigation.Browser -> MainModule.NavigationViewItem(
+            mainNavItem = item,
+            selected = selected,
+            enabled = true,
+        )
     }
 
     private fun getTabIndexToOpen(): Int {
