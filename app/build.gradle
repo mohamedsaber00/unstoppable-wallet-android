@@ -15,7 +15,7 @@ plugins {
 android {
 
     defaultConfig {
-        applicationId "io.satoshifx.bankwallet"
+        applicationId "io.DexBank.bankwallet"
         compileSdk compile_sdk_version
         minSdkVersion min_sdk_version
         targetSdkVersion compile_sdk_version
@@ -31,22 +31,22 @@ android {
             checkReleaseBuilds false
         }
 
-        resValue "string", "companyWebPageLink", "https://www.satoshifx.com"
-        resValue "string", "appWebPageLink", "https://www.satoshifx.com"
-        resValue "string", "analyticsLink", "https://unstoppable.money/analytics"
-        resValue "string", "appGithubLink", "https://github.com/horizontalsystems/unstoppable-wallet-android"
-        resValue "string", "appTwitterLink", "https://twitter.com/UnstoppableByHS"
-        resValue "string", "appTelegramLink", "https://t.me/unstoppable_announcements"
-        resValue "string", "reportEmail", "support.unstoppable@protonmail.com"
-        resValue "string", "appTwitterLink", "https://twitter.com/Satoshifx6"
-        resValue "string", "appTelegramLink", "https://t.me/satoshifx"
-        resValue "string", "appRedditLink", "https://www.reddit.com/user/satoshifx6"
-        resValue "string", "reportEmail", "info@satoshifx.com"
-        resValue "string", "releaseNotesUrl", "https://api.github.com/repos/horizontalsystems/unstoppable-wallet-android/releases/tags/"
-        resValue "string", "walletConnectAppMetaDataName", "Unstoppable"
-        resValue "string", "walletConnectAppMetaDataUrl", "unstoppable.money"
+        resValue "string", "companyWebPageLink", "https://dexbank.io/"
+        resValue "string", "appWebPageLink", "https://dexbank.io/"
+        resValue "string", "analyticsLink", "https://DexBank.money/analytics"
+        resValue "string", "appGithubLink", "https://github.com/horizontalsystems/DexBank-wallet-android"
+        resValue "string", "appTwitterLink", "https://twitter.com/DexBankByHS"
+        resValue "string", "appTelegramLink", "https://t.me/DexBank_announcements"
+        resValue "string", "reportEmail", "support.DexBank@protonmail.com"
+        resValue "string", "appTwitterLink", "https://twitter.com/https://dexbank.io/"
+        resValue "string", "appTelegramLink", "https://t.me/DexBank"
+        resValue "string", "appRedditLink", "https://www.reddit.com/user/DexBank6"
+        resValue "string", "reportEmail", "info@DexBank.io"
+        resValue "string", "releaseNotesUrl", "https://api.github.com/repos/horizontalsystems/DexBank-wallet-android/releases/tags/"
+        resValue "string", "walletConnectAppMetaDataName", "DexBank"
+        resValue "string", "walletConnectAppMetaDataUrl", "DexBank.money"
         resValue "string", "walletConnectAppMetaDataIcon", "https://raw.githubusercontent.com/horizontalsystems/HS-Design/master/PressKit/UW-AppIcon-on-light.png"
-        resValue "string", "accountsBackupFileSalt", "satoshifx"
+        resValue "string", "accountsBackupFileSalt", "DexBank"
     }
 
     buildFeatures {
@@ -119,7 +119,7 @@ android {
             resValue "string", "ftmscanApiKey", "JAWRPW27KEMVXMJJ9UKY63CVPH3X5V9SMP"
             resValue "string", "is_release", "true"
             resValue "string", "guidesUrl", "https://raw.githubusercontent.com/horizontalsystems/blockchain-crypto-guides/v1.2/index.json"
-            resValue "string", "faqUrl", "https://raw.githubusercontent.com/horizontalsystems/Unstoppable-Wallet-Website/v1.3/src/faq.json"
+            resValue "string", "faqUrl", "https://raw.githubusercontent.com/horizontalsystems/DexBank-Wallet-Website/v1.3/src/faq.json"
             resValue "string", "coinsJsonUrl", "https://raw.githubusercontent.com/horizontalsystems/cryptocurrencies/v0.21/coins.json"
             resValue "string", "providerCoinsJsonUrl", "https://raw.githubusercontent.com/horizontalsystems/cryptocurrencies/v0.21/provider.coins.json"
             resValue "string", "marketApiBaseUrl", "https://api.blocksdecoded.com"

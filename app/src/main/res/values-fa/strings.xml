@@ -418,7 +418,7 @@
     <string name="SettingsCurrency_Title">ارز مرجع</string>
     <string name="SettingsCurrency_Other">غیره</string>
     <string name="SettingsCurrency_DisclaimerTitle">سلب مسئولیت</string>
-    <string name="SettingsCurrency_DisclaimerText">The exchange rate data provided by a third party service Coingecko.com\n\nUnstoppable wallet app doesn\'t guarantee these values are always correct and match market data. The chance for inconsistency is higher if you select any base currency other than %s.</string>
+    <string name="SettingsCurrency_DisclaimerText">The exchange rate data provided by a third party service Coingecko.com\n\nDexBank wallet app doesn\'t guarantee these values are always correct and match market data. The chance for inconsistency is higher if you select any base currency other than %s.</string>
     <string name="SettingsCurrency_Understand">می فهمم</string>
     <!--Settings-->
     <string name="Settings_Title">تنظيمات</string>
@@ -738,7 +738,7 @@
     <string name="BalanceSyncError_ReportButtonExplanation">در صورت تصمیم به گزارش آن ، متن خطا در کلیپ بورد شما کپی خواهد شد.</string>
     <!--Release notes-->
     <string name="ReleaseNotes_FollowUs">ما را دنبال کنید</string>
-    <string name="ProUsersInfo_UnstoppablePass">غیرقابل توقف %s</string>
+    <string name="ProUsersInfo_DexBankPass">غیرقابل توقف %s</string>
     <!--Widget-->
     <string name="WidgetList_Config_Title">انتخاب نوع</string>
     <!--Alert-->
