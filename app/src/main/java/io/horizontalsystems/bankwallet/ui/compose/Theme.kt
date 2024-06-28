@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.Density
 
 
 val lightPalette = Colors(
-    jacob = YellowL,
+    jacob = BlueL,
     remus = GreenL,
     lucian = RedL,
     tyler = Light,
@@ -30,7 +30,7 @@ val lightPalette = Colors(
 )
 
 val darkPalette = Colors(
-    jacob = YellowD,
+    jacob = BlueD,
     remus = GreenD,
     lucian = RedD,
     tyler = Dark,
