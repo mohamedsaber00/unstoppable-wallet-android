@@ -275,6 +275,7 @@ val MainModule.MainNavigation.statTab: StatTab
         MainModule.MainNavigation.Transactions -> StatTab.Transactions
         MainModule.MainNavigation.Settings -> StatTab.Settings
         MainModule.MainNavigation.Browser -> StatTab.Browser
+        MainModule.MainNavigation.Swap -> StatTab.Swap
     }
 
 val TopMarket.statMarketTop: StatMarketTop
