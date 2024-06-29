@@ -30,9 +30,9 @@ object AppearanceModule {
 }
 
 enum class AppIcon(val icon: Int, val titleText: String) : WithTranslatableTitle {
-    Main(R.mipmap.ic_launcher, "Main"),
-    Dark(R.mipmap.ic_launcher_dark, "Dark"),
-    Mono(R.drawable.launcher_main_foreground, "Mono"),
+    Main(R.drawable.ic_launcher_foreground, "Main"),
+    Dark(R.drawable.ic_launcher_foreground, "Dark"),
+    Mono(R.drawable.ic_launcher_foreground, "Mono"),
     Leo(R.drawable.launcher_leo_preview, "Leo"),
     Mustang(R.drawable.launcher_mustang_preview, "Mustang"),
     Yak(R.drawable.launcher_yak_preview, "Yak"),

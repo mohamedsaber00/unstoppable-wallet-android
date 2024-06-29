@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.core.App
 import io.horizontalsystems.bankwallet.core.managers.RateAppManager
@@ -464,7 +465,7 @@ private fun SettingsFooter(appVersion: String, companyWebPage: String) {
                 .clickable {
                     LinkHelper.openLinkInAppBrowser(context, companyWebPage)
                 },
-            painter = painterResource(id = R.mipmap.ic_launcher),
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = null,
         )
         caption_grey(
