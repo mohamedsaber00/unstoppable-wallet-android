@@ -33,7 +33,7 @@ fun TextImportantWarning(
         title = title,
         icon = icon,
         borderColor = ComposeAppTheme.colors.jacob,
-        backgroundColor = ComposeAppTheme.colors.yellow20,
+        backgroundColor = ComposeAppTheme.colors.jacob,
         textColor = ComposeAppTheme.colors.jacob,
         iconColor = ComposeAppTheme.colors.jacob
     )

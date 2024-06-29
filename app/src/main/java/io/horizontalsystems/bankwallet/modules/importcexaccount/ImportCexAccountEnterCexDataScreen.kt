@@ -27,7 +27,7 @@ import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.TranslatableString
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryTransparent
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellowWithSpinner
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlueWithSpinner
 import io.horizontalsystems.bankwallet.ui.compose.components.FormsInput
 import io.horizontalsystems.bankwallet.ui.compose.components.HsBackButton
 import io.horizontalsystems.bankwallet.ui.compose.components.InfoText
@@ -141,7 +141,7 @@ private fun ImportBinanceCexAccountScreen(
             }
             ButtonsGroupWithShade {
                 Column(Modifier.padding(horizontal = 24.dp)) {
-                    ButtonPrimaryYellowWithSpinner(
+                    ButtonPrimaryBlueWithSpinner(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(R.string.Button_Connect),
                         enabled = connectEnabled,

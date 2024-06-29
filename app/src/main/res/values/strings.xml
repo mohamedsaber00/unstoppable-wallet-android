@@ -76,7 +76,7 @@
     <string name="Any">Any</string>
     <string name="SyncError">Sync error. Try Again</string>
 
-    <string name="FooterText" translatable="false">© Horizontal Systems 2022</string>
+    <string name="FooterText" translatable="false">© DexBank 2022</string>
 
     <string name="PercentTitle">Percent</string>
 
@@ -971,7 +971,7 @@
     <string name="Settings_ShareThisWallet">Tell Friends</string>
     <string name="Settings_InfoTitleWithVersion" translatable="false">DexBank %s</string>
     <string name="Settings_InfoSubtitle" translatable="false">decentralized app</string>
-    <string name="Settings_CompanyName" translatable="false">horizontal systems</string>
+    <string name="Settings_CompanyName" translatable="false">DexBank</string>
     <string name="Settings_Faq" translatable="false">FAQ</string>
     <string name="Settings_AppStatus">App Status</string>
     <string name="Settings_WalletConnect" translatable="false">WalletConnect</string>
@@ -1939,7 +1939,7 @@
 
     <!--Release notes-->
 
-    <string name="ReleaseNotes_JoinUnstoppables">JOIN UNSTOPPABLES</string>
+    <string name="ReleaseNotes_JoinUnstoppables">JOIN DexBank</string>
     <string name="ReleaseNotes_FollowUs">Follow Us</string>
     <string name="CoinPage_Chart_Locked">Locked</string>
     <string name="ProUsersInfo_Title">Pro Users</string>

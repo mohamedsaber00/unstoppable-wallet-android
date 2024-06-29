@@ -186,7 +186,7 @@ fun ButtonPrimaryBlue(
 }
 
 @Composable
-fun ButtonPrimaryYellowWithIcon(
+fun ButtonPrimaryBlueWithIcon(
     modifier: Modifier = Modifier,
     icon: Int,
     iconTint: Color? = null,
@@ -198,7 +198,7 @@ fun ButtonPrimaryYellowWithIcon(
         modifier = modifier,
         onClick = onClick,
         buttonColors = ButtonPrimaryDefaults.textButtonColors(
-            backgroundColor = ComposeAppTheme.colors.yellowD,
+            backgroundColor = ComposeAppTheme.colors.jacob,
             contentColor = ComposeAppTheme.colors.dark,
             disabledBackgroundColor = ComposeAppTheme.colors.steel20,
             disabledContentColor = ComposeAppTheme.colors.grey50,
@@ -249,7 +249,7 @@ fun ButtonPrimaryRed(
 }
 
 @Composable
-fun ButtonPrimaryYellowWithSpinner(
+fun ButtonPrimaryBlueWithSpinner(
     modifier: Modifier = Modifier,
     title: String,
     onClick: () -> Unit,
@@ -261,7 +261,7 @@ fun ButtonPrimaryYellowWithSpinner(
         modifier = modifier,
         onClick = onClick,
         buttonColors = ButtonPrimaryDefaults.textButtonColors(
-            backgroundColor = ComposeAppTheme.colors.yellowD,
+            backgroundColor = ComposeAppTheme.colors.jacob,
             contentColor = ComposeAppTheme.colors.dark,
             disabledBackgroundColor = ComposeAppTheme.colors.steel20,
             disabledContentColor = ComposeAppTheme.colors.grey50,

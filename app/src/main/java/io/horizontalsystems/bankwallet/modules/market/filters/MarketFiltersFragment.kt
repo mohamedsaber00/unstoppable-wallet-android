@@ -43,7 +43,7 @@ import io.horizontalsystems.bankwallet.modules.market.filters.MarketFiltersModul
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.TranslatableString
 import io.horizontalsystems.bankwallet.ui.compose.components.AppBar
-import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellowWithSpinner
+import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryBlueWithSpinner
 import io.horizontalsystems.bankwallet.ui.compose.components.CellUniversalLawrenceSection
 import io.horizontalsystems.bankwallet.ui.compose.components.HeaderText
 import io.horizontalsystems.bankwallet.ui.compose.components.HsBackButton
@@ -142,7 +142,7 @@ private fun AdvancedSearchScreen(
                 }
 
                 ButtonsGroupWithShade {
-                    ButtonPrimaryYellowWithSpinner(
+                    ButtonPrimaryBlueWithSpinner(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp),

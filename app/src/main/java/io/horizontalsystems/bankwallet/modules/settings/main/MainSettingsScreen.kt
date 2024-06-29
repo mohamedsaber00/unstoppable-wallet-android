@@ -323,26 +323,6 @@ private fun SettingSections(
 
     // VSpacer(32.dp)
 
-    CellUniversalLawrenceSection(
-        listOf({
-            HsSettingCell(
-                R.string.Settings_Telegram,
-                R.drawable.ic_telegram_20,
-                onClick = {
-                    LinkHelper.openLinkInAppBrowser(context, App.appConfigProvider.appTelegramLink)
-                }
-            )
-        }, {
-            HsSettingCell(
-                R.string.Settings_Twitter,
-                R.drawable.ic_twitter_20,
-                onClick = {
-                    LinkHelper.openLinkInAppBrowser(context, App.appConfigProvider.appTwitterLink)
-                }
-            )
-        })
-    )
-
     VSpacer(32.dp)
 
     CellUniversalLawrenceSection(
@@ -481,7 +461,7 @@ private fun SettingsFooter(appVersion: String, companyWebPage: String) {
                 .clickable {
                     LinkHelper.openLinkInAppBrowser(context, companyWebPage)
                 },
-            painter = painterResource(id = R.drawable.ic_company_logo),
+            painter = painterResource(id = R.mipmap.ic_launcher),
             contentDescription = null,
         )
         caption_grey(

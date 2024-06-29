@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Paired Colors-->
-    <color name="jacob">@color/yellow_d</color>
+    <color name="jacob">@color/blue_d</color>
     <color name="remus">@color/green_d</color>
     <color name="lucian">@color/red_d</color>
     <color name="tyler">@color/dark</color>
