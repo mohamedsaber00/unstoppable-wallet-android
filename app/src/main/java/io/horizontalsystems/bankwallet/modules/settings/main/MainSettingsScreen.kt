@@ -381,7 +381,8 @@ fun HsSettingCell(
     value: String? = null,
     counterBadge: String? = null,
     showAlert: Boolean = false,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    clickable : Boolean = true,
 ) {
     RowUniversal(
         modifier = Modifier.padding(horizontal = 16.dp),
@@ -421,11 +422,13 @@ fun HsSettingCell(
             )
             Spacer(Modifier.width(12.dp))
         }
+        if (clickable){
         Image(
             modifier = Modifier.size(20.dp),
             painter = painterResource(id = R.drawable.ic_arrow_right),
             contentDescription = null,
         )
+        }
     }
 }
 

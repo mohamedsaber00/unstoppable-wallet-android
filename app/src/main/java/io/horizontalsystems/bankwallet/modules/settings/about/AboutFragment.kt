@@ -115,10 +115,11 @@ private fun SettingSections(
                 icon = R.drawable.ic_info_20,
                 value = viewModel.appVersion,
                 onClick = {
-                    navController.navigate(ReleaseNotesPage)
+              //      navController.navigate(ReleaseNotesPage)
 
-                    stat(page = StatPage.AboutApp, event = StatEvent.Open(StatPage.WhatsNew))
-                }
+                //    stat(page = StatPage.AboutApp, event = StatEvent.Open(StatPage.WhatsNew))
+                },
+                clickable = false
             )
         }
     )
