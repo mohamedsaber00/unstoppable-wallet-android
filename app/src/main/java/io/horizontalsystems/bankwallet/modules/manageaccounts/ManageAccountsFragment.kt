@@ -174,10 +174,10 @@ private fun AccountsSection(accounts: List<AccountViewItem>, viewModel: ManageAc
             val icon: Int
             val iconTint: Color
             if (accountViewItem.showAlertIcon) {
-                icon = R.drawable.icon_warning_2_20
+                icon = R.drawable.icon_triangle_warning_20
                 iconTint = ComposeAppTheme.colors.lucian
             } else {
-                icon = R.drawable.ic_more2_20
+                icon = R.drawable.ic_more_20
                 iconTint = ComposeAppTheme.colors.leah
             }
 

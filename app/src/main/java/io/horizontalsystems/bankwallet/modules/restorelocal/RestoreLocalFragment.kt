@@ -315,7 +315,7 @@ private fun BackupFileItems(
             ConfirmationBottomSheet(
                 title = stringResource(R.string.BackupManager_MergeTitle),
                 text = stringResource(R.string.BackupManager_MergeDescription),
-                iconPainter = painterResource(R.drawable.icon_warning_2_20),
+                iconPainter = painterResource(R.drawable.icon_triangle_warning_20),
                 iconTint = ColorFilter.tint(ComposeAppTheme.colors.lucian),
                 confirmText = stringResource(R.string.BackupManager_MergeButton),
                 cautionType = Caution.Type.Error,

@@ -378,7 +378,7 @@ private fun ActionButtonsRow(
         if (!watchAccount) {
             ReceiveActionButton(
                 modifier = itemModifier,
-                icon = R.drawable.ic_edit_24px,
+                icon = R.drawable.ic_edit_24,
                 buttonText = stringResource(R.string.Button_SetAmount),
                 onClick = {
                     openAmountDialog.value = true
@@ -400,7 +400,7 @@ private fun ActionButtonsRow(
         }
         ReceiveActionButton(
             modifier = itemModifier,
-            icon = R.drawable.ic_copy_24px,
+            icon = R.drawable.ic_copy_24,
             buttonText = stringResource(R.string.Button_Copy),
             onClick = {
                 TextHelper.copyText(uri)

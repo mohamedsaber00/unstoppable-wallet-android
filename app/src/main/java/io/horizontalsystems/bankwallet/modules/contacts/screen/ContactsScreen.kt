@@ -123,7 +123,7 @@ fun ContactsScreen(
                     ConfirmationBottomSheet(
                         title = stringResource(R.string.Alert_TitleWarning),
                         text = warningMessage ?: "",
-                        iconPainter = painterResource(R.drawable.icon_warning_2_20),
+                        iconPainter = painterResource(R.drawable.icon_triangle_warning_20),
                         iconTint = ColorFilter.tint(ComposeAppTheme.colors.jacob),
                         confirmText = stringResource(R.string.Contacts_AddAddress_Replace),
                         cautionType = Caution.Type.Warning,
@@ -146,7 +146,7 @@ fun ContactsScreen(
                     ConfirmationBottomSheet(
                         title = stringResource(R.string.Alert_TitleWarning),
                         text = stringResource(R.string.Contacts_Restore_Warning),
-                        iconPainter = painterResource(R.drawable.icon_warning_2_20),
+                        iconPainter = painterResource(R.drawable.icon_triangle_warning_20),
                         iconTint = ColorFilter.tint(ComposeAppTheme.colors.jacob),
                         confirmText = stringResource(R.string.Contacts_AddAddress_Replace),
                         cautionType = Caution.Type.Error,
@@ -189,7 +189,7 @@ fun ContactsScreen(
                         add(
                             MenuItem(
                                 title = TranslatableString.ResString(R.string.Contacts_ActionMore),
-                                icon = R.drawable.ic_more2_20,
+                                icon = R.drawable.ic_more_20,
                                 tint = ComposeAppTheme.colors.jacob,
                                 enabled = true,
                                 onClick = {

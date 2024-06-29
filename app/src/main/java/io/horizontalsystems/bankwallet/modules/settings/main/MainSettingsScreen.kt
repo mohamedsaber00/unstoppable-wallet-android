@@ -180,7 +180,7 @@ private fun SettingSections(
         }, {
             HsSettingCell(
                 R.string.BackupManager_Title,
-                R.drawable.ic_file_24,
+                R.drawable.ic_folder_24,
                 onClick = {
                     navController.slideFromRight(R.id.backupManagerFragment)
 
@@ -198,7 +198,7 @@ private fun SettingSections(
             {
                 HsSettingCell(
                     R.string.Settings_SecurityCenter,
-                    R.drawable.ic_security,
+                    R.drawable.ic_security_20,
                     showAlert = uiState.securityCenterShowAlert,
                     onClick = {
                         navController.slideFromRight(R.id.securitySettingsFragment)

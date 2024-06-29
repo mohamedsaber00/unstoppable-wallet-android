@@ -97,7 +97,7 @@ fun BackupRequiredScreen(navController: NavController, account: Account, text: S
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp),
                 title = stringResource(R.string.BackupRecoveryPhrase_LocalBackup),
-                icon = R.drawable.ic_file_24,
+                icon = R.drawable.ic_folder_24,
                 iconTint = ComposeAppTheme.colors.claude,
                 onClick = {
                     navController.slideFromBottom(R.id.backupLocalFragment, account)

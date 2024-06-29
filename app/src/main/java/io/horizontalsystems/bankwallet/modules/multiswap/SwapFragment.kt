@@ -483,7 +483,7 @@ private fun ProviderField(
             modifier = Modifier.clickable(
                 onClick = onClickProviderSettings
             ),
-            painter = painterResource(R.drawable.ic_manage_2),
+            painter = painterResource(R.drawable.ic_manage_20),
             contentDescription = "",
             tint = ComposeAppTheme.colors.grey
         )

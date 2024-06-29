@@ -30,7 +30,7 @@ fun CustomKeyboardWarningDialog(
                 .background(ComposeAppTheme.colors.lawrence)
         ) {
             BottomSheetsElementsHeader(
-                icon = painterResource(R.drawable.icon_24_warning_2),
+                icon = painterResource(R.drawable.icon_triangle_warning_24),
                 title = stringResource(R.string.Alert_TitleWarning),
                 subtitle = stringResource(R.string.Keyboard),
                 onClickClose = onCancel

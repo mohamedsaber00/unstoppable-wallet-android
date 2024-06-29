@@ -206,7 +206,7 @@ private fun BackupActions(
                 actionItems.add {
                     YellowActionItem(
                         title = stringResource(id = R.string.ManageAccount_LocalBackup),
-                        icon = painterResource(id = R.drawable.ic_file_24),
+                        icon = painterResource(id = R.drawable.ic_folder_24),
                         attention = action.showAttention
                     ) {
                         navController.authorizedAction {

@@ -60,7 +60,7 @@ private fun ErrorDisplayScreen(
 ) {
     ComposeAppTheme {
         BottomSheetHeader(
-            iconPainter = painterResource(R.drawable.icon_24_warning_2),
+            iconPainter = painterResource(R.drawable.icon_triangle_warning_24),
             iconTint = ColorFilter.tint(ComposeAppTheme.colors.lucian),
             title = title,
             onCloseClick = {

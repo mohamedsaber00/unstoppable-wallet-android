@@ -89,7 +89,7 @@ fun TransactionsScreen(
                 menuItems = listOf(
                     MenuItem(
                         title = TranslatableString.ResString(R.string.Transactions_Filter),
-                        icon = R.drawable.ic_manage_2_24,
+                        icon = R.drawable.ic_manage_24,
                         showAlertDot = showFilterAlertDot,
                         onClick = {
                             navController.slideFromRight(R.id.transactionFilterFragment)
@@ -117,7 +117,7 @@ fun TransactionsScreen(
                             if (syncing) {
                                 ListEmptyView(
                                     text = stringResource(R.string.Transactions_WaitForSync),
-                                    icon = R.drawable.ic_clock
+                                    icon = R.drawable.ic_circle_clock_48
                                 )
                             } else {
                                 ListEmptyView(

@@ -298,7 +298,7 @@ private fun AssetContent(
                         }
                     }
                     ButtonPrimaryCircle(
-                        icon = R.drawable.ic_more_24,
+                        icon = R.drawable.ic_more2_24,
                         onClick = {
                             showActionSelectorDialog = true
                         }

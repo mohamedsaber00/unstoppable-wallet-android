@@ -14,13 +14,13 @@ enum class ThemeType(
     Dark(
         "Dark",
         TranslatableString.ResString(R.string.SettingsTheme_Dark),
-        R.drawable.ic_theme_dark
+        R.drawable.ic_theme_dark_20
     ),
     @SerializedName("light")
     Light(
         "Light",
         TranslatableString.ResString(R.string.SettingsTheme_Light),
-        R.drawable.ic_theme_light
+        R.drawable.ic_theme_light_20
     ),
     @SerializedName("system")
     System(

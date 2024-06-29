@@ -530,7 +530,7 @@ fun SuggestionsBar(
             } else {
                 Icon(
                     modifier = Modifier.align(Alignment.Center),
-                    painter = painterResource(R.drawable.ic_more_24),
+                    painter = painterResource(R.drawable.ic_more2_24),
                     tint = ComposeAppTheme.colors.grey,
                     contentDescription = null
                 )

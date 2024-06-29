@@ -176,7 +176,7 @@ private fun SettingSections(
         }, {
             HsSettingCell(
                 R.string.SettingsAboutApp_Site,
-                R.drawable.ic_globe,
+                R.drawable.ic_globe_24,
                 onClick = {
                     LinkHelper.openLinkInAppBrowser(context, viewModel.appWebPageLink)
 

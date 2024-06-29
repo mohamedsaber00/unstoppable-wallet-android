@@ -168,24 +168,24 @@ fun DetectorCell(
     issues.firstOrNull()?.let {
         when (it.impact) {
             "Critical" -> {
-                iconResource = R.drawable.ic_warning_24
+                iconResource = R.drawable.ic_circle_warning_24
                 iconTint = ComposeAppTheme.colors.lucian
             }
 
             "High" -> {
-                iconResource = R.drawable.ic_warning_24
+                iconResource = R.drawable.ic_circle_warning_24
                 iconTint = ComposeAppTheme.colors.jacob
             }
 
             "Low" -> {
-                iconResource = R.drawable.ic_warning_24
+                iconResource = R.drawable.ic_circle_warning_24
                 iconTint = ComposeAppTheme.colors.remus
             }
 
             "Informational",
             "Optimization" -> {
                 if (issues.isNotEmpty()) {
-                    iconResource = R.drawable.ic_warning_24
+                    iconResource = R.drawable.ic_circle_warning_24
                     iconTint = ComposeAppTheme.colors.laguna
                 }
             }

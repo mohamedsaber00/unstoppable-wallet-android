@@ -101,7 +101,7 @@ fun TokenBalanceScreen(
                 if (transactionItems == null) {
                     ListEmptyView(
                         text = stringResource(R.string.Transactions_WaitForSync),
-                        icon = R.drawable.ic_clock
+                        icon = R.drawable.ic_circle_clock_48
                     )
                 } else {
                     ListEmptyView(
