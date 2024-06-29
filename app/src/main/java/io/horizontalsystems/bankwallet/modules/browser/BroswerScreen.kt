@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
@@ -29,6 +28,8 @@ import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Tab
+import androidx.compose.material.TabRowDefaults
+import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,19 +42,19 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
+import io.horizontalsystems.bankwallet.ui.compose.components.body_leah
+import io.horizontalsystems.bankwallet.ui.compose.components.caption_leah
+import io.horizontalsystems.bankwallet.ui.compose.components.subhead2_grey
 
 @Composable
 fun BrowserScreen(
 ) {
     Column(
-        modifier = Modifier.background(ComposeAppTheme.colors.dark)
     )
     {
         //    TopBar()
@@ -63,67 +64,25 @@ fun BrowserScreen(
     }
 }
 
-
-/*@Composable
-fun TopBar() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = ComposeAppTheme.colors.steelDark)
-            .padding(start = 16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            imageVector = Icons.Filled.AccountCircle,
-            tint = ComposeAppTheme.colors.grey,
-            contentDescription = null
-        )
-
-
-        TextField(
-            modifier = Modifier
-                .weight(1f)
-                .padding(8.dp),
-            value = "",
-            onValueChange = {},
-            placeholder = { Text("Search or type a URL") },
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Filled.Search,
-                    tint = ComposeAppTheme.colors.grey,
-                    contentDescription = "Add"
-                )
-            },
-            colors = TextFieldDefaults.textFieldColors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                backgroundColor = Color.Transparent,
-                cursorColor = ComposeAppTheme.colors.jacob,
-                textColor = ComposeAppTheme.colors.white,
-                placeholderColor = ComposeAppTheme.colors.grey
-            ),
-        )
-        IconButton(onClick = { *//* TODO: Handle click *//* }) {
-            Icon(
-                imageVector = Icons.Filled.Add,
-                tint = ComposeAppTheme.colors.grey,
-                contentDescription = "Add"
-            )
-        }
-    }
-}*/
-
 @Composable
 fun TopRow() {
+    //TODO USE ScrollableTabs Instead
     ScrollableTabRow(
         selectedTabIndex = 0,
-        backgroundColor = ComposeAppTheme.colors.dark,
-        contentColor = Color.White,
-        edgePadding = 0.dp
+        backgroundColor = ComposeAppTheme.colors.transparent,
+        contentColor = ComposeAppTheme.colors.tyler,
+        edgePadding = 16.dp,
+        indicator = @Composable { tabPositions ->
+            TabRowDefaults.Indicator(
+                modifier = Modifier
+                    .tabIndicatorOffset(tabPositions[0])
+                    .clip(RoundedCornerShape(topStart = 2.dp, topEnd = 2.dp)),
+                color = ComposeAppTheme.colors.jacob
+            )
+        }
     ) {
         BrowserTab(selected = true, onClick = { /*TODO*/ }) {
-            Text("Apps", color = Color.White)
+            Text("Apps", color = ComposeAppTheme.colors.leah)
         }
         BrowserTab(selected = false, onClick = { /*TODO*/ }) {
             Text("Tokens", color = Color.Gray)
@@ -216,7 +175,10 @@ fun FeaturedAppCard(app: App) {
         elevation = 4.dp
     ) {
         Box(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .background(ComposeAppTheme.colors.lawrence)
+                .padding(8.dp)
         ) {
             Image(
                 painter = rememberAsyncImagePainter(app.cover),
@@ -228,21 +190,14 @@ fun FeaturedAppCard(app: App) {
 
             Row(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .background(ComposeAppTheme.colors.dark)
-            ) {
+                    .align(Alignment.BottomCenter)) {
                 Column(Modifier.weight(1f)) {
-                    Text(
-                        text = app.name,
-                        style = MaterialTheme.typography.h6,
-                        fontWeight = FontWeight.Bold,
-                        color = ComposeAppTheme.colors.white
+                    body_leah(
+                        text = app.name
                     )
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = app.category,
-                        style = MaterialTheme.typography.body2,
-                        color = ComposeAppTheme.colors.lightGrey
+                    caption_leah(
+                        text = app.category
                     )
                 }
 
@@ -291,16 +246,11 @@ fun TrendingAppItem(trendingApp: TrendingApp) {
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column {
-            Text(
+            body_leah(
                 text = trendingApp.name,
-                style = MaterialTheme.typography.body1,
-                fontWeight = FontWeight.Bold,
-                color = ComposeAppTheme.colors.white
             )
-            Text(
+            subhead2_grey(
                 text = trendingApp.category,
-                style = MaterialTheme.typography.body2,
-                color = ComposeAppTheme.colors.lightGrey
             )
         }
     }
@@ -504,28 +454,6 @@ var trendingApps = listOf(
 
 )
 
-@Composable
-fun AppItem(name: String, category: String, imageUrl: String, bgColor: Color) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp)
-    ) {
-        Image(
-            painter = rememberAsyncImagePainter(imageUrl),
-            contentDescription = null,
-            modifier = Modifier
-                .size(64.dp)
-                .background(bgColor, CircleShape)
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        Column {
-            Text(name, color = Color.White, fontSize = 18.sp)
-            Text(category, color = Color.Gray, fontSize = 14.sp)
-        }
-    }
-}
-
 
 @Composable
 fun BrowserTab(
@@ -551,25 +479,20 @@ fun NetworkSample(
     onNetworkTypeSelected: (NetworkType) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
-
-
     Card(
         modifier = Modifier
             .wrapContentSize(),
         shape = RoundedCornerShape(16.dp)
     ) {
-
         Row(
             modifier = Modifier
                 .clickable { expanded = !expanded }
-                .background(ComposeAppTheme.colors.steelDark),
+                .background(ComposeAppTheme.colors.lawrence),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
+            body_leah(
                 text = selectedNetworkType.displayName,
                 modifier = Modifier.padding(8.dp),
-                style = MaterialTheme.typography.body2,
-                color = ComposeAppTheme.colors.white
             )
             Icon(
                 painter = painterResource(R.drawable.ic_down_arrow_20),
@@ -579,11 +502,11 @@ fun NetworkSample(
             )
         }
         DropdownMenu(
-            modifier = Modifier.background(ComposeAppTheme.colors.steelDark),
+            modifier = Modifier.background(ComposeAppTheme.colors.lawrence),
             expanded = expanded,
             onDismissRequest = { expanded = false }) {
             DropdownMenuItem(
-                content = { Text("Solana", color = ComposeAppTheme.colors.white) },
+                content = { body_leah("Solana") },
                 onClick = {
                     expanded = false
                     onNetworkTypeSelected(NetworkType.SOLANA)
@@ -591,21 +514,21 @@ fun NetworkSample(
                 }
             )
             DropdownMenuItem(
-                content = { Text("Ethereum", color = ComposeAppTheme.colors.white) },
+                content = { body_leah("Ethereum") },
                 onClick = {
                     expanded = false
                     onNetworkTypeSelected(NetworkType.ETHEREUM)
                 },
             )
             DropdownMenuItem(
-                content = { Text("Polygon", color = ComposeAppTheme.colors.white) },
+                content = { body_leah("Polygon") },
                 onClick = {
                     expanded = false
                     onNetworkTypeSelected(NetworkType.POLYGON)
                 },
             )
             DropdownMenuItem(
-                content = { Text("All Networks", color = ComposeAppTheme.colors.white) },
+                content = { body_leah("All Networks") },
                 onClick = {
                     expanded = false
                     onNetworkTypeSelected(NetworkType.ALL_NETWORKS)
@@ -632,23 +555,22 @@ fun TypeDropDown() {
         Row(
             modifier = Modifier
                 .clickable { expanded = !expanded }
-                .background(ComposeAppTheme.colors.steelDark),
+                .background(ComposeAppTheme.colors.lawrence),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-
             DropdownMenu(
-                modifier = Modifier.background(ComposeAppTheme.colors.steelDark),
+                modifier = Modifier.background(ComposeAppTheme.colors.lawrence),
                 expanded = expanded,
                 onDismissRequest = { expanded = false }) {
                 DropdownMenuItem(
-                    content = { Text("Top", color = ComposeAppTheme.colors.white) },
+                    content = { body_leah("Top") },
                     onClick = {
                         expanded = false
                         selectedOption = "Top"
                     },
                 )
                 DropdownMenuItem(
-                    content = { Text("Trending", color = ComposeAppTheme.colors.white) },
+                    content = { body_leah("Trending") },
                     onClick = {
                         expanded = false
                         selectedOption = "Trending"
@@ -656,12 +578,9 @@ fun TypeDropDown() {
                 )
 
             }
-            Text(
+            body_leah(
                 text = selectedOption,
                 modifier = Modifier.padding(8.dp),
-                style = MaterialTheme.typography.body2,
-                color = ComposeAppTheme.colors.white
-
             )
             Icon(
                 painter = painterResource(R.drawable.ic_down_arrow_20),

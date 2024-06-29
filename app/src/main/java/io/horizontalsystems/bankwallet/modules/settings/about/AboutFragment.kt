@@ -111,7 +111,7 @@ private fun SettingSections(
     CellUniversalLawrenceSection(
         listOf {
             HsSettingCell(
-                title = R.string.SettingsAboutApp_AppVersion,
+                title = R.string.     SettingsAboutApp_AppVersion,
                 icon = R.drawable.ic_info_20,
                 value = viewModel.appVersion,
                 onClick = {

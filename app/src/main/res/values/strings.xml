@@ -814,8 +814,11 @@
     <string name="closeAll">Close All</string>
     <string name="action_cancel">Cancel All</string>
     <string name="address_bar">Search or type a URL</string>
-
-
+    <string name="Apps_tab">Apps</string>
+    <string name="Collection_tab">Collectio</string>
+    <string name="Token_tab">Token</string>
+    <string name="Quests_tab">Quests</string>
+    <string name="Learn_tab">Learn</string>
 
     <!--Transactions-->
 
