@@ -37,7 +37,6 @@ fun MainBrowserPage(
         content = {
             Surface(color = ComposeAppTheme.colors.tyler) {
                 MainView()
-
             }
         }
     )
