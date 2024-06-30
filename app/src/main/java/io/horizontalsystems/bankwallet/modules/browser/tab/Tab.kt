@@ -6,7 +6,6 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.runtime.mutableStateOf
-import io.horizontalsystems.bankwallet.core.utils.logD
 import io.horizontalsystems.bankwallet.core.utils.mainScope
 import io.horizontalsystems.bankwallet.core.web.TSWebView
 import io.horizontalsystems.bankwallet.core.web.WebDataListener
@@ -28,7 +27,7 @@ data class Tab(
     val canGoBackState = mutableStateOf(false)
     val canGoForwardState = mutableStateOf(false)
 
-   // val tempHistoryList = mutableListOf<History>()
+    // val tempHistoryList = mutableListOf<History>()
 
     override fun onCreateWindow(message: Message) {
         message.apply {
@@ -59,18 +58,18 @@ data class Tab(
     override fun onReceivedIcon(icon: Bitmap?) {
         val url = urlState.value
 
-/*        mainScope.launch {
-            val search = SearchHistory(
-                view.originalUrl ?: "",
-                System.currentTimeMillis()
-            )
-            search.title = titleState.value
-            search.url = url
-            val dao = AppDatabase.instance.searchHistoryDao()
-            if (dao.getByName(search.query) != null) {
-                dao.update(search)
-            }
-        }*/
+        /*        mainScope.launch {
+                    val search = SearchHistory(
+                        view.originalUrl ?: "",
+                        System.currentTimeMillis()
+                    )
+                    search.title = titleState.value
+                    search.url = url
+                    val dao = AppDatabase.instance.searchHistoryDao()
+                    if (dao.getByName(search.query) != null) {
+                        dao.update(search)
+                    }
+                }*/
     }
 
     override fun doUpdateVisitedHistory(url: String, isReload: Boolean) {
@@ -79,22 +78,22 @@ data class Tab(
         canGoForwardState.value = view.canGoForward()
         mainScope.launch {
             val title = titleState.value
-/*            if (URLUtil.isNetworkUrl(url) && title.isNotBlank() && title != App.instance.getString(R.string.new_tab)) {
-                val last = AppDatabase.instance.historyDao().last()
-                if (url != last?.url && title != last?.title) {
-                    val history = History(
-                        url = url,
-                        title = title,
-                        date = System.currentTimeMillis()
-                    )
-                    if (!Settings.incognito) {
-                        AppDatabase.instance.historyDao().insert(history).apply {
-                            history.id = this
-                            tempHistoryList.add(history)
-                        }
-                    }
-                }
-            }*/
+            /*            if (URLUtil.isNetworkUrl(url) && title.isNotBlank() && title != App.instance.getString(R.string.new_tab)) {
+                            val last = AppDatabase.instance.historyDao().last()
+                            if (url != last?.url && title != last?.title) {
+                                val history = History(
+                                    url = url,
+                                    title = title,
+                                    date = System.currentTimeMillis()
+                                )
+                                if (!Settings.incognito) {
+                                    AppDatabase.instance.historyDao().insert(history).apply {
+                                        history.id = this
+                                        tempHistoryList.add(history)
+                                    }
+                                }
+                            }
+                        }*/
         }
         view.generatePreview()
     }
@@ -138,6 +137,9 @@ data class Tab(
             TabManager.active(it)
             return true
         }
+        if (TabManager.currentTab.value?.isHome == true) {
+            return false
+        }
         return false
     }
 
@@ -148,11 +150,11 @@ data class Tab(
     }
 
     override suspend fun updateInfo() {
-   /*     info.url = urlState.value
-        info.thumbnailPath = previewState.value?.encodeToPath("preview-${info.url}")
-        info.title = titleState.value
-        if (!Settings.incognito) {
-            info.update()
-        }*/
+        /*     info.url = urlState.value
+             info.thumbnailPath = previewState.value?.encodeToPath("preview-${info.url}")
+             info.title = titleState.value
+             if (!Settings.incognito) {
+                 info.update()
+             }*/
     }
 }

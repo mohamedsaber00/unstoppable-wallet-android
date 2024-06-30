@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
+import io.horizontalsystems.bankwallet.core.findActivity
 import io.horizontalsystems.bankwallet.core.utils.logD
 import io.horizontalsystems.bankwallet.core.utils.removeFromParent
 import io.horizontalsystems.bankwallet.modules.browser.components.TSBackHandler
@@ -57,7 +58,12 @@ fun MainView() {
         Box(modifier = Modifier.weight(1f)) {
             TSBackHandler(
                 enabled = tab?.canGoBackState?.value == true,
-                onBack = { tab?.onBackPressed() }) {
+                onBack = {
+                    if (tab?.onBackPressed() != true) {
+                        context.findActivity()?.finish()
+                    }
+                }
+            ) {
                 AndroidView(
                     factory = {
                         FrameLayout(it)
