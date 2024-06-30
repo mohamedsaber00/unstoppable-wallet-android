@@ -46,10 +46,10 @@ fun MainBrowserPage(
 @Composable
 fun MainView() {
     logD("MainView start")
-    val tab = TabManager.currentTab.value
     val context = LocalContext.current
+    TabManager.loadTabs(context)
 
-     TabManager.loadTabs(context)
+    val tab = TabManager.currentTab.value
 
 
     Column(
