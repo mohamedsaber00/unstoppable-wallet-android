@@ -196,6 +196,9 @@ private fun MainScreen(
                                     selectedContentColor = ComposeAppTheme.colors.jacob,
                                     unselectedContentColor = if (item.enabled) ComposeAppTheme.colors.grey else ComposeAppTheme.colors.grey50,
                                     onClick = {
+                                        if (item.selected && item.mainNavItem == MainNavigation.Browser ) {
+                                            browserViewModel.resetTab()
+                                        }
                                         viewModel.onSelect(item.mainNavItem)
 
                                         stat(page = StatPage.Main, event = StatEvent.SwitchTab(item.mainNavItem.statTab))

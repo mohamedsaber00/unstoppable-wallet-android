@@ -28,16 +28,12 @@ class BrowserViewModel : ViewModel() {
         if (urlText.isBlank()) {
             return
         }
-
-        logD("onGo here")
-      /*  if (TabManager.currentTab.value == null) {
-            TabManager.newTab(context).apply {
-                active()
-                loadUrl(urlText.toUrl())
-            }
-        } else */
         TabManager.currentTab.value?.loadUrl(urlText.toUrl())
          editInAddressBar(urlText.toUrl())
+    }
+
+    fun resetTab(){
+        TabManager.currentTab.value?.goHome()
     }
 
 
