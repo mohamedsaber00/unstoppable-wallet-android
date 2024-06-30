@@ -6,9 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import io.horizontalsystems.bankwallet.core.utils.ioScope
 import io.horizontalsystems.bankwallet.core.web.TSWebView
 import io.horizontalsystems.bankwallet.entities.TabInfo
-import io.horizontalsystems.bankwallet.entities.update
 import io.horizontalsystems.bankwallet.modules.browser.BrowserUIState
-import io.horizontalsystems.bankwallet.modules.browser.LocalViewModel
 import kotlinx.coroutines.launch
 
 object TabManager {
@@ -21,7 +19,7 @@ object TabManager {
         val info = TabInfo()
         return Tab(info, webView).apply {
             ioScope.launch {
-         //       AppDatabase.instance.tabDao().insert(info).apply { info.id = this }
+                //       AppDatabase.instance.tabDao().insert(info).apply { info.id = this }
             }
             tabs.add(this)
         }
@@ -36,13 +34,13 @@ object TabManager {
     fun remove(tab: Tab) {
         tabs.remove(tab)
         tab.view.onDestroy()
-    //    tab.info.delete()
+        //    tab.info.delete()
     }
 
     fun removeAll() {
         tabs.forEach {
             it.view.onDestroy()
-        //    it.info.delete()
+            //    it.info.delete()
         }
         tabs.clear()
     }
@@ -61,7 +59,7 @@ object TabManager {
                 it.info.isActive = false
                 it.onPause()
             }
-          //  it.info.update()
+            //  it.info.update()
         }
     }
 
@@ -77,25 +75,8 @@ object TabManager {
         currentTab.value?.view?.pauseTimers()
     }
 
-    suspend fun loadTabs(context: Context) {
+    fun loadTabs(context: Context) {
         if (isInitialized) return
-//        val savedTabs = AppDatabase.instance.tabDao().getAll().map {
-//            Tab(it, TSWebView(context)).apply {
-//                urlState.value = it.url
-//                titleState.value = it.title
-//                ioScope.launch {
-//                    previewState.value = it.thumbnailPath?.decodeBitmap()
-//                }
-//                if (it.isActive) {
-//                    currentTab.value = this
-//                }
-//                view.post {
-//                    view.loadUrl(it.url)
-//                }
-//            }
-//        }
-        tabs.clear()
-     //   tabs.addAll(savedTabs)
         isInitialized = true
         if (tabs.isEmpty()) {
             newTab(context).apply {

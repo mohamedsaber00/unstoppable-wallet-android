@@ -6,6 +6,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.runtime.mutableStateOf
+import io.horizontalsystems.bankwallet.core.utils.logD
 import io.horizontalsystems.bankwallet.core.utils.mainScope
 import io.horizontalsystems.bankwallet.core.web.TSWebView
 import io.horizontalsystems.bankwallet.core.web.WebDataListener
@@ -42,7 +43,7 @@ data class Tab(
                         parentTab = this@Tab
                         loadUrl(url.toString())
                         active()
-                        canGoBackState.value = view.canGoBack() || parentTab != null
+                        canGoBackState.value = true
                     }
                     return true
                 }
@@ -74,7 +75,7 @@ data class Tab(
 
     override fun doUpdateVisitedHistory(url: String, isReload: Boolean) {
         urlState.value = url
-        canGoBackState.value = view.canGoBack() || parentTab != null
+        canGoBackState.value = true
         canGoForwardState.value = view.canGoForward()
         mainScope.launch {
             val title = titleState.value

@@ -13,7 +13,10 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.navigation.NavController
 import io.horizontalsystems.bankwallet.core.utils.logD
 import io.horizontalsystems.bankwallet.core.utils.removeFromParent
@@ -33,8 +36,8 @@ fun MainBrowserPage(
         LocalViewModel provides browserViewModel,
         content = {
             Surface(color = ComposeAppTheme.colors.tyler) {
-
                 MainView()
+
             }
         }
     )
@@ -44,6 +47,10 @@ fun MainBrowserPage(
 fun MainView() {
     logD("MainView start")
     val tab = TabManager.currentTab.value
+    val context = LocalContext.current
+
+     TabManager.loadTabs(context)
+
 
     Column(
         modifier = Modifier
