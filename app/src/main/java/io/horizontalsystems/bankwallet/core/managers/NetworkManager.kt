@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import io.horizontalsystems.bankwallet.core.INetworkManager
+import io.horizontalsystems.bankwallet.entities.browse.DAppResponse
 import io.reactivex.Flowable
 import io.reactivex.Single
 import okhttp3.Interceptor
@@ -14,6 +15,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.*
+import timber.log.Timber
 import java.security.SecureRandom
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
@@ -33,11 +35,19 @@ class NetworkManager : INetworkManager {
         return ServiceChangeLogs.service(host).getReleaseNotes(path)
     }
 
-    override fun getTransaction(host: String, path: String, isSafeCall: Boolean): Flowable<JsonObject> {
+    override fun getTransaction(
+        host: String,
+        path: String,
+        isSafeCall: Boolean
+    ): Flowable<JsonObject> {
         return ServiceFullTransaction.service(host, isSafeCall).getFullTransaction(path)
     }
 
-    override fun getTransactionWithPost(host: String, path: String, body: Map<String, Any>): Flowable<JsonObject> {
+    override fun getTransactionWithPost(
+        host: String,
+        path: String,
+        body: Map<String, Any>
+    ): Flowable<JsonObject> {
         return ServiceFullTransaction.service(host)
             .getFullTransactionWithPost(path, body.mapValues { it.value.toString() })
     }
@@ -52,6 +62,10 @@ class NetworkManager : INetworkManager {
 
     override suspend fun getBep2Tokens(): List<Bep2TokenInfoService.Bep2Token> {
         return Bep2TokenInfoService.service().tokens()
+    }
+
+    override suspend fun  getDApps(): DAppResponse {
+        return DAppsService.service().getDApps()
     }
 }
 
@@ -68,14 +82,18 @@ object ServiceFullTransaction {
 
         @POST
         @Headers("Content-Type: application/json")
-        fun getFullTransactionWithPost(@Url path: String, @Body body: Map<String, String>): Flowable<JsonObject>
+        fun getFullTransactionWithPost(
+            @Url path: String,
+            @Body body: Map<String, String>
+        ): Flowable<JsonObject>
     }
 
 }
 
 object ServicePing {
     fun service(apiURL: String, isSafeCall: Boolean = true): FullTransactionAPI {
-        return APIClient.retrofit(apiURL, timeout = 8, isSafeCall = isSafeCall).create(FullTransactionAPI::class.java)
+        return APIClient.retrofit(apiURL, timeout = 8, isSafeCall = isSafeCall)
+            .create(FullTransactionAPI::class.java)
     }
 
     interface FullTransactionAPI {
@@ -132,6 +150,7 @@ object ServiceGuide {
 }
 
 object ServiceChangeLogs {
+
     fun service(apiURL: String): ChangeLogsAPI {
         return APIClient.retrofit(apiURL, 60)
             .create(ChangeLogsAPI::class.java)
@@ -143,6 +162,26 @@ object ServiceChangeLogs {
         @Headers("Content-Type: application/json")
         suspend fun getReleaseNotes(@Url path: String): JsonObject
     }
+}
+
+object DAppsService {
+
+
+    private val apiURL = "http://195.201.202.44:5000/api/"
+    fun service(): DAppsAPI {
+        return APIClient.retrofit(apiURL, 60)
+            .create(DAppsAPI::class.java)
+    }
+
+    interface DAppsAPI {
+        @GET("dapps")
+        suspend fun getDApps(): DAppResponse
+    }
+
+
+
+
+
 }
 
 object APIClient {

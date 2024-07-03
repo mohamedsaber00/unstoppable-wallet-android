@@ -48,6 +48,7 @@ import io.horizontalsystems.bankwallet.core.stats.StatPage
 import io.horizontalsystems.bankwallet.core.stats.stat
 import io.horizontalsystems.bankwallet.core.stats.statTab
 import io.horizontalsystems.bankwallet.modules.balance.ui.BalanceScreen
+import io.horizontalsystems.bankwallet.modules.browser.BrowserModule
 import io.horizontalsystems.bankwallet.modules.browser.BrowserViewModel
 import io.horizontalsystems.bankwallet.modules.browser.MainBrowserPage
 import io.horizontalsystems.bankwallet.modules.main.MainModule.MainNavigation
@@ -78,7 +79,6 @@ class MainFragment : BaseComposeFragment() {
 
     private val transactionsViewModel by navGraphViewModels<TransactionsViewModel>(R.id.mainFragment) { TransactionsModule.Factory() }
 
-    private val browserViewModel by viewModels<BrowserViewModel>()
 
 
 
@@ -86,7 +86,7 @@ class MainFragment : BaseComposeFragment() {
     override fun GetContent(navController: NavController) {
         MainScreenWithRootedDeviceCheck(
             transactionsViewModel = transactionsViewModel,
-            browserViewModel = browserViewModel,
+            browserViewModel = viewModel(factory = BrowserModule.Factory()),
             navController = navController,
         )
     }
@@ -325,7 +325,10 @@ private fun HideContentBox(contentHidden: Boolean) {
     } else {
         Modifier
     }
-    Box(Modifier.fillMaxSize().then(backgroundModifier))
+    Box(
+        Modifier
+            .fillMaxSize()
+            .then(backgroundModifier))
 }
 
 @Composable
