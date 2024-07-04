@@ -22,7 +22,7 @@ import io.horizontalsystems.bankwallet.modules.browser.tab.TabManager
 fun TopBar() {
     val viewModel = LocalViewModel.current
     val tab = TabManager.currentTab.value
-    val uiState = viewModel.uiState
+    val uiState = viewModel.browseUiState
 
     Column(modifier = Modifier.graphicsLayer {
         translationY = -viewModel.imeHeightState.value

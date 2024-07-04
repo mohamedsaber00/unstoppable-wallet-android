@@ -34,6 +34,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -46,11 +47,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import io.horizontalsystems.bankwallet.R
+import io.horizontalsystems.bankwallet.core.slideFromRight
+import io.horizontalsystems.bankwallet.core.stats.StatEvent
+import io.horizontalsystems.bankwallet.core.stats.StatPage
+import io.horizontalsystems.bankwallet.core.stats.StatSection
+import io.horizontalsystems.bankwallet.core.stats.stat
 import io.horizontalsystems.bankwallet.entities.browse.DApp
-import io.horizontalsystems.bankwallet.entities.browse.Marketing
-import io.horizontalsystems.bankwallet.entities.browse.Trend
+import io.horizontalsystems.bankwallet.entities.browse.DAppMarketing
+import io.horizontalsystems.bankwallet.modules.browser.collections.Collections
+import io.horizontalsystems.bankwallet.modules.coin.CoinFragment
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.body_leah
 import io.horizontalsystems.bankwallet.ui.compose.components.caption_leah
@@ -58,58 +66,123 @@ import io.horizontalsystems.bankwallet.ui.compose.components.subhead2_grey
 
 @Composable
 fun BrowserScreen(
+    navController: NavController
 ) {
 
     val browserViewModel: BrowserViewModel = viewModel(factory = BrowserModule.Factory())
 
-    Column(
-    )
+    Column()
     {
-        TopRow()
-        browserViewModel.dAppsResponse.collectAsState().value?.ads?.let { HorizontalAppList(it.marketing) }
-        VerticalAppListParent(browserViewModel)
+        TopRow(browserViewModel,navController)
+
     }
 }
 
 @Composable
-fun TopRow() {
-    //TODO USE ScrollableTabs Instead
-    ScrollableTabRow(
-        selectedTabIndex = 0,
-        backgroundColor = ComposeAppTheme.colors.transparent,
-        contentColor = ComposeAppTheme.colors.tyler,
-        edgePadding = 16.dp,
-        indicator = @Composable { tabPositions ->
-            TabRowDefaults.Indicator(
-                modifier = Modifier
-                    .tabIndicatorOffset(tabPositions[0])
-                    .clip(RoundedCornerShape(topStart = 2.dp, topEnd = 2.dp)),
-                color = ComposeAppTheme.colors.jacob
-            )
-        }
+fun TopRow(
+    browserViewModel: BrowserViewModel,
+    navController: NavController,
+
     ) {
-        BrowserTab(selected = true, onClick = { /*TODO*/ }) {
-            Text("Apps", color = ComposeAppTheme.colors.leah)
-        }
-        BrowserTab(selected = false, onClick = { /*TODO*/ }) {
-            Text("Tokens", color = Color.Gray)
-        }
-        BrowserTab(selected = false, onClick = { /*TODO*/ }) {
-            Text("Collections", color = Color.Gray)
-        }
-        BrowserTab(selected = false, onClick = { /*TODO*/ }) {
-            Text("Quests", color = Color.Gray)
-        }
-        BrowserTab(selected = false, onClick = { /*TODO*/ }) {
-            Text("Learn", color = Color.Gray)
-        }
+
+    var selectedTab by remember {
+        mutableIntStateOf(0)
     }
+
+    Column {
+
+        //TODO USE ScrollableTabs Instead
+        ScrollableTabRow(
+            selectedTabIndex = selectedTab,
+            backgroundColor = ComposeAppTheme.colors.transparent,
+            contentColor = ComposeAppTheme.colors.tyler,
+            edgePadding = 16.dp,
+            indicator = @Composable { tabPositions ->
+                TabRowDefaults.Indicator(
+                    modifier = Modifier
+                        .tabIndicatorOffset(tabPositions[selectedTab])
+                        .clip(RoundedCornerShape(topStart = 2.dp, topEnd = 2.dp)),
+                    color = ComposeAppTheme.colors.jacob
+                )
+            }
+        ) {
+            BrowserTab(
+                selected = selectedTab == 0,
+                onClick = {
+                    selectedTab = 0
+                }) {
+                Text(
+                    "Apps",
+                    color = if (selectedTab == 0) ComposeAppTheme.colors.leah else Color.Gray
+                )
+            }
+            BrowserTab(
+                selected = selectedTab == 1,
+                onClick = {
+                    selectedTab = 1
+                }) {
+                Text(
+                    "Tokens",
+                    color = if (selectedTab == 1) ComposeAppTheme.colors.leah else Color.Gray
+                )
+            }
+            BrowserTab(
+                selected = selectedTab == 2,
+                onClick = {
+                    selectedTab = 2
+                }) {
+                Text(
+                    "Collections",
+                    color = if (selectedTab == 2) ComposeAppTheme.colors.leah else Color.Gray
+                )
+            }
+            BrowserTab(
+                selected = selectedTab == 3,
+                onClick = {
+                    selectedTab = 3
+                }) {
+                Text(
+                    "Quests",
+                    color = if (selectedTab == 3) ComposeAppTheme.colors.leah else Color.Gray
+                )
+            }
+            BrowserTab(
+                selected = selectedTab == 4,
+                onClick = {
+                    selectedTab = 4
+                }) {
+                Text(
+                    "Learn",
+                    color = if (selectedTab == 4) ComposeAppTheme.colors.leah else Color.Gray
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+
+        if (selectedTab == 0) {
+            browserViewModel.dAppsResponse.collectAsState().value?.ads?.let {
+                HorizontalAppList(
+                    it.marketing
+                )
+            }
+            VerticalAppListParent(browserViewModel)
+        } else if (selectedTab == 2) {
+            Collections()
+        }
+//        else{
+//            Tokens(onCoinClick = { onCoinClick(it, navController) })
+//        }
+
+    }
+
 }
 
 
 @Composable
 fun HorizontalAppList(
-    featuredApps: List<Marketing>
+    featuredApps: List<DAppMarketing>?
 ) {
     Row(
         modifier = Modifier
@@ -117,7 +190,7 @@ fun HorizontalAppList(
             .padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        featuredApps.forEach {
+        featuredApps?.forEach {
             FeaturedAppCard(it)
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -198,7 +271,7 @@ fun VerticalAppListParent(
 
 
 @Composable
-fun FeaturedAppCard(marketing: Marketing) {
+fun FeaturedAppCard(dAppMarketing: DAppMarketing) {
     val viewModel = LocalViewModel.current
     val context = LocalContext.current
     Card(
@@ -206,7 +279,7 @@ fun FeaturedAppCard(marketing: Marketing) {
             .width(170.dp)
             .height(200.dp)
             .clickable {
-                viewModel.onGo(marketing.url, context = context)
+                viewModel.onGo(dAppMarketing.url, context = context)
             },
         elevation = 4.dp
     ) {
@@ -217,8 +290,8 @@ fun FeaturedAppCard(marketing: Marketing) {
                 .padding(8.dp)
         ) {
             Image(
-                painter = rememberAsyncImagePainter(marketing.cover),
-                contentDescription = marketing.name,
+                painter = rememberAsyncImagePainter(dAppMarketing.cover),
+                contentDescription = dAppMarketing.name,
                 modifier = Modifier
                     .fillMaxSize()
                     .clip(RoundedCornerShape(16.dp))
@@ -230,17 +303,17 @@ fun FeaturedAppCard(marketing: Marketing) {
             ) {
                 Column(Modifier.weight(1f)) {
                     body_leah(
-                        text = marketing.name
+                        text = dAppMarketing.name
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     caption_leah(
-                        text = marketing.category[0]
+                        text = dAppMarketing.category[0]
                     )
                 }
 
                 Image(
-                    painter = rememberAsyncImagePainter(marketing.icon),
-                    contentDescription = marketing.name,
+                    painter = rememberAsyncImagePainter(dAppMarketing.icon),
+                    contentDescription = dAppMarketing.name,
                     modifier = Modifier
                         .size(50.dp)
                         .clip(RoundedCornerShape(16.dp))
@@ -306,7 +379,8 @@ fun BrowserTab(
     Tab(
         modifier = Modifier.padding(vertical = 16.dp),
         selected = selected,
-        onClick = { /*TODO*/ }) {
+        onClick = { onClick() })
+    {
         content()
     }
 }
@@ -402,7 +476,7 @@ fun TypeDropDown(
                 expanded = expanded,
                 onDismissRequest = { expanded = false }) {
                 DropdownMenuItem(
-                    content = { body_leah("Trend") },
+                    content = { body_leah("Trending") },
                     onClick = {
                         expanded = false
                         onNetworkStateSelected(NetworkState.TREND)
@@ -432,11 +506,19 @@ fun TypeDropDown(
     }
 }
 
+private fun onCoinClick(coinUid: String, navController: NavController) {
+    val arguments = CoinFragment.Input(coinUid)
+
+    navController.slideFromRight(R.id.coinFragment, arguments)
+
+    stat(page = StatPage.Markets, section = StatSection.Coins, event = StatEvent.OpenCoin(coinUid))
+}
+
 
 @Preview(showBackground = true)
 @Composable
 private fun PreviewBrowserScreen() {
     ComposeAppTheme {
-        BrowserScreen()
+        //BrowserScreen()
     }
 }

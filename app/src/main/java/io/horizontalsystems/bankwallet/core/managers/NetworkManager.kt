@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import io.horizontalsystems.bankwallet.core.INetworkManager
+import io.horizontalsystems.bankwallet.entities.browse.CollectionsResponse
 import io.horizontalsystems.bankwallet.entities.browse.DAppResponse
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -66,6 +67,10 @@ class NetworkManager : INetworkManager {
 
     override suspend fun  getDApps(): DAppResponse {
         return DAppsService.service().getDApps()
+    }
+
+    override suspend fun getCollections(): CollectionsResponse {
+        return CollectionsService.service().getCollections()
     }
 }
 
@@ -176,6 +181,26 @@ object DAppsService {
     interface DAppsAPI {
         @GET("dapps")
         suspend fun getDApps(): DAppResponse
+    }
+
+
+
+
+
+}
+
+object CollectionsService {
+
+
+    private val apiURL = "http://195.201.202.44:5000/api/"
+    fun service(): CollectionsAPI {
+        return APIClient.retrofit(apiURL, 60)
+            .create(CollectionsAPI::class.java)
+    }
+
+    interface CollectionsAPI {
+        @GET("collections")
+        suspend fun getCollections(): CollectionsResponse
     }
 
 

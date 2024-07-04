@@ -54,6 +54,8 @@ import io.horizontalsystems.bankwallet.modules.browser.MainBrowserPage
 import io.horizontalsystems.bankwallet.modules.main.MainModule.MainNavigation
 import io.horizontalsystems.bankwallet.modules.manageaccount.dialogs.BackupRequiredDialog
 import io.horizontalsystems.bankwallet.modules.market.MarketScreen
+import io.horizontalsystems.bankwallet.modules.market.SortingField
+import io.horizontalsystems.bankwallet.modules.market.TopMarket
 import io.horizontalsystems.bankwallet.modules.multiswap.SwapScreen
 import io.horizontalsystems.bankwallet.modules.rateapp.RateApp
 import io.horizontalsystems.bankwallet.modules.releasenotes.ReleaseNotesFragment
@@ -80,13 +82,15 @@ class MainFragment : BaseComposeFragment() {
     private val transactionsViewModel by navGraphViewModels<TransactionsViewModel>(R.id.mainFragment) { TransactionsModule.Factory() }
 
 
-
-
     @Composable
     override fun GetContent(navController: NavController) {
         MainScreenWithRootedDeviceCheck(
             transactionsViewModel = transactionsViewModel,
-            browserViewModel = viewModel(factory = BrowserModule.Factory()),
+            browserViewModel = viewModel(
+                factory = BrowserModule.Factory(
+
+                )
+            ),
             navController = navController,
         )
     }
@@ -115,7 +119,7 @@ private fun MainScreenWithRootedDeviceCheck(
     if (rootedDeviceViewModel.showRootedDeviceWarning) {
         RootedDeviceScreen { rootedDeviceViewModel.ignoreRootedDeviceWarning() }
     } else {
-        MainScreen(transactionsViewModel, browserViewModel , navController)
+        MainScreen(transactionsViewModel, browserViewModel, navController)
     }
 }
 
@@ -158,7 +162,10 @@ private fun MainScreen(
                         modalBottomSheetState.hide()
                         viewModel.onSelect(it)
 
-                        stat(page = StatPage.SwitchWallet, event = StatEvent.Select(StatEntity.Wallet))
+                        stat(
+                            page = StatPage.SwitchWallet,
+                            event = StatEvent.Select(StatEntity.Wallet)
+                        )
                     }
                 },
                 onCancelClick = {
@@ -196,19 +203,25 @@ private fun MainScreen(
                                     selectedContentColor = ComposeAppTheme.colors.jacob,
                                     unselectedContentColor = if (item.enabled) ComposeAppTheme.colors.grey else ComposeAppTheme.colors.grey50,
                                     onClick = {
-                                        if (item.selected && item.mainNavItem == MainNavigation.Browser ) {
+                                        if (item.selected && item.mainNavItem == MainNavigation.Browser) {
                                             browserViewModel.resetTab()
                                         }
                                         viewModel.onSelect(item.mainNavItem)
 
-                                        stat(page = StatPage.Main, event = StatEvent.SwitchTab(item.mainNavItem.statTab))
+                                        stat(
+                                            page = StatPage.Main,
+                                            event = StatEvent.SwitchTab(item.mainNavItem.statTab)
+                                        )
                                     },
                                     onLongClick = {
                                         if (item.mainNavItem == MainNavigation.Balance) {
                                             coroutineScope.launch {
                                                 modalBottomSheetState.show()
 
-                                                stat(page = StatPage.Main, event = StatEvent.Open(StatPage.SwitchWallet))
+                                                stat(
+                                                    page = StatPage.Main,
+                                                    event = StatEvent.Open(StatPage.SwitchWallet)
+                                                )
                                             }
                                         }
                                     }
@@ -244,7 +257,10 @@ private fun MainScreen(
                             )
 
                             MainNavigation.Settings -> SettingsScreen(fragmentNavController)
-                            MainNavigation.Browser ->  MainBrowserPage(fragmentNavController,browserViewModel)
+                            MainNavigation.Browser -> MainBrowserPage(
+                                fragmentNavController,
+                                browserViewModel
+                            )
                         }
                     }
                 }
@@ -328,7 +344,8 @@ private fun HideContentBox(contentHidden: Boolean) {
     Box(
         Modifier
             .fillMaxSize()
-            .then(backgroundModifier))
+            .then(backgroundModifier)
+    )
 }
 
 @Composable

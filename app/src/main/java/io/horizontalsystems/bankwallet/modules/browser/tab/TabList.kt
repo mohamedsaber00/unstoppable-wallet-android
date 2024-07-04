@@ -74,7 +74,7 @@ fun TabList() {
     val resetAnim = remember { mutableStateOf(false) }
     val listState = rememberLazyGridState()
     val statusBarHeight = statusBarHeight()
-    val uiState = viewModel.uiState
+    val uiState = viewModel.browseUiState
 
 
 
@@ -121,7 +121,7 @@ fun TabList() {
                                 resetAnim.value = true
                             }
                         } else {
-                            viewModel.uiState.value = BrowserUIState.Main
+                            viewModel.browseUiState.value = BrowserUIState.Main
                         }
                     }
                 }
@@ -158,7 +158,7 @@ fun TabList() {
             targetSize.value = IntSize(screenWidth, screenHeight)
         } else if (hideAnim.value) {
             hideAnim.value = false
-            viewModel.uiState.value = BrowserUIState.Main
+            viewModel.browseUiState.value = BrowserUIState.Main
         }
     }
     val widthAnim = animateDpAsState(
@@ -244,7 +244,7 @@ fun TabItem(tab: Tab, onTap: () -> Unit) {
                                             goHome()
                                             active()
                                         }
-                                    viewModel.uiState.value = BrowserUIState.Main
+                                    viewModel.browseUiState.value = BrowserUIState.Main
                                 }
                             }
                             viewModel.editInAddressBar(url.value)

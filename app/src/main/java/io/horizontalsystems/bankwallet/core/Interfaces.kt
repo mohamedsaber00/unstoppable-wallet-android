@@ -22,6 +22,7 @@ import io.horizontalsystems.bankwallet.entities.RestoreSettingRecord
 import io.horizontalsystems.bankwallet.entities.SyncMode
 import io.horizontalsystems.bankwallet.entities.TransactionDataSortMode
 import io.horizontalsystems.bankwallet.entities.Wallet
+import io.horizontalsystems.bankwallet.entities.browse.CollectionsResponse
 import io.horizontalsystems.bankwallet.entities.browse.DAppResponse
 import io.horizontalsystems.bankwallet.entities.transactionrecords.TransactionRecord
 import io.horizontalsystems.bankwallet.modules.amount.AmountInputType
@@ -218,6 +219,7 @@ interface INetworkManager {
     suspend fun getBep2Tokens(): List<Bep2TokenInfoService.Bep2Token>
 
      suspend fun getDApps() : DAppResponse
+     suspend fun getCollections() : CollectionsResponse
 }
 
 interface IClipboardManager {

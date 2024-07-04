@@ -90,7 +90,7 @@ fun MainView() {
 fun NewTabView() {
     val tab = TabManager.currentTab.value
     val viewModel = LocalViewModel.current
-    val uiState = viewModel.uiState
+    val uiState = viewModel.browseUiState
     if (uiState.value == BrowserUIState.Main && (tab?.isHome == true || tab == null)) {
         NewTabPage()
     }
@@ -99,10 +99,10 @@ fun NewTabView() {
 @Composable
 fun CoverView() {
     val viewModel = LocalViewModel.current
-    val uiState = viewModel.uiState
+    val uiState = viewModel.browseUiState
     TSBackHandler(
         enabled = uiState.value != BrowserUIState.Main,
-        onBack = { viewModel.uiState.value = BrowserUIState.Main }) {
+        onBack = { viewModel.browseUiState.value = BrowserUIState.Main }) {
         when (uiState.value) {
             BrowserUIState.Search -> SearchList()
             BrowserUIState.TabList -> TabList()

@@ -2,9 +2,9 @@ package io.horizontalsystems.bankwallet.entities.browse
 
 
 data class DAppResponse(
-    val trend: Trend,
-    val top: Top,
-    val ads: Ads
+    val trend: DAppTrend,
+    val top: DAppTop,
+    val ads: DAppAds
 )
 
 data class DApp(
@@ -17,14 +17,14 @@ data class DApp(
     val network: List<String>
 )
 
-data class Trend(
+data class DAppTrend(
     val solana: List<DApp>,
     val ethereum: List<DApp>,
     val polygon: List<DApp>,
     val all: List<DApp>
 )
 
-data class Top(
+data class DAppTop(
     val solana: List<DApp>,
     val ethereum: List<DApp>,
     val polygon: List<DApp>,
@@ -32,7 +32,7 @@ data class Top(
 )
 
 
-data class Defi(
+data class DAppDefi(
     val id: Int,
     val name: String,
     val category: List<String>,
@@ -42,7 +42,7 @@ data class Defi(
     val network: List<String>
 )
 
-data class Exchange(
+data class DAppExchange(
     val id: Int,
     val name: String,
     val category: List<String>,
@@ -52,7 +52,7 @@ data class Exchange(
     val network: List<String>
 )
 
-data class Marketing(
+data class DAppMarketing(
     val id: Int,
     val name: String,
     val category: List<String>,
@@ -62,12 +62,12 @@ data class Marketing(
     val network: List<String>
 )
 
-data class Ads(
-    val marketing: List<Marketing>
+data class DAppAds(
+    val marketing: List<DAppMarketing>
 )
 
-data class CryptoProjects(
-    val defi: List<Defi>,
-    val exchanges: List<Exchange>,
-    val ads: Ads
+data class DAppCryptoProjects(
+    val dAppDefis: List<DAppDefi>,
+    val dAppExchanges: List<DAppExchange>,
+    val DAppAds: DAppAds
 )
