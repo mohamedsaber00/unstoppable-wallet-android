@@ -28,6 +28,7 @@ enum class StatPage(val key: String) {
     BlockchainSettingsEvm("blockchain_settings_evm"),
     BlockchainSettingsEvmAdd("blockchain_settings_evm_add"),
     BlockchainSettingsSolana("blockchain_settings_sol"),
+    Browse("browse"),
     CloudBackup("cloud_backup"),
     FileBackup("file_backup"),
     CoinAnalytics("coin_analytics"),
@@ -154,7 +155,8 @@ enum class StatSection(val key: String) {
     Watchlist("watchlist"),
     News("news"),
     Platforms("platforms"),
-    Pairs("pairs")
+    Pairs("pairs"),
+    Tokens("tokens")
 }
 
 sealed class StatEvent {

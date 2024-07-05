@@ -61,7 +61,10 @@ import io.horizontalsystems.bankwallet.ui.compose.components.subhead2_grey
 
 @Composable
 fun Collections() {
-    val browserViewModel: BrowserViewModel = viewModel(factory = BrowserModule.Factory())
+    val browserViewModel: BrowserViewModel = viewModel(factory = BrowserModule.Factory(
+        TopMarket.Top100,
+        SortingField.TopGainers
+    ))
 
     Column()
     {

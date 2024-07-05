@@ -1,5 +1,6 @@
 package io.horizontalsystems.bankwallet.modules.browser
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -46,10 +47,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import coil.compose.rememberAsyncImagePainter
 import io.horizontalsystems.bankwallet.R
+import io.horizontalsystems.bankwallet.core.BaseComposeFragment
 import io.horizontalsystems.bankwallet.core.slideFromRight
 import io.horizontalsystems.bankwallet.core.stats.StatEvent
 import io.horizontalsystems.bankwallet.core.stats.StatPage
@@ -58,7 +62,13 @@ import io.horizontalsystems.bankwallet.core.stats.stat
 import io.horizontalsystems.bankwallet.entities.browse.DApp
 import io.horizontalsystems.bankwallet.entities.browse.DAppMarketing
 import io.horizontalsystems.bankwallet.modules.browser.collections.Collections
+import io.horizontalsystems.bankwallet.modules.browser.tokens.Tokens
 import io.horizontalsystems.bankwallet.modules.coin.CoinFragment
+import io.horizontalsystems.bankwallet.modules.market.SortingField
+import io.horizontalsystems.bankwallet.modules.market.TopMarket
+import io.horizontalsystems.bankwallet.modules.market.search.MarketSearchModule
+import io.horizontalsystems.bankwallet.modules.market.search.MarketSearchScreen
+import io.horizontalsystems.bankwallet.modules.market.search.MarketSearchViewModel
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.body_leah
 import io.horizontalsystems.bankwallet.ui.compose.components.caption_leah
@@ -66,16 +76,21 @@ import io.horizontalsystems.bankwallet.ui.compose.components.subhead2_grey
 
 @Composable
 fun BrowserScreen(
-    navController: NavController
+    navController: NavController,
 ) {
 
-    val browserViewModel: BrowserViewModel = viewModel(factory = BrowserModule.Factory())
+    val browserViewModel = viewModel<BrowserViewModel>(
+        factory = BrowserModule.Factory(
+            TopMarket.Top100,
+            SortingField.TopGainers
+        )
+    )
 
-    Column()
-    {
-        TopRow(browserViewModel,navController)
 
-    }
+
+    TopRow(browserViewModel, navController)
+
+
 }
 
 @Composable
@@ -168,12 +183,11 @@ fun TopRow(
                 )
             }
             VerticalAppListParent(browserViewModel)
+        } else if (selectedTab == 1) {
+            Tokens(onCoinClick = { onCoinClick(it, navController) })
         } else if (selectedTab == 2) {
             Collections()
         }
-//        else{
-//            Tokens(onCoinClick = { onCoinClick(it, navController) })
-//        }
 
     }
 
@@ -509,16 +523,15 @@ fun TypeDropDown(
 private fun onCoinClick(coinUid: String, navController: NavController) {
     val arguments = CoinFragment.Input(coinUid)
 
-    navController.slideFromRight(R.id.coinFragment, arguments)
-
-    stat(page = StatPage.Markets, section = StatSection.Coins, event = StatEvent.OpenCoin(coinUid))
-}
-
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewBrowserScreen() {
-    ComposeAppTheme {
-        //BrowserScreen()
+    try {
+        navController.slideFromRight(R.id.coinFragment, arguments)
+        stat(
+            page = StatPage.Browse,
+            section = StatSection.Tokens,
+            event = StatEvent.OpenCoin(coinUid)
+        )
+    } catch (e: IllegalStateException) {
+        Log.e("NavigationError", "Navigation failed: ${e.message}")
     }
 }
+

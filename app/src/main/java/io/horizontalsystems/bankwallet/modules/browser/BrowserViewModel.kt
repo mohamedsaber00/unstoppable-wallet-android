@@ -43,12 +43,12 @@ import kotlin.math.min
 
 class BrowserViewModel(
     private val iNetworkManager: INetworkManager,
-//    private var topMarket: TopMarket,
-//    private var sortingField: SortingField,
-//    private val marketKit: MarketKitWrapper,
-//    private val currencyManager: CurrencyManager,
-//    private val favoritesManager: MarketFavoritesManager,
-) : ViewModel() {
+    private var topMarket: TopMarket,
+    private var sortingField: SortingField,
+    private val marketKit: MarketKitWrapper,
+    private val currencyManager: CurrencyManager,
+    private val favoritesManager: MarketFavoritesManager,
+) : ViewModelUiState<TokensUiState>() {
 
     val browseUiState = mutableStateOf(BrowserUIState.Main)
 
@@ -65,7 +65,7 @@ class BrowserViewModel(
         SortingField.TopLosers,
     )
     private val topMarkets = TopMarket.entries
-    //private val baseCurrency get() = currencyManager.baseCurrency
+    private val baseCurrency get() = currencyManager.baseCurrency
 
     private var isRefreshing = false
     private var viewState: ViewState = ViewState.Loading
@@ -130,7 +130,7 @@ class BrowserViewModel(
         }
     }
 
-    /*override fun createState() = TokensUiState(
+    override fun createState() = TokensUiState(
         isRefreshing = isRefreshing,
         viewState = viewState,
         viewItems = viewItems,
@@ -287,7 +287,7 @@ class BrowserViewModel(
 
             emitState()
         }
-    }*/
+    }
 
 
 }

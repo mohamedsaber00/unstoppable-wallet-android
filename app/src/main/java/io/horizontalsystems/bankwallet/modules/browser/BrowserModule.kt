@@ -12,16 +12,18 @@ object BrowserModule {
 
 
     class Factory(
+        private val topMarket: TopMarket,
+        private val sortingField: SortingField
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return BrowserViewModel(
                 App.networkManager,
-//                topMarket,
-//                sortingField,
-//                App.marketKit,
-//                App.currencyManager,
-//                App.marketFavoritesManager
+                topMarket,
+                sortingField,
+                App.marketKit,
+                App.currencyManager,
+                App.marketFavoritesManager
             ) as T
         }
     }

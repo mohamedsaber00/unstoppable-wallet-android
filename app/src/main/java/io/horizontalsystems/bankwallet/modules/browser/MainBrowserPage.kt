@@ -35,14 +35,14 @@ fun MainBrowserPage(
         LocalViewModel provides browserViewModel,
         content = {
             Surface(color = ComposeAppTheme.colors.tyler) {
-                MainView()
+                MainView(navController)
             }
         }
     )
 }
 
 @Composable
-fun MainView() {
+fun MainView(navController: NavController) {
     logD("MainView start")
     val context = LocalContext.current
     TabManager.loadTabs(context)
@@ -79,7 +79,7 @@ fun MainView() {
                 )
             }
             ProgressIndicator()
-            NewTabView()
+            NewTabView(navController)
             CoverView()
         }
     }
@@ -87,12 +87,12 @@ fun MainView() {
 }
 
 @Composable
-fun NewTabView() {
+fun NewTabView(navController: NavController) {
     val tab = TabManager.currentTab.value
     val viewModel = LocalViewModel.current
     val uiState = viewModel.browseUiState
     if (uiState.value == BrowserUIState.Main && (tab?.isHome == true || tab == null)) {
-        NewTabPage()
+        NewTabPage(navController)
     }
 }
 

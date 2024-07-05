@@ -1,4 +1,3 @@
-/*
 package io.horizontalsystems.bankwallet.modules.browser.tokens
 
 import androidx.compose.animation.Crossfade
@@ -49,7 +48,8 @@ fun Tokens(
     ) {
     val viewModel = viewModel<BrowserViewModel>(
         factory = BrowserModule.Factory(
-
+            TopMarket.Top100,
+            SortingField.TopGainers
         )
     )
 
@@ -64,7 +64,7 @@ fun Tokens(
         onRefresh = {
             viewModel.refresh()
 
-            stat(page = StatPage.Markets, section = StatSection.Coins, event = StatEvent.Refresh)
+            stat(page = StatPage.Browse, section = StatSection.Tokens, event = StatEvent.Refresh)
         }
     ) {
         Crossfade(uiState.viewState, label = "") { viewState ->
@@ -92,8 +92,8 @@ fun Tokens(
                             viewModel.onAddFavorite(uid)
 
                             stat(
-                                page = StatPage.Markets,
-                                section = StatSection.Coins,
+                                page = StatPage.Browse,
+                                section = StatSection.Tokens,
                                 event = StatEvent.AddToWatchlist(uid)
                             )
 
@@ -102,8 +102,8 @@ fun Tokens(
                             viewModel.onRemoveFavorite(uid)
 
                             stat(
-                                page = StatPage.Markets,
-                                section = StatSection.Coins,
+                                page = StatPage.Browse,
+                                section = StatSection.Tokens,
                                 event = StatEvent.RemoveFromWatchlist(uid)
                             )
                         },
@@ -153,8 +153,8 @@ fun Tokens(
                 openSortingSelector = false
 
                 stat(
-                    page = StatPage.Markets,
-                    section = StatSection.Coins,
+                    page = StatPage.Browse,
+                    section = StatSection.Tokens,
                     event = StatEvent.SwitchSortType(selected.statSortType)
                 )
             },
@@ -172,8 +172,8 @@ fun Tokens(
                 openTopSelector = false
 
                 stat(
-                    page = StatPage.Markets,
-                    section = StatSection.Coins,
+                    page = StatPage.Browse,
+                    section = StatSection.Tokens,
                     event = StatEvent.SwitchMarketTop(it.statMarketTop)
                 )
             },
@@ -191,8 +191,8 @@ fun Tokens(
                 openPeriodSelector = false
 
                 stat(
-                    page = StatPage.Markets,
-                    section = StatSection.Coins,
+                    page = StatPage.Browse,
+                    section = StatSection.Tokens,
                     event = StatEvent.SwitchPeriod(selected.statPeriod)
                 )
             },
@@ -215,4 +215,3 @@ fun OptionController(
         iconRight = painterResource(R.drawable.ic_down_arrow_20),
     )
 }
-*/

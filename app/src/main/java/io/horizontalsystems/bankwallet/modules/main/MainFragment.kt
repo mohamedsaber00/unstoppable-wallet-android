@@ -88,6 +88,8 @@ class MainFragment : BaseComposeFragment() {
             transactionsViewModel = transactionsViewModel,
             browserViewModel = viewModel(
                 factory = BrowserModule.Factory(
+                    TopMarket.Top100,
+                    SortingField.TopGainers
 
                 )
             ),

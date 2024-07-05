@@ -1,6 +1,7 @@
 package io.horizontalsystems.bankwallet.core.managers
 
 import android.annotation.SuppressLint
+import android.util.Log
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import io.horizontalsystems.bankwallet.core.INetworkManager
@@ -172,27 +173,24 @@ object ServiceChangeLogs {
 object DAppsService {
 
 
-    private val apiURL = "http://195.201.202.44:5000/api/"
-    fun service(): DAppsAPI {
-        return APIClient.retrofit(apiURL, 60)
-            .create(DAppsAPI::class.java)
-    }
+    private val apiURL = "http://198.37.119.168:5000/api/"
 
-    interface DAppsAPI {
-        @GET("dapps")
-        suspend fun getDApps(): DAppResponse
-    }
+        fun service(): DAppsAPI {
+            return APIClient.retrofit(apiURL, 60)
+                .create(DAppsAPI::class.java)
+        }
 
-
-
-
+        interface DAppsAPI {
+            @GET("dapps")
+            suspend fun getDApps(): DAppResponse
+        }
 
 }
 
 object CollectionsService {
 
 
-    private val apiURL = "http://195.201.202.44:5000/api/"
+    private val apiURL = "http://198.37.119.168:5000/api/"
     fun service(): CollectionsAPI {
         return APIClient.retrofit(apiURL, 60)
             .create(CollectionsAPI::class.java)
